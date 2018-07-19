@@ -30,11 +30,7 @@ export default class FlightChooserForm extends React.Component {
 
 
     render() {
-<<<<<<< HEAD
         //const children = this.props.children;
-=======
-        const children = this.props.children;
->>>>>>> master
         return(
             <Container style={formStyles.container}>
                 <Header>
