@@ -4,9 +4,13 @@ import {Container, Content, Root} from 'native-base';
 import { Font, AppLoading } from "expo";
 import { StyleSheet, Text, View } from 'react-native';
 import FlightChooserForm from "./components/flightChooserForm/FlightChooserForm";
+import { connect } from 'react-redux';
+import { Provider } from 'react-redux';
+//import store from './store/configureStore.js'
+import reducers from './reducers/index';
+import { createStore, applyMiddleware } from 'redux'
 
-
-export default class App extends React.Component {
+class App extends React.Component {
 
     constructor(props) {
         super(props);
@@ -24,31 +28,40 @@ export default class App extends React.Component {
     }
 
     render() {
+        store = createStore(reducers);
         if (this.state.loading) {
             return (
-                <Root>
-                    <AppLoading />
-                </Root>
+                <Provider store={ store }>
+                    <Root>
+                        <AppLoading />
+                    </Root>
+                </Provider>
             );
         }
+
         return (
+            <Provider store={store}>
+                <Root>
                 <Container>
                     <Content>
-                        <ScrollView style={styles.container}>
+                        <ScrollView style={{ flex: 1}}>
                         <View style={{flex: 1}}>
-                            <FlightChooserForm/>
+                            <FlightChooserForm chidren = {state.children} />
                         </View>
                         </ScrollView>
                     </Content>
                 </Container>
+                </Root>
+            </Provider>
             );
   }
 }
 
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
+function mapStateToProps (state) {
+    return {
+        children : state.children,
     }
-});
+}
 
+
+export default connect(mapStateToProps)(App);

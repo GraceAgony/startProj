@@ -28,7 +28,9 @@ export default class FlightChooserForm extends React.Component {
     }
 
 
+
     render() {
+        const children = this.props.children;
         return(
             <Container style={formStyles.container}>
                 <Header>
