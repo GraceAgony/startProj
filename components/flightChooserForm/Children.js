@@ -57,7 +57,7 @@ export default class Children extends React.Component {
                 return (
                     <Row key = {i}>
                     <Col size={1}>
-                        <Text>1-й:</Text>
+                        <Text>{i+1}-й:</Text>
                     </Col>
                     <Col size={3}>
                         <Item >
