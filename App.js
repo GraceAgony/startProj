@@ -6,10 +6,19 @@ import store from './store/configureStore.js'
 import { StyleSheet, Text, View } from 'react-native';
 import FlightChooserForm from "./components/flightChooserForm/FlightChooserForm";
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import { Font, AppLoading } from "expo";
 
  export default class App extends Component {
 
+=======
+import { Provider } from 'react-redux';
+//import store from './store/configureStore.js'
+import reducers from './reducers/index';
+import { createStore, applyMiddleware } from 'redux'
+
+class App extends React.Component {
+>>>>>>> master
 
     constructor(props) {
         super(props);
@@ -28,8 +37,10 @@ import { Font, AppLoading } from "expo";
     }
 
     render() {
+        store = createStore(reducers);
         if (this.state.loading) {
             return (
+<<<<<<< HEAD
                 <Provider store={store}>
 
                     <AppLoading/>
@@ -51,3 +62,39 @@ import { Font, AppLoading } from "expo";
             );
     }
 }
+=======
+                <Provider store={ store }>
+                    <Root>
+                        <AppLoading />
+                    </Root>
+                </Provider>
+            );
+        }
+
+        return (
+            <Provider store={store}>
+                <Root>
+                <Container>
+                    <Content>
+                        <ScrollView style={{ flex: 1}}>
+                        <View style={{flex: 1}}>
+                            <FlightChooserForm chidren = {state.children} />
+                        </View>
+                        </ScrollView>
+                    </Content>
+                </Container>
+                </Root>
+            </Provider>
+            );
+  }
+}
+
+function mapStateToProps (state) {
+    return {
+        children : state.children,
+    }
+}
+
+
+export default connect(mapStateToProps)(App);
+>>>>>>> master
