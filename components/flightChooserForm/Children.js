@@ -1,29 +1,32 @@
-import React from "react";
+import React from 'react';
 import {formStyles} from "./style";
 import { Col, Row, Grid } from "react-native-easy-grid";
-import { Container, Header, Content, Form, Item, Picker, Left, Body, Right, Button, CheckBox, Title, Text, DatePicker, Input,ListItem } from 'native-base';
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { Item, Picker, Text, Input } from 'native-base';
+import {  View } from 'react-native';
+
 
 export default class Children extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            children: [],
-            childrenCount: 0,
-        };
     };
 
-    onValueChangeChildren(value){
+    onValueChangeChildren(value) {
+
         let ch = [];
-        for( let i=0; i< value; i++){
-            ch.push(1);
+        for (let i = 0; i < value; i++) {
+            ch.push(i+1);
         }
-        this.setState({children: ch, childrenCount: value}, ()=>{});
-        console.log(this.state.childrenCount);
+
+
+        this.props.setChildren({children: ch, childrenCount: value} );
     }
 
     render(){
+        let childrenArray  = this.props.childrenArray;
+        let children = childrenArray.children;
+        let childrenCount = childrenArray.childrenCount;
+
         return(
             <View>
            <Item>
@@ -32,7 +35,8 @@ export default class Children extends React.Component {
             <Col>
                 <Text style = {formStyles.title}>Детей</Text>
                 <Picker
-                    selectedValue={ this.state.childrenCount }
+
+                    selectedValue={childrenCount}
                     onValueChange={this.onValueChangeChildren.bind(this)}
                     mode="dropdown"
                     placeholder="Select One"
@@ -53,7 +57,8 @@ export default class Children extends React.Component {
             <Item>
                 <Grid>
                     {
-            this.state.children.map(function(item, i){
+                        children.map(function(item, i){
+
                 return (
                     <Row key = {i}>
                     <Col size={1}>

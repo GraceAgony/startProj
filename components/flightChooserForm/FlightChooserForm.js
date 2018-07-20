@@ -30,7 +30,6 @@ export default class FlightChooserForm extends React.Component {
 
 
     render() {
-        //const children = this.props.children;
         return(
             <Container style={formStyles.container}>
                 <Header>
@@ -173,7 +172,7 @@ export default class FlightChooserForm extends React.Component {
                                 </Picker>
                             </Col>
                         </Item>
-                        <Children/>
+                        <Children childrenArray = {this.props.children} setChildren = {this.props.setChildren}/>
                         <Item picker>
                             <Grid>
                             <Row>

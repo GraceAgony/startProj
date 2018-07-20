@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { ScrollView } from 'react-native';
 import {Container, Content, Root} from 'native-base';
-import store from './store/configureStore.js'
+import storeFunc from './store/configureStore.js'
 import { StyleSheet, Text, View } from 'react-native';
 import FlightChooserForm from "./components/flightChooserForm/FlightChooserForm";
 import { connect } from 'react-redux';
 import { Font, AppLoading } from "expo";
 import MainContainer from './MainContainer';
 
+
+let store = storeFunc();
  export default class App extends Component {
 
 
@@ -25,14 +27,12 @@ import MainContainer from './MainContainer';
             Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
         });
         this.setState({loading: false});
-        console.log(store);
     }
 
     render() {
         if (this.state.loading) {
             return (
                 <Provider store={store}>
-
                     <AppLoading/>
                 </Provider>
             );
