@@ -6,8 +6,12 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { formStyles } from "./style";
 import CheckBoxComponent  from "./CheckBox";
 import Children from "./Children";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as childrenActions from '../../actions/ChildrenActions'
 
-export default class FlightChooserForm extends React.Component {
+
+class FlightChooserForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -30,6 +34,8 @@ export default class FlightChooserForm extends React.Component {
 
 
     render() {
+        const { children } = this.props;
+        const { setChildren } = this.props.childrenActions;
         return(
             <Container style={formStyles.container}>
                 <Header>
@@ -172,7 +178,7 @@ export default class FlightChooserForm extends React.Component {
                                 </Picker>
                             </Col>
                         </Item>
-                        <Children childrenArray = {this.props.children} setChildren = {this.props.setChildren}/>
+                        <Children childrenArray = {children} setChildren = {setChildren}/>
                         <Item picker>
                             <Grid>
                             <Row>
@@ -394,3 +400,17 @@ export default class FlightChooserForm extends React.Component {
     };
 
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+        childrenActions: bindActionCreators(childrenActions, dispatch)
+    }
+}
+
+function mapStateToProps (state) {
+    return{
+        children: state.children,
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FlightChooserForm);
