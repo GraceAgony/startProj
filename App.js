@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { ScrollView } from 'react-native';
-import {Container, Content, Root} from 'native-base';
 import storeFunc from './store/configureStore.js'
-import { StyleSheet, Text, View } from 'react-native';
-import FlightChooserForm from "./components/flightChooserForm/FlightChooserForm";
-import { connect } from 'react-redux';
 import { Font, AppLoading } from "expo";
 import MainContainer from './MainContainer';
 

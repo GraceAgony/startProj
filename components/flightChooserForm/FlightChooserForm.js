@@ -10,28 +10,100 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as childrenActions from '../../actions/ChildrenActions'
 
+let formdata = {};
 
 class FlightChooserForm extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            selected2: undefined,
-            chosenDate: new Date(),
+           country: 'Австралия',
+            transport: 'Блоки / Чартеры',
+            city: 'Баку',
+            price: 'Все',
+            type: 'Все',
+            firstDate: Date.now(),
+            secondDate: Date.now(),
+            people: 1,
+            nightFrom: 1,
+            nightTo: 1,
+            currency: 'грн',
+            priceFrom: '1',
+            priceTo: '1'
         };
     }
 
-    onValueChanged(value) {
-        this.setState({
-            selected2: value
-        });
+
+    onValueChanged(key, value) {
+        this.setState({[key] : value});
+        formdata["tour["+key+"]"] = value;
     }
 
-    setDate(value){
+    onValueChangedCountry(value) {
+        this.onValueChanged.bind(this)('country', value);
+    }
+    onValueChangedTransport(value) {
+        this.onValueChanged.bind(this)('transport', value);
+    }
+    onValueChangedCity(value) {
+        this.onValueChanged.bind(this)('city', value);
+    }
 
+   onValueChangedPrice(value){
+       this.onValueChanged.bind(this)('price', value);
+   }
+
+    onValueChangedType(value){
+        this.onValueChanged.bind(this)('type', value);
     }
 
 
+    setFirstDate(value){
+        this.onValueChanged.bind(this)('firstDate', value+1);
+    }
+
+    setSecondDate(value){
+        this.onValueChanged.bind(this)('secondDate', value+1);
+    }
+
+    onValueChangedPeople(value){
+        this.onValueChanged.bind(this)('people', value);
+    }
+
+    onValueChangedNightFrom(value){
+        this.onValueChanged.bind(this)('nightFrom', value);
+    }
+
+    onValueChangedNightTo(value){
+        this.onValueChanged.bind(this)('nightTo', value);
+    }
+
+    onValueChangedCurrency(value){
+        this.onValueChanged.bind(this)('currency', value);
+    }
+
+    onValueChangedPriceFrom(value){
+        this.onValueChanged.bind(this)('priceFrom', value);
+    }
+    onValueChangedPriceTo(value){
+        this.onValueChanged.bind(this)('priceTo', value);
+    }
+
+    handleSubmit(){
+        console.log('submit');
+        console.log(formdata);
+        fetch('https://www.tpg.ua/index.php', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                formdata
+            }),
+        }) .then((response) => response.json())
+
+    }
 
     render() {
         const { children } = this.props;
@@ -62,11 +134,11 @@ class FlightChooserForm extends React.Component {
                                 placeholder="Select One"
                                 placeholderStyle={{ color: "#2874F0" }}
                                 note={false}
-                                selectedValue={this.state.selected2}
-                                onValueChange={this.onValueChanged.bind(this)}
+                                selectedValue={this.state.country}
+                                onValueChange={this.onValueChangedCountry.bind(this)}
                             >
-                                <Picker.Item label="Австралия" value="key0" />
-                                <Picker.Item label="Австрия" value="key1" />
+                                <Picker.Item label="Австралия" value="Австралия" />
+                                <Picker.Item label="Австрия" value="Австрия" />
                             </Picker>
                         </Item>
                         <Text></Text>
@@ -76,11 +148,11 @@ class FlightChooserForm extends React.Component {
                                 placeholder="Select One"
                                 placeholderStyle={{ color: "#2874F0" }}
                                 note={false}
-                                selectedValue={this.state.selected2}
-                                onValueChange={this.onValueChanged.bind(this)}
+                                selectedValue={this.state.transport}
+                                onValueChange={this.onValueChangedTransport.bind(this)}
                             >
-                                <Picker.Item label="Блоки / Чартеры" value="key0" />
-                                <Picker.Item label="Без авиа / Автобус" value="key1" />
+                                <Picker.Item label="Блоки / Чартеры" value="Блоки / Чартеры" />
+                                <Picker.Item label="Без авиа / Автобус" value="Без авиа / Автобус" />
                             </Picker>
                         </Item>
                         <Text style = {formStyles.title}>Город отправления</Text>
@@ -90,11 +162,11 @@ class FlightChooserForm extends React.Component {
                                 placeholder="Select One"
                                 placeholderStyle={{ color: "#2874F0" }}
                                 note={false}
-                                selectedValue={this.state.selected2}
-                                onValueChange={this.onValueChanged.bind(this)}
+                                selectedValue={this.state.city}
+                                onValueChange={this.onValueChangedCity.bind(this)}
                             >
-                                <Picker.Item label="Баку" value="key0" />
-                                <Picker.Item label="Киев" value="key1" />
+                                <Picker.Item label="Баку" value="Баку" />
+                                <Picker.Item label="Киев" value="Киев" />
                             </Picker>
                         </Item>
                         <Text style = {formStyles.title}>Источник цены</Text>
@@ -103,15 +175,15 @@ class FlightChooserForm extends React.Component {
                                 placeholder="Select One"
                                 placeholderStyle={{ color: "#2874F0" }}
                                 note={false}
-                                selectedValue={this.state.selectedCategory}
-                                onValueChange={this.onValueChanged.bind(this)}>
+                                selectedValue={this.state.price}
+                                onValueChange={this.onValueChangedPrice.bind(this)}>
                            {/*
                                 this.props.categories.map((item,index)=>{
                                     return <Picker.Item key={index} label={item} value={item} />;
                                 })
                             */}
-                            <Picker.Item label="Все" value="key0" />
-                            <Picker.Item label="Отели Барселоны" value="key1" />
+                            <Picker.Item label="Все" value="Все" />
+                            <Picker.Item label="Отели Барселоны" value="Отели Барселоны" />
                         </Picker>
                         </Item>
                         <Text style = {formStyles.title}>Тип тура</Text>
@@ -121,16 +193,16 @@ class FlightChooserForm extends React.Component {
                             placeholder="Select One"
                             placeholderStyle={{ color: "#2874F0" }}
                             note={false}
-                            selectedValue={this.state.selected}
-                            onValueChange={this.onValueChanged.bind(this)}
+                            selectedValue={this.state.type}
+                            onValueChange={this.onValueChangedType.bind(this)}
                         >
-                            <Picker.Item label="Все" value="key0" />
+                            <Picker.Item label="Все" value="Все" />
 
                         </Picker>
                         </Item>
                         <Item picker>
                             <DatePicker
-                                defaultDate={new Date()}
+                                defaultDate={Date.now()}
                                 locale={"ru"}
                                 timeZoneOffsetInMinutes={undefined}
                                 modalTransparent={false}
@@ -139,15 +211,15 @@ class FlightChooserForm extends React.Component {
                                 placeHolderText="Дата заезда С"
                                 textStyle={{ color: "green" }}
                                 placeHolderTextStyle={{ color: "#d3d3d3" }}
-                                onDateChange={this.setDate}
+                                onDateChange={this.setFirstDate.bind(this)}
                             />
                             <Text>
-                                Date: {this.state.chosenDate.toString().substr(4, 12)}
+                                Date: {this.state.firstDate.toString().substr(4, 12)}
                             </Text>
                         </Item>
                         <Item picker>
                             <DatePicker
-                                defaultDate={new Date()}
+                                defaultDate={Date.now()}
                                 locale={"ru"}
                                 timeZoneOffsetInMinutes={undefined}
                                 modalTransparent={false}
@@ -156,10 +228,10 @@ class FlightChooserForm extends React.Component {
                                 placeHolderText="Дата заезда По"
                                 textStyle={{ color: "green" }}
                                 placeHolderTextStyle={{ color: "#d3d3d3" }}
-                                onDateChange={this.setDate}
+                                onDateChange={this.setSecondDate.bind(this)}
                             />
                             <Text>
-                                Date: {this.state.chosenDate.toString().substr(4, 12)}
+                                Date: {this.state.secondDate.toString().substr(4, 12)}
                             </Text>
                         </Item>
                         <Item picker>
@@ -170,11 +242,11 @@ class FlightChooserForm extends React.Component {
                                     placeholder="Select One"
                                     placeholderStyle={{ color: "#2874F0" }}
                                     note={false}
-                                    selectedValue={this.state.selected}
-                                    onValueChange={this.onValueChanged.bind(this)}
+                                    selectedValue={this.state.people}
+                                    onValueChange={this.onValueChangedPeople.bind(this)}
                                 >
-                                    <Picker.Item label="1" value="key0" />
-
+                                    <Picker.Item label="1" value="1" />
+                                    <Picker.Item label="2" value="2" />
                                 </Picker>
                             </Col>
                         </Item>
@@ -189,11 +261,11 @@ class FlightChooserForm extends React.Component {
                                     placeholder="Select One"
                                     placeholderStyle={{ color: "#2874F0" }}
                                     note={false}
-                                    selectedValue={this.state.selected}
-                                    onValueChange={this.onValueChanged.bind(this)}
+                                    selectedValue={this.state.nightFrom}
+                                    onValueChange={this.onValueChangedNightFrom.bind(this)}
                                 >
-                                    <Picker.Item label="1" value="key0" />
-
+                                    <Picker.Item label="1" value="1" />
+                                    <Picker.Item label="2" value="2" />
                                 </Picker>
                             </Col>
                             <Col>
@@ -203,11 +275,11 @@ class FlightChooserForm extends React.Component {
                                     placeholder="Select One"
                                     placeholderStyle={{ color: "#2874F0" }}
                                     note={false}
-                                    selectedValue={this.state.selected}
-                                    onValueChange={this.onValueChanged.bind(this)}
+                                    selectedValue={this.state.nightTo}
+                                    onValueChange={this.onValueChangedNightTo.bind(this)}
                                 >
-                                    <Picker.Item label="0" value="key0" />
-
+                                    <Picker.Item label="1" value="1" />
+                                    <Picker.Item label="2" value="2" />
                                 </Picker>
                             </Col>
                             </Row>
@@ -243,7 +315,9 @@ class FlightChooserForm extends React.Component {
                                         Цена от
                                     </Text>
                                     <Item >
-                                        <Input />
+                                        <Input onChangeText = {this.onValueChangedPriceFrom.bind(this)}
+                                               value={this.state.priceFrom}
+                                        />
                                     </Item>
                                 </Col>
                                 <Col>
@@ -251,7 +325,8 @@ class FlightChooserForm extends React.Component {
                                         Цена до
                                     </Text>
                                     <Item >
-                                        <Input />
+                                        <Input onChangeText = {this.onValueChangedPriceTo.bind(this)}
+                                               value={this.state.priceTo}/>
                                     </Item>
                                 </Col>
                                 <Col>
@@ -263,11 +338,11 @@ class FlightChooserForm extends React.Component {
                                         placeholder="Select One"
                                         placeholderStyle={{ color: "#2874F0" }}
                                         note={false}
-                                        selectedValue={this.state.selected}
-                                        onValueChange={this.onValueChanged.bind(this)}
+                                        selectedValue={this.state.currency}
+                                        onValueChange={this.onValueChangedCurrency.bind(this)}
                                     >
-                                        <Picker.Item label="грн" value="key0" />
-                                        <Picker.Item label="USD" value="key0" />
+                                        <Picker.Item label="грн" value="грн" />
+                                        <Picker.Item label="USD" value="USD" />
                                     </Picker>
                                 </Col>
                             </Grid>
@@ -380,7 +455,7 @@ class FlightChooserForm extends React.Component {
                             </Grid>
                         </Item>
                         <View style={[formStyles.buttonContainer, formStyles.marginSm]}>
-                            <Button success style={[formStyles.button, formStyles.marginSm]}>
+                            <Button success style={[formStyles.button, formStyles.marginSm]} onPress={this.handleSubmit}>
                                 <Text>Подобрать тур</Text>
                             </Button>
                             <Button  success style={formStyles.button}>
