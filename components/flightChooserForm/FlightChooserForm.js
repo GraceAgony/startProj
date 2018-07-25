@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, ScrollView, View } from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
-import { Container, Header, Content, Form, Item, Picker, Left, Body, Right, Button, CheckBox, Title, Text, DatePicker, Input,ListItem } from 'native-base';
+import { Container, Header, Content, Form, Item, Picker, Left, Body, Right, Button, Title, Text, DatePicker, Input } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { formStyles } from "./style";
 import CheckBoxComponent  from "./CheckBox";
@@ -9,6 +9,7 @@ import Children from "./Children";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as childrenActions from '../../actions/ChildrenActions'
+import * as formActions from '../../actions/FormActions'
 
 let formdata = {};
 
@@ -36,7 +37,6 @@ class FlightChooserForm extends React.Component {
 
     onValueChanged(key, value) {
         this.setState({[key] : value});
-        formdata["tour["+key+"]"] = value;
     }
 
     onValueChangedCountry(value) {
@@ -57,13 +57,13 @@ class FlightChooserForm extends React.Component {
         this.onValueChanged.bind(this)('type', value);
     }
 
-
     setFirstDate(value){
-        this.onValueChanged.bind(this)('firstDate', value+1);
+        console.log(value);
+        this.onValueChanged.bind(this)('firstDate', (value+1));
     }
 
     setSecondDate(value){
-        this.onValueChanged.bind(this)('secondDate', value+1);
+        this.onValueChanged.bind(this)('secondDate', (value+1));
     }
 
     onValueChangedPeople(value){
@@ -89,8 +89,25 @@ class FlightChooserForm extends React.Component {
         this.onValueChanged.bind(this)('priceTo', value);
     }
 
+    onValueChangedCheckBox(cheked, key){
+        this.onValueChanged.bind(this)( key, cheked);
+    }
+
+    onValueChangedAge(key, age){
+        this.onValueChanged.bind(this)( key+'children', age);
+    }
+
+    addToState(key){
+        this.onValueChanged.bind(this)( key, false);
+    }
+
+    handleDelete(){
+
+    }
+
+
     handleSubmit(){
-        console.log('submit');
+        Object.assign(formdata, this.state);
         console.log(formdata);
         fetch('https://www.tpg.ua/index.php', {
             method: 'POST',
@@ -101,11 +118,13 @@ class FlightChooserForm extends React.Component {
             body: JSON.stringify({
                 formdata
             }),
-        }) .then((response) => response.json())
+        }) .then((response) => console.log(response.json()))
 
     }
 
     render() {
+        const {form} = this.props;
+        const { setForm } = this.props.formActions;
         const { children } = this.props;
         const { setChildren } = this.props.childrenActions;
         return(
@@ -202,7 +221,7 @@ class FlightChooserForm extends React.Component {
                         </Item>
                         <Item picker>
                             <DatePicker
-                                defaultDate={Date.now()}
+                                defaultDate={this.state.firstDate}
                                 locale={"ru"}
                                 timeZoneOffsetInMinutes={undefined}
                                 modalTransparent={false}
@@ -213,13 +232,11 @@ class FlightChooserForm extends React.Component {
                                 placeHolderTextStyle={{ color: "#d3d3d3" }}
                                 onDateChange={this.setFirstDate.bind(this)}
                             />
-                            <Text>
-                                Date: {this.state.firstDate.toString().substr(4, 12)}
-                            </Text>
+
                         </Item>
                         <Item picker>
                             <DatePicker
-                                defaultDate={Date.now()}
+                                defaultDate={this.state.secondDate}
                                 locale={"ru"}
                                 timeZoneOffsetInMinutes={undefined}
                                 modalTransparent={false}
@@ -230,9 +247,7 @@ class FlightChooserForm extends React.Component {
                                 placeHolderTextStyle={{ color: "#d3d3d3" }}
                                 onDateChange={this.setSecondDate.bind(this)}
                             />
-                            <Text>
-                                Date: {this.state.secondDate.toString().substr(4, 12)}
-                            </Text>
+
                         </Item>
                         <Item picker>
                             <Col>
@@ -250,7 +265,9 @@ class FlightChooserForm extends React.Component {
                                 </Picker>
                             </Col>
                         </Item>
-                        <Children childrenArray = {children} setChildren = {setChildren}/>
+                        <Children childrenArray = {children} setChildren = {setChildren}
+                                  onChangeAge = {this.onValueChangedAge.bind(this)}
+                        />
                         <Item picker>
                             <Grid>
                             <Row>
@@ -285,7 +302,10 @@ class FlightChooserForm extends React.Component {
                             </Row>
                             <Row>
                                 <Col>
-                                    <CheckBoxComponent text = "Раннее бронирование"/>
+                                    <CheckBoxComponent text = "Раннее бронирование"
+                                                       onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                       addToState = {this.addToState.bind(this)}
+                                    />
                                 </Col>
                             </Row>
                             </Grid>
@@ -296,15 +316,27 @@ class FlightChooserForm extends React.Component {
                                     <Text style = {formStyles.title} >
                                         Питание
                                     </Text>
-                                    <CheckBoxComponent text = "RO"/>
-                                    <CheckBoxComponent text = "BB"/>
+                                    <CheckBoxComponent text = "RO"
+                                                       onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                       addToState = {this.addToState.bind(this)}
+                                    />
+                                    <CheckBoxComponent text = "BB"
+                                                       onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                       addToState = {this.addToState.bind(this)}
+                                    />
                                 </Col>
                                 <Col>
                                     <Text style = {formStyles.title} >
                                         Категория отеля
                                     </Text>
-                                    <CheckBoxComponent text = "2*"/>
-                                    <CheckBoxComponent text = "3*"/>
+                                    <CheckBoxComponent text = "2*"
+                                                       onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                       addToState = {this.addToState.bind(this)}
+                                    />
+                                    <CheckBoxComponent text = "3*"
+                                                       onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                       addToState = {this.addToState.bind(this)}
+                                    />
                                 </Col>
                             </Grid>
                         </Item>
@@ -356,22 +388,34 @@ class FlightChooserForm extends React.Component {
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <CheckBoxComponent text = "Авиа/Автобус"/>
+                                        <CheckBoxComponent text = "Авиа/Автобус"
+                                                           addToState = {this.addToState.bind(this)}
+                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                        />
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <CheckBoxComponent text = "Отель"/>
+                                        <CheckBoxComponent text = "Отель"
+                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                           addToState = {this.addToState.bind(this)}
+                                        />
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <CheckBoxComponent text = "Не отображать stop-sale"/>
+                                        <CheckBoxComponent text = "Не отображать stop-sale"
+                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                           addToState = {this.addToState.bind(this)}
+                                        />
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <CheckBoxComponent text = "Не отображать Promo туры"/>
+                                        <CheckBoxComponent text = "Не отображать Promo туры"
+                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                           addToState = {this.addToState.bind(this)}
+                                        />
                                     </Col>
                                 </Row>
                             </Grid>
@@ -383,7 +427,10 @@ class FlightChooserForm extends React.Component {
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <CheckBoxComponent text = "Отображать выбранные"/>
+                                        <CheckBoxComponent text = "Отображать выбранные"
+                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                           addToState = {this.addToState.bind(this)}
+                                        />
                                     </Col>
                                 </Row>
                                 <Row>
@@ -400,17 +447,26 @@ class FlightChooserForm extends React.Component {
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <CheckBoxComponent text = "Туры принимающие участие в «Ночной охоте»"/>
+                                        <CheckBoxComponent text = "Туры принимающие участие в «Ночной охоте»"
+                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                           addToState = {this.addToState.bind(this)}
+                                        />
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <CheckBoxComponent text = "Туры принимающие участие в «Country Week»"/>
+                                        <CheckBoxComponent text = "Туры принимающие участие в «Country Week»"
+                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                           addToState = {this.addToState.bind(this)}
+                                        />
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <CheckBoxComponent text = "Must Have"/>
+                                        <CheckBoxComponent text = "Must Have"
+                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                           addToState = {this.addToState.bind(this)}
+                                        />
                                     </Col>
                                 </Row>
                             </Grid>
@@ -422,7 +478,10 @@ class FlightChooserForm extends React.Component {
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <CheckBoxComponent text = "Отображать выбранные"/>
+                                        <CheckBoxComponent text = "Отображать выбранные"
+                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                           addToState = {this.addToState.bind(this)}
+                                        />
                                     </Col>
                                 </Row>
                                 <Row>
@@ -439,23 +498,32 @@ class FlightChooserForm extends React.Component {
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <CheckBoxComponent text = "Только рекомендованные отели"/>
+                                        <CheckBoxComponent text = "Только рекомендованные отели"
+                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                           addToState = {this.addToState.bind(this)}
+                                        />
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <CheckBoxComponent text = "Только ориентированы на европейский рынок"/>
+                                        <CheckBoxComponent text = "Только ориентированы на европейский рынок"
+                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                           addToState = {this.addToState.bind(this)}
+                                        />
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <CheckBoxComponent text = "Только эксклюзивные отели"/>
+                                        <CheckBoxComponent text = "Только эксклюзивные отели"
+                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                           addToState = {this.addToState.bind(this)}
+                                        />
                                     </Col>
                                 </Row>
                             </Grid>
                         </Item>
                         <View style={[formStyles.buttonContainer, formStyles.marginSm]}>
-                            <Button success style={[formStyles.button, formStyles.marginSm]} onPress={this.handleSubmit}>
+                            <Button success style={[formStyles.button, formStyles.marginSm]} onPress={this.handleSubmit.bind(this)}>
                                 <Text>Подобрать тур</Text>
                             </Button>
                             <Button  success style={formStyles.button}>
@@ -463,7 +531,7 @@ class FlightChooserForm extends React.Component {
                             </Button>
                         </View>
                         <View style={formStyles.buttonContainer}>
-                                <Button style={formStyles.button}>
+                                <Button style={formStyles.button} onPress={this.handleDelete.bind(this)}>
                                     <Text>Очистить фильтр</Text>
                                     <Icon  type='material-community'  name='delete' color='red' size={40}/>
                                 </Button>
@@ -478,13 +546,15 @@ class FlightChooserForm extends React.Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        childrenActions: bindActionCreators(childrenActions, dispatch)
+        childrenActions: bindActionCreators(childrenActions, dispatch),
+        formAction: bindActionCreators(formActions, dispatch)
     }
 }
 
 function mapStateToProps (state) {
     return{
         children: state.children,
+        form: state.form
     }
 }
 

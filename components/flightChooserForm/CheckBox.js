@@ -10,11 +10,22 @@ export default class CheckBoxComponent extends React.Component{
         };
     };
 
+    handlePress(){
+        let checkedNew = !this.state.checked;
+        this.setState({ checked: checkedNew });
+        this.props.onValueChange(checkedNew, this.props.text);
+    }
+
+    componentWillMount(){
+        this.props.addToState(this.props.text);
+    }
+
+
         render() {
             return(
                 <ListItem>
                     <CheckBox checked={ this.state.checked }
-                        onPress = {() => this.setState({ checked: !this.state.checked })}
+                        onPress = {this.handlePress.bind(this)}
                     />
                     <Body>
                     <Text>{this.props.text}</Text>
