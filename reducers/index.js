@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import children from './childrenReducer';
-import formChange from './formReducer'
+import form from './formReducer'
 const rootReducer = combineReducers({
    children,
-    formChange
+    form
 });
 
 export default rootReducer;
