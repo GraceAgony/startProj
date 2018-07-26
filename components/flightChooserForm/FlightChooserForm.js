@@ -17,8 +17,7 @@ export default class FlightChooserForm extends React.Component {
 
     onValueChanged(key, value) {
         this.props.setForm({[key] : value});
-        console.log('change');
-        console.log(this.props.form);
+        this.forceUpdate();
     }
 
     onValueChangedCountry(value) {
@@ -82,9 +81,6 @@ export default class FlightChooserForm extends React.Component {
         this.onValueChanged.bind(this)( key, false);
     }
 
-    handleDelete(){
-
-    }
 
 
     handleSubmit(){
@@ -131,8 +127,8 @@ export default class FlightChooserForm extends React.Component {
                                 placeholder="Select One"
                                 placeholderStyle={{ color: "#2874F0" }}
                                 note={false}
-                                selectedValue={this.props.form.country}
-                                onValueChange={this.onValueChangedCountry.bind(this)}
+                                selectedValue= { this.props.form.country}
+                                onValueChange = {this.onValueChangedCountry.bind(this)}
                             >
                                 <Picker.Item label="Австралия" value="Австралия" />
                                 <Picker.Item label="Австрия" value="Австрия" />
@@ -283,6 +279,7 @@ export default class FlightChooserForm extends React.Component {
                                     <CheckBoxComponent text = "Раннее бронирование"
                                                        onValueChange={this.onValueChangedCheckBox.bind(this)}
                                                        addToState = {this.addToState.bind(this)}
+                                                       form = {this.props.form}
                                     />
                                 </Col>
                             </Row>
@@ -297,10 +294,12 @@ export default class FlightChooserForm extends React.Component {
                                     <CheckBoxComponent text = "RO"
                                                        onValueChange={this.onValueChangedCheckBox.bind(this)}
                                                        addToState = {this.addToState.bind(this)}
+                                                       form = {this.props.form}
                                     />
                                     <CheckBoxComponent text = "BB"
                                                        onValueChange={this.onValueChangedCheckBox.bind(this)}
                                                        addToState = {this.addToState.bind(this)}
+                                                       form = {this.props.form}
                                     />
                                 </Col>
                                 <Col>
@@ -310,10 +309,12 @@ export default class FlightChooserForm extends React.Component {
                                     <CheckBoxComponent text = "2*"
                                                        onValueChange={this.onValueChangedCheckBox.bind(this)}
                                                        addToState = {this.addToState.bind(this)}
+                                                       form = {this.props.form}
                                     />
                                     <CheckBoxComponent text = "3*"
                                                        onValueChange={this.onValueChangedCheckBox.bind(this)}
                                                        addToState = {this.addToState.bind(this)}
+                                                       form = {this.props.form}
                                     />
                                 </Col>
                             </Grid>
@@ -369,6 +370,7 @@ export default class FlightChooserForm extends React.Component {
                                         <CheckBoxComponent text = "Авиа/Автобус"
                                                            addToState = {this.addToState.bind(this)}
                                                            onValueChange={this.onValueChangedCheckBox.bind(this)}
+                                                           form = {this.props.form}
                                         />
                                     </Col>
                                 </Row>
@@ -377,6 +379,7 @@ export default class FlightChooserForm extends React.Component {
                                         <CheckBoxComponent text = "Отель"
                                                            onValueChange={this.onValueChangedCheckBox.bind(this)}
                                                            addToState = {this.addToState.bind(this)}
+                                                           form = {this.props.form}
                                         />
                                     </Col>
                                 </Row>
@@ -385,6 +388,7 @@ export default class FlightChooserForm extends React.Component {
                                         <CheckBoxComponent text = "Не отображать stop-sale"
                                                            onValueChange={this.onValueChangedCheckBox.bind(this)}
                                                            addToState = {this.addToState.bind(this)}
+                                                           form = {this.props.form}
                                         />
                                     </Col>
                                 </Row>
@@ -393,6 +397,7 @@ export default class FlightChooserForm extends React.Component {
                                         <CheckBoxComponent text = "Не отображать Promo туры"
                                                            onValueChange={this.onValueChangedCheckBox.bind(this)}
                                                            addToState = {this.addToState.bind(this)}
+                                                           form = {this.props.form}
                                         />
                                     </Col>
                                 </Row>
@@ -408,6 +413,7 @@ export default class FlightChooserForm extends React.Component {
                                         <CheckBoxComponent text = "Отображать выбранные"
                                                            onValueChange={this.onValueChangedCheckBox.bind(this)}
                                                            addToState = {this.addToState.bind(this)}
+                                                           form = {this.props.form}
                                         />
                                     </Col>
                                 </Row>
@@ -428,6 +434,7 @@ export default class FlightChooserForm extends React.Component {
                                         <CheckBoxComponent text = "Туры принимающие участие в «Ночной охоте»"
                                                            onValueChange={this.onValueChangedCheckBox.bind(this)}
                                                            addToState = {this.addToState.bind(this)}
+                                                           form = {this.props.form}
                                         />
                                     </Col>
                                 </Row>
@@ -436,6 +443,7 @@ export default class FlightChooserForm extends React.Component {
                                         <CheckBoxComponent text = "Туры принимающие участие в «Country Week»"
                                                            onValueChange={this.onValueChangedCheckBox.bind(this)}
                                                            addToState = {this.addToState.bind(this)}
+                                                           form = {this.props.form}
                                         />
                                     </Col>
                                 </Row>
@@ -444,6 +452,7 @@ export default class FlightChooserForm extends React.Component {
                                         <CheckBoxComponent text = "Must Have"
                                                            onValueChange={this.onValueChangedCheckBox.bind(this)}
                                                            addToState = {this.addToState.bind(this)}
+                                                           form = {this.props.form}
                                         />
                                     </Col>
                                 </Row>
@@ -459,6 +468,7 @@ export default class FlightChooserForm extends React.Component {
                                         <CheckBoxComponent text = "Отображать выбранные"
                                                            onValueChange={this.onValueChangedCheckBox.bind(this)}
                                                            addToState = {this.addToState.bind(this)}
+                                                           form = {this.props.form}
                                         />
                                     </Col>
                                 </Row>
@@ -479,6 +489,7 @@ export default class FlightChooserForm extends React.Component {
                                         <CheckBoxComponent text = "Только рекомендованные отели"
                                                            onValueChange={this.onValueChangedCheckBox.bind(this)}
                                                            addToState = {this.addToState.bind(this)}
+                                                           form = {this.props.form}
                                         />
                                     </Col>
                                 </Row>
@@ -487,6 +498,7 @@ export default class FlightChooserForm extends React.Component {
                                         <CheckBoxComponent text = "Только ориентированы на европейский рынок"
                                                            onValueChange={this.onValueChangedCheckBox.bind(this)}
                                                            addToState = {this.addToState.bind(this)}
+                                                           form = {this.props.form}
                                         />
                                     </Col>
                                 </Row>
@@ -495,6 +507,7 @@ export default class FlightChooserForm extends React.Component {
                                         <CheckBoxComponent text = "Только эксклюзивные отели"
                                                            onValueChange={this.onValueChangedCheckBox.bind(this)}
                                                            addToState = {this.addToState.bind(this)}
+                                                           form = {this.props.form}
                                         />
                                     </Col>
                                 </Row>
@@ -510,7 +523,10 @@ export default class FlightChooserForm extends React.Component {
                             </Button>
                         </View>
                         <View style={formStyles.buttonContainer}>
-                                <Button style={formStyles.button} onPress={this.handleDelete.bind(this)}>
+                                <Button style={formStyles.button} onPress={()=> {
+                                    this.props.cleanFilter();
+                                    this.forceUpdate();
+                                }}>
                                     <Text>Очистить фильтр</Text>
                                     <Icon  type='material-community'  name='delete' color='red' size={40}/>
                                 </Button>

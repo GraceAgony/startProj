@@ -6,7 +6,7 @@ import FlightChooserForm from "./components/flightChooserForm/FlightChooserForm"
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as childrenActions from './actions/ChildrenActions'
-import * as formActions from './actions/FormActions'
+import * as formAction from './actions/FormActions'
 
 
  class MainContainer extends Component {
@@ -14,10 +14,13 @@ import * as formActions from './actions/FormActions'
 
 
     render() {
+       let prop = this.props;
         const { children } = this.props;
         const { setChildren } = this.props.childrenActions;
         const {form} = this.props;
-        const { setForm } = this.props.formAction;
+        const { formAction } = prop;
+        const {setForm} = formAction;
+        const {cleanFilter} = formAction;
         return (
 
                 <Container>
@@ -28,6 +31,7 @@ import * as formActions from './actions/FormActions'
                                                    setChildren={setChildren}
                                                    form={form}
                                                    setForm={setForm}
+                                                   cleanFilter = {cleanFilter}
                                 />
                             </View>
                         </ScrollView>
@@ -43,7 +47,7 @@ import * as formActions from './actions/FormActions'
 function mapDispatchToProps(dispatch) {
     return {
         childrenActions: bindActionCreators(childrenActions, dispatch),
-        formAction: bindActionCreators(formActions, dispatch)
+        formAction: bindActionCreators(formAction, dispatch)
     }
 }
 

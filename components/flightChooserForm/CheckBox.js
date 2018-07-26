@@ -5,14 +5,10 @@ export default class CheckBoxComponent extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = {
-            checked: false,
-        };
     };
 
     handlePress(){
-        let checkedNew = !this.state.checked;
-        this.setState({ checked: checkedNew });
+        let checkedNew = !this.props.form[this.props.text] ;
         this.props.onValueChange(checkedNew, this.props.text);
     }
 
@@ -24,7 +20,7 @@ export default class CheckBoxComponent extends React.Component{
         render() {
             return(
                 <ListItem>
-                    <CheckBox checked={ this.state.checked }
+                    <CheckBox checked={ this.props.form[this.props.text] }
                         onPress = {this.handlePress.bind(this)}
                     />
                     <Body>

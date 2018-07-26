@@ -1,4 +1,4 @@
-
+const defaultState = {};
 const initialState = {
     country: 'Австралия',
     transport: 'Блоки / Чартеры',
@@ -28,13 +28,18 @@ const initialState = {
      "Только рекомендованные отели": false,
      "Туры принимающие участие в «Country Week»": false,
      "Туры принимающие участие в «Ночной охоте»": false,
+    "Только эксклюзивные отели": false,
 };
+
+Object.assign(defaultState,initialState);
 
 export default function form(state = initialState, action) {
     switch (action.type) {
         case 'SET_FORM':
             return  Object.assign(state,action.payload) ;
-
+        case('CLEAN_FILTER'):
+            console.log(defaultState);
+            return Object.assign(state,defaultState);
         default:
             return state;
     }
