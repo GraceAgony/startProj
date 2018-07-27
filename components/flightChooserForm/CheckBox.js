@@ -8,7 +8,7 @@ export default class CheckBoxComponent extends React.Component{
     };
 
     handlePress(){
-        let checkedNew = !this.props.form[this.props.text] ;
+        let checkedNew = !this.props.form[this.props.text];
         this.props.onValueChange(checkedNew, this.props.text);
     }
 

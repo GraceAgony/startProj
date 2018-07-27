@@ -1,9 +1,12 @@
 import { combineReducers } from 'redux';
 import children from './childrenReducer';
-import form from './formReducer'
+import form from './formReducer';
+import NavigationReducer from "./navigationReducer";
+
 const rootReducer = combineReducers({
    children,
-    form
+    form,
+    NavigationReducer
 });
 
 export default rootReducer;

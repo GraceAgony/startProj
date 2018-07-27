@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import storeFunc from './store/configureStore.js'
 import { Font, AppLoading } from "expo";
 import MainContainer from './MainContainer';
+import AppNavigator from './AppNavigator'
 
 
 let store = storeFunc();
@@ -34,7 +35,8 @@ let store = storeFunc();
         }
             return (
                 <Provider store={store}>
-                    <MainContainer/>
+                  {/*  <MainContainer/>*/}
+                  <AppNavigator/>
                 </Provider>
             );
     }

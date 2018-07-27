@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView , TouchableOpacity, Text} from 'react-native';
 import {Container, Content} from 'native-base';
 import { View } from 'react-native';
 import FlightChooserForm from "./components/flightChooserForm/FlightChooserForm";
@@ -7,11 +7,22 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as childrenActions from './actions/ChildrenActions'
 import * as formAction from './actions/FormActions'
-
+import { NavigationActions } from "react-navigation";
 
  class MainContainer extends Component {
 
+     static navigationOptions = {
+         title: "MainContainer"
+     };
 
+
+     navigate = () => {
+         const navigateToScreen2 = NavigationActions.navigate({
+             routeName: "screen2",
+             params: { name: "Screen2"}
+         });
+         this.props.navigation.dispatch(navigateToScreen2);
+     };
 
     render() {
        let prop = this.props;
@@ -25,6 +36,18 @@ import * as formAction from './actions/FormActions'
 
                 <Container>
                     <Content>
+                        <TouchableOpacity
+                            style={{
+                                paddingVertical: 15,
+                                paddingHorizontal: 40,
+                                backgroundColor: "indigo"
+                            }}
+                            onPress={this.navigate}
+                        >
+                            <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
+                                Screen2
+                            </Text>
+                        </TouchableOpacity>
                         <ScrollView style={{flex: 1}}>
                             <View style={{flex: 1}}>
                                 <FlightChooserForm children={children}

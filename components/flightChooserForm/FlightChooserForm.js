@@ -6,7 +6,18 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { formStyles } from "./style";
 import CheckBoxComponent  from "./CheckBox";
 import Children from "./Children";
-
+import Step1 from "./Step1";
+import Step2 from "./Step2";
+import Step3 from "./Step3";
+import Step4 from "./Step4";
+import Step5 from "./Step5";
+import Step6 from "./Step6";
+import Step7 from "./Step7";
+import Step8 from "./Step8";
+import Step9 from "./Step9";
+import Step10 from "./Step10";
+import Step11 from "./Step11";
+import Step12 from "./Step12";
 
 export default class FlightChooserForm extends React.Component {
 
@@ -120,399 +131,88 @@ export default class FlightChooserForm extends React.Component {
                 </Header>
                 <Content>
                     <Form>
-                        <Text style = {formStyles.title}>Страна отдыха</Text>
-                        <Item picker>
-                            <Picker
-                                mode="dropdown"
-                                placeholder="Select One"
-                                placeholderStyle={{ color: "#2874F0" }}
-                                note={false}
-                                selectedValue= { this.props.form.country}
-                                onValueChange = {this.onValueChangedCountry.bind(this)}
-                            >
-                                <Picker.Item label="Австралия" value="Австралия" />
-                                <Picker.Item label="Австрия" value="Австрия" />
-                            </Picker>
-                        </Item>
-                        <Text></Text>
-                        <Item picker>
-                            <Picker
-                                mode="dropdown"
-                                placeholder="Select One"
-                                placeholderStyle={{ color: "#2874F0" }}
-                                note={false}
-                                selectedValue={this.props.form.transport}
-                                onValueChange={this.onValueChangedTransport.bind(this)}
-                            >
-                                <Picker.Item label="Блоки / Чартеры" value="Блоки / Чартеры" />
-                                <Picker.Item label="Без авиа / Автобус" value="Без авиа / Автобус" />
-                            </Picker>
-                        </Item>
-                        <Text style = {formStyles.title}>Город отправления</Text>
-                        <Item picker>
-                            <Picker
-                                mode="dropdown"
-                                placeholder="Select One"
-                                placeholderStyle={{ color: "#2874F0" }}
-                                note={false}
-                                selectedValue={this.props.form.city}
-                                onValueChange={this.onValueChangedCity.bind(this)}
-                            >
-                                <Picker.Item label="Баку" value="Баку" />
-                                <Picker.Item label="Киев" value="Киев" />
-                            </Picker>
-                        </Item>
-                        <Text style = {formStyles.title}>Источник цены</Text>
-                        <Item picker>
-                        <Picker mode="dropdown"
-                                placeholder="Select One"
-                                placeholderStyle={{ color: "#2874F0" }}
-                                note={false}
-                                selectedValue={this.props.form.price}
-                                onValueChange={this.onValueChangedPrice.bind(this)}>
-                           {/*
-                                this.props.categories.map((item,index)=>{
-                                    return <Picker.Item key={index} label={item} value={item} />;
-                                })
-                            */}
-                            <Picker.Item label="Все" value="Все" />
-                            <Picker.Item label="Отели Барселоны" value="Отели Барселоны" />
-                        </Picker>
-                        </Item>
-                        <Text style = {formStyles.title}>Тип тура</Text>
-                        <Item picker>
-                        <Picker
-                            mode="dropdown"
-                            placeholder="Select One"
-                            placeholderStyle={{ color: "#2874F0" }}
-                            note={false}
-                            selectedValue={this.props.form.type}
-                            onValueChange={this.onValueChangedType.bind(this)}
-                        >
-                            <Picker.Item label="Все" value="Все" />
-
-                        </Picker>
-                        </Item>
-                        <Item picker>
-                            <DatePicker
-                                defaultDate={this.props.form.firstDate}
-                                locale={"ru"}
-                                timeZoneOffsetInMinutes={undefined}
-                                modalTransparent={false}
-                                animationType={"fade"}
-                                androidMode={"default"}
-                                placeHolderText="Дата заезда С"
-                                textStyle={{ color: "green" }}
-                                placeHolderTextStyle={{ color: "#d3d3d3" }}
-                                onDateChange={this.setFirstDate.bind(this)}
-                            />
-
-                        </Item>
-                        <Item picker>
-                            <DatePicker
-                                defaultDate={this.props.form.secondDate}
-                                locale={"ru"}
-                                timeZoneOffsetInMinutes={undefined}
-                                modalTransparent={false}
-                                animationType={"fade"}
-                                androidMode={"default"}
-                                placeHolderText="Дата заезда По"
-                                textStyle={{ color: "green" }}
-                                placeHolderTextStyle={{ color: "#d3d3d3" }}
-                                onDateChange={this.setSecondDate.bind(this)}
-                            />
-
-                        </Item>
-                        <Item picker>
-                            <Col>
-                                <Text style = {formStyles.title}>Взрослых</Text>
-                                <Picker
-                                    mode="dropdown"
-                                    placeholder="Select One"
-                                    placeholderStyle={{ color: "#2874F0" }}
-                                    note={false}
-                                    selectedValue={this.props.form.people}
-                                    onValueChange={this.onValueChangedPeople.bind(this)}
-                                >
-                                    <Picker.Item label="1" value="1" />
-                                    <Picker.Item label="2" value="2" />
-                                </Picker>
-                            </Col>
-                        </Item>
-                        <Children childrenArray = {this.props.children} setChildren = {this.props.setChildren}
-                                  onChangeAge = {this.onValueChangedAge.bind(this)}
+                        <Step1
+                            form={this.props.form}
+                            onValueChange = {this.onValueChangedCountry.bind(this)}
                         />
-                        <Item picker>
-                            <Grid>
-                            <Row>
-                            <Col>
-                                <Text style = {formStyles.title} >Ночей: С</Text>
-                                <Picker
-                                    mode="dropdown"
-                                    placeholder="Select One"
-                                    placeholderStyle={{ color: "#2874F0" }}
-                                    note={false}
-                                    selectedValue={this.props.form.nightFrom}
-                                    onValueChange={this.onValueChangedNightFrom.bind(this)}
-                                >
-                                    <Picker.Item label="1" value="1" />
-                                    <Picker.Item label="2" value="2" />
-                                </Picker>
-                            </Col>
-                            <Col>
-                                <Text style = {formStyles.title} >По</Text>
-                                <Picker
-                                    mode="dropdown"
-                                    placeholder="Select One"
-                                    placeholderStyle={{ color: "#2874F0" }}
-                                    note={false}
-                                    selectedValue={this.props.form.nightTo}
-                                    onValueChange={this.onValueChangedNightTo.bind(this)}
-                                >
-                                    <Picker.Item label="1" value="1" />
-                                    <Picker.Item label="2" value="2" />
-                                </Picker>
-                            </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <CheckBoxComponent text = "Раннее бронирование"
-                                                       onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                       addToState = {this.addToState.bind(this)}
-                                                       form = {this.props.form}
-                                    />
-                                </Col>
-                            </Row>
-                            </Grid>
-                        </Item>
-                        <Item>
-                            <Grid>
-                                <Col>
-                                    <Text style = {formStyles.title} >
-                                        Питание
-                                    </Text>
-                                    <CheckBoxComponent text = "RO"
-                                                       onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                       addToState = {this.addToState.bind(this)}
-                                                       form = {this.props.form}
-                                    />
-                                    <CheckBoxComponent text = "BB"
-                                                       onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                       addToState = {this.addToState.bind(this)}
-                                                       form = {this.props.form}
-                                    />
-                                </Col>
-                                <Col>
-                                    <Text style = {formStyles.title} >
-                                        Категория отеля
-                                    </Text>
-                                    <CheckBoxComponent text = "2*"
-                                                       onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                       addToState = {this.addToState.bind(this)}
-                                                       form = {this.props.form}
-                                    />
-                                    <CheckBoxComponent text = "3*"
-                                                       onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                       addToState = {this.addToState.bind(this)}
-                                                       form = {this.props.form}
-                                    />
-                                </Col>
-                            </Grid>
-                        </Item>
-                        <Item>
-                            <Grid>
-                                <Col>
-                                    <Text style = {formStyles.title} >
-                                        Цена от
-                                    </Text>
-                                    <Item >
-                                        <Input onChangeText = {this.onValueChangedPriceFrom.bind(this)}
-                                               value={this.props.form.priceFrom}
-                                        />
-                                    </Item>
-                                </Col>
-                                <Col>
-                                    <Text style = {formStyles.title} >
-                                        Цена до
-                                    </Text>
-                                    <Item >
-                                        <Input onChangeText = {this.onValueChangedPriceTo.bind(this)}
-                                               value={this.props.form.priceTo}/>
-                                    </Item>
-                                </Col>
-                                <Col>
-                                    <Text style = {formStyles.title} >
-                                        Валюта
-                                    </Text>
-                                    <Picker
-                                        mode="dropdown"
-                                        placeholder="Select One"
-                                        placeholderStyle={{ color: "#2874F0" }}
-                                        note={false}
-                                        selectedValue={this.props.form.currency}
-                                        onValueChange={this.onValueChangedCurrency.bind(this)}
-                                    >
-                                        <Picker.Item label="грн" value="грн" />
-                                        <Picker.Item label="USD" value="USD" />
-                                    </Picker>
-                                </Col>
-                            </Grid>
-                        </Item>
-                        <Item>
-                            <Grid>
-                                <Row>
-                                    <Text style = {formStyles.title} >
-                                        Гарантированные места
-                                    </Text>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <CheckBoxComponent text = "Авиа/Автобус"
-                                                           addToState = {this.addToState.bind(this)}
-                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                           form = {this.props.form}
-                                        />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <CheckBoxComponent text = "Отель"
-                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                           addToState = {this.addToState.bind(this)}
-                                                           form = {this.props.form}
-                                        />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <CheckBoxComponent text = "Не отображать stop-sale"
-                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                           addToState = {this.addToState.bind(this)}
-                                                           form = {this.props.form}
-                                        />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <CheckBoxComponent text = "Не отображать Promo туры"
-                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                           addToState = {this.addToState.bind(this)}
-                                                           form = {this.props.form}
-                                        />
-                                    </Col>
-                                </Row>
-                            </Grid>
-                        </Item>
-                        <Item>
-                            <Grid>
-                                <Row>
-                                        <Text style = {formStyles.title} >Города и курорты</Text>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <CheckBoxComponent text = "Отображать выбранные"
-                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                           addToState = {this.addToState.bind(this)}
-                                                           form = {this.props.form}
-                                        />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col size={3}>
-                                        <Item>
-                                            <Input placeholder="Поиск" />
-                                        </Item>
-                                    </Col>
-                                    <Col size={1}>
-                                        <Button transparent>
-                                            <Text>Поиск</Text>
-                                        </Button>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <CheckBoxComponent text = "Туры принимающие участие в «Ночной охоте»"
-                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                           addToState = {this.addToState.bind(this)}
-                                                           form = {this.props.form}
-                                        />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <CheckBoxComponent text = "Туры принимающие участие в «Country Week»"
-                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                           addToState = {this.addToState.bind(this)}
-                                                           form = {this.props.form}
-                                        />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <CheckBoxComponent text = "Must Have"
-                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                           addToState = {this.addToState.bind(this)}
-                                                           form = {this.props.form}
-                                        />
-                                    </Col>
-                                </Row>
-                            </Grid>
-                        </Item>
-                        <Item>
-                            <Grid>
-                                <Row>
-                                    <Text style = {formStyles.title} >Отель</Text>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <CheckBoxComponent text = "Отображать выбранные"
-                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                           addToState = {this.addToState.bind(this)}
-                                                           form = {this.props.form}
-                                        />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col size={3}>
-                                        <Item >
-                                            <Input placeholder="Поиск" />
-                                        </Item>
-                                    </Col>
-                                    <Col size={1}>
-                                        <Button transparent>
-                                            <Text>Поиск</Text>
-                                        </Button>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <CheckBoxComponent text = "Только рекомендованные отели"
-                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                           addToState = {this.addToState.bind(this)}
-                                                           form = {this.props.form}
-                                        />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <CheckBoxComponent text = "Только ориентированы на европейский рынок"
-                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                           addToState = {this.addToState.bind(this)}
-                                                           form = {this.props.form}
-                                        />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <CheckBoxComponent text = "Только эксклюзивные отели"
-                                                           onValueChange={this.onValueChangedCheckBox.bind(this)}
-                                                           addToState = {this.addToState.bind(this)}
-                                                           form = {this.props.form}
-                                        />
-                                    </Col>
-                                </Row>
-                            </Grid>
-                        </Item>
+                        <Step2
+                            form={this.props.form}
+                            onValueChange={this.onValueChangedTransport.bind(this)}
+                        />
+                        <Step3
+                            form={this.props.form}
+                            onValueChange={this.onValueChangedCity.bind(this)}
+                        />
+                        <Step4
+                            form={this.props.form}
+                            onValueChangePrice={this.onValueChangedPrice.bind(this)}
+                            onValueChangeType = {this.onValueChangedType.bind(this)}
+                        />
+                        <Step5
+                            form={this.props.form}
+                            onValueChangeFirstDate={this.setFirstDate.bind(this)}
+                            onValueChangeSecondDate = {this.setSecondDate.bind(this)}
+                        />
+                        <Step6
+                            form={this.props.form}
+                            onChangeAge = {this.onValueChangedAge.bind(this)}
+                            childrenArray = {this.props.children}
+                            setChildren = {this.props.setChildren}
+                            onValueChange={this.onValueChangedPeople.bind(this)}
+                        />
+                       <Step7
+                           form={this.props.form}
+                           onValueChangeNightFrom={this.onValueChangedNightFrom.bind(this)}
+                           onValueChangeNightTo={this.onValueChangedNightTo.bind(this)}
+                           text = "Раннее бронирование"
+                           onValueChange={this.onValueChangedCheckBox.bind(this)}
+                           addToState = {this.addToState.bind(this)}
+                       />
+                        <Step8
+                            text1 = "RO"
+                            onValueChange={this.onValueChangedCheckBox.bind(this)}
+                            addToState = {this.addToState.bind(this)}
+                            form = {this.props.form}
+                            text2 = "BB"
+                            text3 = "2*"
+                            text4 = "3*"
+                        />
+                        <Step9
+                            form = {this.props.form}
+                            onChangeTextPriceFrom = {this.onValueChangedPriceFrom.bind(this)}
+                            onChangeTextPriceTo = {this.onValueChangedPriceTo.bind(this)}
+                            valuePriceFrom={this.props.form.priceFrom}
+                            valuePriceTo={this.props.form.priceTo}
+                            onValueChange={this.onValueChangedCurrency.bind(this)}
+                        />
+                        <Step10
+                            addToState = {this.addToState.bind(this)}
+                            onValueChange={this.onValueChangedCheckBox.bind(this)}
+                            form = {this.props.form}
+                            text1 = "Авиа/Автобус"
+                            text2 = "Отель"
+                            text3 = "Не отображать stop-sale"
+                            text4 = "Не отображать Promo туры"
+                        />
+                        <Step11
+                            text1 = "Отображать выбранные"
+                            onValueChange={this.onValueChangedCheckBox.bind(this)}
+                            addToState = {this.addToState.bind(this)}
+                            form = {this.props.form}
+                            text2 = "Туры принимающие участие в «Ночной охоте»"
+                            text3 = "Туры принимающие участие в «Country Week»"
+                            text4 = "Must Have"
+                        />
+                        <Step12
+                            text1 = "Отображать выбранные"
+                            onValueChange={this.onValueChangedCheckBox.bind(this)}
+                            addToState = {this.addToState.bind(this)}
+                            form = {this.props.form}
+                            text2 = "Только рекомендованные отели"
+                            text3 = "Только ориентированы на европейский рынок"
+                            text4 = "Только эксклюзивные отели"
+                        />
+
                         <View style={[formStyles.buttonContainer, formStyles.marginSm]}>
                             <Button success style={[formStyles.button, formStyles.marginSm]}
                                     onPress={this.handleSubmit.bind(this)}>
