@@ -21,7 +21,7 @@ export default class Step9 extends React.Component {
                                 Цена от
                             </Text>
                             <Item >
-                                <Input onChangeText = {this.props.onChangeTextPriceFrom}
+                                <Input onChangeText = {(value)=> this.props.onValueChange('priceFrom', value)}
                                        value={this.props.form.priceFrom}
                                 />
                             </Item>
@@ -31,7 +31,7 @@ export default class Step9 extends React.Component {
                                 Цена до
                             </Text>
                             <Item >
-                                <Input onChangeText = {this.props.onValueChangedPriceTo}
+                                <Input onChangeText = {(value)=> this.props.onValueChange('priceTo', value)}
                                        value={this.props.form.priceTo}/>
                             </Item>
                         </Col>
@@ -45,7 +45,7 @@ export default class Step9 extends React.Component {
                                 placeholderStyle={{ color: "#2874F0" }}
                                 note={false}
                                 selectedValue={this.props.form.currency}
-                                onValueChange={this.props.onValueChange}
+                                onValueChange={(value)=> this.props.onValueChange('currency', value)}
                             >
                                 <Picker.Item label="грн" value="грн" />
                                 <Picker.Item label="USD" value="USD" />

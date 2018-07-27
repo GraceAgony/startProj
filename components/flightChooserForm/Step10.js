@@ -24,8 +24,8 @@ export default class Step10 extends React.Component {
                         <Row>
                             <Col>
                                 <CheckBoxComponent text={this.props.text1}
-                                                   addToState = {this.props.addToState}
-                                                   onValueChange={this.props.onValueChange}
+                                                   onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
+                                                   addToState = {(key)=> this.props.onValueChange(key, false)}
                                                    form = {this.props.form}
                                 />
                             </Col>
@@ -33,8 +33,8 @@ export default class Step10 extends React.Component {
                         <Row>
                             <Col>
                                 <CheckBoxComponent text={this.props.text2}
-                                                   addToState = {this.props.addToState}
-                                                   onValueChange={this.props.onValueChange}
+                                                   onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
+                                                   addToState = {(key)=> this.props.onValueChange(key, false)}
                                                    form = {this.props.form}
                                 />
                             </Col>
@@ -42,8 +42,8 @@ export default class Step10 extends React.Component {
                         <Row>
                             <Col>
                                 <CheckBoxComponent text={this.props.text3}
-                                                   addToState = {this.props.addToState}
-                                                   onValueChange={this.props.onValueChange}
+                                                   onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
+                                                   addToState = {(key)=> this.props.onValueChange(key, false)}
                                                    form = {this.props.form}
                                 />
                             </Col>
@@ -51,8 +51,8 @@ export default class Step10 extends React.Component {
                         <Row>
                             <Col>
                                 <CheckBoxComponent text={this.props.text4}
-                                                   addToState = {this.props.addToState}
-                                                   onValueChange={this.props.onValueChange}
+                                                   onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
+                                                   addToState = {(key)=> this.props.onValueChange(key, false)}
                                                    form = {this.props.form}
                                 />
                             </Col>

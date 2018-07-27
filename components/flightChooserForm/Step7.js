@@ -26,7 +26,7 @@ export default class Step7 extends React.Component {
                                     placeholderStyle={{ color: "#2874F0" }}
                                     note={false}
                                     selectedValue={this.props.form.nightFrom}
-                                    onValueChange={this.props.onValueChangeNightFrom}
+                                    onValueChange={(value)=> this.props.onValueChange('nightFrom', value)}
                                 >
                                     <Picker.Item label="1" value="1" />
                                     <Picker.Item label="2" value="2" />
@@ -40,7 +40,7 @@ export default class Step7 extends React.Component {
                                     placeholderStyle={{ color: "#2874F0" }}
                                     note={false}
                                     selectedValue={this.props.form.nightTo}
-                                    onValueChange={this.props.onValueChangeNightTo}
+                                    onValueChange={(value)=> this.props.onValueChange('nightTo', value)}
                                 >
                                     <Picker.Item label="1" value="1" />
                                     <Picker.Item label="2" value="2" />
@@ -50,8 +50,8 @@ export default class Step7 extends React.Component {
                         <Row>
                             <Col>
                                 <CheckBoxComponent text = {this.props.text}
-                                                   onValueChange={this.props.onValueChange}
-                                                   addToState = {this.props.addToState}
+                                                   onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
+                                                   addToState = {(key)=> this.props.onValueChange(key, false)}
                                                    form = {this.props.form}
                                 />
                             </Col>

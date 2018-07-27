@@ -22,7 +22,7 @@ export default class Step3 extends React.Component {
                         placeholderStyle={{ color: "#2874F0" }}
                         note={false}
                         selectedValue={this.props.form.city}
-                        onValueChange={this.props.onValueChange}
+                        onValueChange={(value)=> this.props.onValueChange('city', value)}
                     >
                         <Picker.Item label="Баку" value="Баку" />
                         <Picker.Item label="Киев" value="Киев" />

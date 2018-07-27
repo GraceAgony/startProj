@@ -21,13 +21,13 @@ export default class Step8 extends React.Component {
                                 Питание
                             </Text>
                             <CheckBoxComponent text = {this.props.text1}
-                                               onValueChange={this.props.onValueChange}
-                                               addToState = {this.props.addToState}
+                                               onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
+                                               addToState = {(key)=> this.props.onValueChange(key, false)}
                                                form = {this.props.form}
                             />
                             <CheckBoxComponent text = {this.props.text2}
-                                               onValueChange={this.props.onValueChange}
-                                               addToState = {this.props.addToState}
+                                               onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
+                                               addToState = {(key)=> this.props.onValueChange(key, false)}
                                                form = {this.props.form}
                             />
                         </Col>
@@ -36,13 +36,13 @@ export default class Step8 extends React.Component {
                                 Категория отеля
                             </Text>
                             <CheckBoxComponent text = {this.props.text3}
-                                               onValueChange={this.props.onValueChange}
-                                               addToState = {this.props.addToState}
+                                               onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
+                                               addToState = {(key)=> this.props.onValueChange(key, false)}
                                                form = {this.props.form}
                             />
                             <CheckBoxComponent text = {this.props.text4}
-                                               onValueChange={this.props.onValueChange}
-                                               addToState = {this.props.addToState}
+                                               onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
+                                               addToState = {(key)=> this.props.onValueChange(key, false)}
                                                form = {this.props.form}
                             />
                         </Col>

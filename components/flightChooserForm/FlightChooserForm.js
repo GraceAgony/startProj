@@ -31,67 +31,6 @@ export default class FlightChooserForm extends React.Component {
         this.forceUpdate();
     }
 
-    onValueChangedCountry(value) {
-        this.onValueChanged.bind(this)('country', value);
-    }
-    onValueChangedTransport(value) {
-        this.onValueChanged.bind(this)('transport', value);
-    }
-    onValueChangedCity(value) {
-        this.onValueChanged.bind(this)('city', value);
-    }
-
-   onValueChangedPrice(value){
-       this.onValueChanged.bind(this)('price', value);
-   }
-
-    onValueChangedType(value){
-        this.onValueChanged.bind(this)('type', value);
-    }
-
-    setFirstDate(value){
-        this.onValueChanged.bind(this)('firstDate', (value+1));
-    }
-
-    setSecondDate(value){
-        this.onValueChanged.bind(this)('secondDate', (value+1));
-    }
-
-    onValueChangedPeople(value){
-        this.onValueChanged.bind(this)('people', value);
-    }
-
-    onValueChangedNightFrom(value){
-        this.onValueChanged.bind(this)('nightFrom', value);
-    }
-
-    onValueChangedNightTo(value){
-        this.onValueChanged.bind(this)('nightTo', value);
-    }
-
-    onValueChangedCurrency(value){
-        this.onValueChanged.bind(this)('currency', value);
-    }
-
-    onValueChangedPriceFrom(value){
-        this.onValueChanged.bind(this)('priceFrom', value);
-    }
-    onValueChangedPriceTo(value){
-        this.onValueChanged.bind(this)('priceTo', value);
-    }
-
-    onValueChangedCheckBox(cheked, key){
-        this.onValueChanged.bind(this)( key, cheked);
-    }
-
-    onValueChangedAge(key, age){
-        this.onValueChanged.bind(this)( key+'children', age);
-    }
-
-    addToState(key){
-        this.onValueChanged.bind(this)( key, false);
-    }
-
 
 
     handleSubmit(){
@@ -133,45 +72,38 @@ export default class FlightChooserForm extends React.Component {
                     <Form>
                         <Step1
                             form={this.props.form}
-                            onValueChange = {this.onValueChangedCountry.bind(this)}
+                            onValueChange = {this.onValueChanged.bind(this)}
                         />
                         <Step2
                             form={this.props.form}
-                            onValueChange={this.onValueChangedTransport.bind(this)}
+                            onValueChange={this.onValueChanged.bind(this)}
                         />
                         <Step3
                             form={this.props.form}
-                            onValueChange={this.onValueChangedCity.bind(this)}
+                            onValueChange={this.onValueChanged.bind(this)}
                         />
                         <Step4
                             form={this.props.form}
-                            onValueChangePrice={this.onValueChangedPrice.bind(this)}
-                            onValueChangeType = {this.onValueChangedType.bind(this)}
+                            onValueChange={this.onValueChanged.bind(this)}
                         />
                         <Step5
                             form={this.props.form}
-                            onValueChangeFirstDate={this.setFirstDate.bind(this)}
-                            onValueChangeSecondDate = {this.setSecondDate.bind(this)}
+                            onValueChange={this.onValueChanged.bind(this)}
                         />
                         <Step6
                             form={this.props.form}
-                            onChangeAge = {this.onValueChangedAge.bind(this)}
+                            onValueChange={this.onValueChanged.bind(this)}
                             childrenArray = {this.props.children}
                             setChildren = {this.props.setChildren}
-                            onValueChange={this.onValueChangedPeople.bind(this)}
                         />
                        <Step7
                            form={this.props.form}
-                           onValueChangeNightFrom={this.onValueChangedNightFrom.bind(this)}
-                           onValueChangeNightTo={this.onValueChangedNightTo.bind(this)}
+                           onValueChange={this.onValueChanged.bind(this)}
                            text = "Раннее бронирование"
-                           onValueChange={this.onValueChangedCheckBox.bind(this)}
-                           addToState = {this.addToState.bind(this)}
                        />
                         <Step8
                             text1 = "RO"
-                            onValueChange={this.onValueChangedCheckBox.bind(this)}
-                            addToState = {this.addToState.bind(this)}
+                            onValueChange={this.onValueChanged.bind(this)}
                             form = {this.props.form}
                             text2 = "BB"
                             text3 = "2*"
@@ -179,15 +111,10 @@ export default class FlightChooserForm extends React.Component {
                         />
                         <Step9
                             form = {this.props.form}
-                            onChangeTextPriceFrom = {this.onValueChangedPriceFrom.bind(this)}
-                            onChangeTextPriceTo = {this.onValueChangedPriceTo.bind(this)}
-                            valuePriceFrom={this.props.form.priceFrom}
-                            valuePriceTo={this.props.form.priceTo}
-                            onValueChange={this.onValueChangedCurrency.bind(this)}
+                            onValueChange={this.onValueChanged.bind(this)}
                         />
                         <Step10
-                            addToState = {this.addToState.bind(this)}
-                            onValueChange={this.onValueChangedCheckBox.bind(this)}
+                            onValueChange={this.onValueChanged.bind(this)}
                             form = {this.props.form}
                             text1 = "Авиа/Автобус"
                             text2 = "Отель"
@@ -196,8 +123,7 @@ export default class FlightChooserForm extends React.Component {
                         />
                         <Step11
                             text1 = "Отображать выбранные"
-                            onValueChange={this.onValueChangedCheckBox.bind(this)}
-                            addToState = {this.addToState.bind(this)}
+                            onValueChange={this.onValueChanged.bind(this)}
                             form = {this.props.form}
                             text2 = "Туры принимающие участие в «Ночной охоте»"
                             text3 = "Туры принимающие участие в «Country Week»"
@@ -205,8 +131,7 @@ export default class FlightChooserForm extends React.Component {
                         />
                         <Step12
                             text1 = "Отображать выбранные"
-                            onValueChange={this.onValueChangedCheckBox.bind(this)}
-                            addToState = {this.addToState.bind(this)}
+                            onValueChange={this.onValueChanged.bind(this)}
                             form = {this.props.form}
                             text2 = "Только рекомендованные отели"
                             text3 = "Только ориентированы на европейский рынок"

@@ -14,7 +14,6 @@ export default class Step2 extends React.Component {
     render() {
         return (
             <View style={{ flex: 1}}>
-                <Text style = {formStyles.title}>Страна отдыха</Text>
                         <Item picker>
                             <Picker
                                 mode="dropdown"
@@ -22,7 +21,7 @@ export default class Step2 extends React.Component {
                                 placeholderStyle={{ color: "#2874F0" }}
                                 note={false}
                                 selectedValue={this.props.form.transport}
-                                onValueChange={this.props.onValueChange}
+                                onValueChange={(value)=> this.props.onValueChange('transport', value)}
                             >
                                 <Picker.Item label="Блоки / Чартеры" value="Блоки / Чартеры" />
                                 <Picker.Item label="Без авиа / Автобус" value="Без авиа / Автобус" />

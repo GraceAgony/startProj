@@ -25,7 +25,7 @@ export default class Step5 extends React.Component {
                         placeHolderText="Дата заезда С"
                         textStyle={{ color: "green" }}
                         placeHolderTextStyle={{ color: "#d3d3d3" }}
-                        onDateChange={this.props.onValueChangeFirstDate}
+                        onDateChange={(value)=> this.props.onValueChange('firstDate', (value+1))}
                     />
 
                 </Item>
@@ -40,7 +40,7 @@ export default class Step5 extends React.Component {
                         placeHolderText="Дата заезда По"
                         textStyle={{ color: "green" }}
                         placeHolderTextStyle={{ color: "#d3d3d3" }}
-                        onDateChange={this.props.onValueChangeSecondDate}
+                        onDateChange={(value)=> this.props.onValueChange('secondDate', (value+1))}
                     />
 
                 </Item>

@@ -23,7 +23,7 @@ export default class Step6 extends React.Component {
                             placeholderStyle={{ color: "#2874F0" }}
                             note={false}
                             selectedValue={this.props.form.people}
-                            onValueChange={this.props.onValueChange}
+                            onValueChange={(value)=> this.props.onValueChange('people', value)}
                         >
                             <Picker.Item label="1" value="1" />
                             <Picker.Item label="2" value="2" />
@@ -33,7 +33,7 @@ export default class Step6 extends React.Component {
                 <Children
                           childrenArray = {this.props.childrenArray}
                           setChildren = {this.props.setChildren}
-                          onChangeAge = {this.props.onChangeAge}
+                          onChangeAge = {(key, age)=> this.props.onValueChange(key+'children', age)}
                 />
             </View>
         )};

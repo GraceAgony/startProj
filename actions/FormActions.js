@@ -8,10 +8,10 @@ export function setForm(form) {
 }
 
 export function cleanFilter(form) {
-   console.log('clean');
     return {
         type: 'CLEAN_FILTER',
         payload: form
     }
 
 }
+

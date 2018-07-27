@@ -22,7 +22,7 @@ export default class Step1 extends React.Component {
                         placeholderStyle={{ color: "#2874F0" }}
                         note={false}
                         selectedValue= { this.props.form.country}
-                        onValueChange = {this.props.onValueChange}
+                        onValueChange = {(value)=> this.props.onValueChange('country', value)}
                     >
                         <Picker.Item label="Австралия" value="Австралия" />
                         <Picker.Item label="Австрия" value="Австрия" />

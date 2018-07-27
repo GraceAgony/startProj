@@ -21,7 +21,7 @@ export default class Step4 extends React.Component {
                             placeholderStyle={{ color: "#2874F0" }}
                             note={false}
                             selectedValue={this.props.form.price}
-                            onValueChange={this.props.onValueChangePrice}>
+                            onValueChange={(value)=> this.props.onValueChange('price', value)}>
                         {/*
                                 this.props.categories.map((item,index)=>{
                                     return <Picker.Item key={index} label={item} value={item} />;
@@ -39,7 +39,7 @@ export default class Step4 extends React.Component {
                         placeholderStyle={{ color: "#2874F0" }}
                         note={false}
                         selectedValue={this.props.form.type}
-                        onValueChange={this.props.onValueChangeType}
+                        onValueChange={(value)=> this.props.onValueChange('type', value)}
                     >
                         <Picker.Item label="Все" value="Все" />
 
