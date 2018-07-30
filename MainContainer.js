@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import { ScrollView , TouchableOpacity} from 'react-native';
-import { View } from 'react-native';
-import { Container, Header, Content, Form, Item, Picker, Left, Body, Right, Button, Title, Text, DatePicker, Input } from 'native-base';
+import { TouchableOpacity} from 'react-native';
+import { Container, Content, Text, } from 'native-base';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as childrenActions from './actions/ChildrenActions'
@@ -26,12 +24,7 @@ import { NavigationActions } from "react-navigation";
 
     render() {
        let prop = this.props;
-        const { children } = this.props;
-        const { setChildren } = this.props.childrenActions;
-        const {form} = this.props;
         const { formAction } = prop;
-        const {setForm} = formAction;
-        const {cleanFilter} = formAction;
         return (
 
                 <Container>

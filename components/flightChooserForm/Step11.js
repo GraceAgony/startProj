@@ -1,11 +1,9 @@
 import React from "react";
-import { StyleSheet, ScrollView, View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
-import { Container, Header, Content, Form, Item, Picker, Left, Body, Right, Button, Title, Text, DatePicker, Input } from 'native-base';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Container,  Content,  Item, Button, Text, Input } from 'native-base';
 import { formStyles } from "./style";
 import CheckBoxComponent  from "./CheckBox";
-import Children from "./Children";
 import * as formAction from "../../actions/FormActions";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

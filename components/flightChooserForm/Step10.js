@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet, ScrollView, View ,TouchableOpacity} from 'react-native';
+import {  View ,TouchableOpacity} from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
-import { Container, Header, Content, Form, Item, Picker, Left, Body, Right, Button, Title, Text, DatePicker, Input } from 'native-base';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Container,  Content,  Item,  Text } from 'native-base';
 import { formStyles } from "./style";
 import CheckBoxComponent  from "./CheckBox";
 import * as formAction from "../../actions/FormActions";
