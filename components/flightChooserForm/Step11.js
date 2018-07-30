@@ -1,18 +1,45 @@
 import React from "react";
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { StyleSheet, ScrollView, View, TouchableOpacity } from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { Container, Header, Content, Form, Item, Picker, Left, Body, Right, Button, Title, Text, DatePicker, Input } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { formStyles } from "./style";
 import CheckBoxComponent  from "./CheckBox";
 import Children from "./Children";
+import * as formAction from "../../actions/FormActions";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { NavigationActions } from "react-navigation";
+import * as childrenActions from "../../actions/ChildrenActions";
 
-export default class Step11 extends React.Component {
+
+class Step11 extends React.Component {
+
     static navigationOptions = {
         title: "Шаг11"
     };
+
+    onValueChange(key, value) {
+        const { formAction } = this.props;
+        const {setForm} = formAction;
+        setForm({[key] : value});
+        this.forceUpdate();
+    };
+
+    navigate = () => {
+        const navigateToStep12 = NavigationActions.navigate({
+            routeName: "Step12",
+            params: { name: "Step12"}
+        });
+        this.props.navigation.dispatch(navigateToStep12);
+    };
+
+
     render() {
+        const {form} = this.props;
         return (
+            <Container>
+                <Content>
             <View style={{ flex: 1 }}>
                 <Item>
                     <Grid>
@@ -21,10 +48,10 @@ export default class Step11 extends React.Component {
                         </Row>
                         <Row>
                             <Col>
-                                <CheckBoxComponent text={this.props.text1}
-                                                   onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
-                                                   addToState = {(key)=> this.props.onValueChange(key, false)}
-                                                   form = {this.props.form}
+                                <CheckBoxComponent text="Отображать выбранные"
+                                                   onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
+                                                   addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
+                                                   form = {form}
                                 />
                             </Col>
                         </Row>
@@ -42,33 +69,63 @@ export default class Step11 extends React.Component {
                         </Row>
                         <Row>
                             <Col>
-                                <CheckBoxComponent text={this.props.text2}
-                                                   onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
-                                                   addToState = {(key)=> this.props.onValueChange(key, false)}
-                                                   form = {this.props.form}
+                                <CheckBoxComponent text= "Туры принимающие участие в «Ночной охоте»"
+                                                   onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
+                                                   addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
+                                                   form = {form}
                                 />
                             </Col>
                         </Row>
                         <Row>
                             <Col>
-                                <CheckBoxComponent text={this.props.text3}
-                                                   onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
-                                                   addToState = {(key)=> this.props.onValueChange(key, false)}
-                                                   form = {this.props.form}
+                                <CheckBoxComponent text="Туры принимающие участие в «Country Week»"
+                                                   onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
+                                                   addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
+                                                   form = {form}
                                 />
                             </Col>
                         </Row>
                         <Row>
                             <Col>
-                                <CheckBoxComponent text={this.props.text4}
-                                                   onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
-                                                   addToState = {(key)=> this.props.onValueChange(key, false)}
-                                                   form = {this.props.form}
+                                <CheckBoxComponent text="Must Have"
+                                                   onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
+                                                   addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
+                                                   form = {form}
                                 />
                             </Col>
                         </Row>
                     </Grid>
                 </Item>
+                <TouchableOpacity
+                    style={{
+                        paddingVertical: 15,
+                        paddingHorizontal: 40,
+                        backgroundColor: "indigo"
+                    }}
+                    onPress={this.navigate}
+                >
+                    <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
+                        Step12
+                    </Text>
+                </TouchableOpacity>
             </View>
+                </Content>
+            </Container>
         )};
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+        childrenActions: bindActionCreators(childrenActions, dispatch),
+        formAction: bindActionCreators(formAction, dispatch)
+    }
+}
+
+function mapStateToProps (state) {
+    return{
+        children: state.children,
+        form: state.form
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Step11);

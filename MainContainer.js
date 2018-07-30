@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { ScrollView , TouchableOpacity, Text} from 'react-native';
-import {Container, Content} from 'native-base';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { ScrollView , TouchableOpacity} from 'react-native';
 import { View } from 'react-native';
-import FlightChooserForm from "./components/flightChooserForm/FlightChooserForm";
+import { Container, Header, Content, Form, Item, Picker, Left, Body, Right, Button, Title, Text, DatePicker, Input } from 'native-base';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as childrenActions from './actions/ChildrenActions'
@@ -12,16 +12,16 @@ import { NavigationActions } from "react-navigation";
  class MainContainer extends Component {
 
      static navigationOptions = {
-         title: "MainContainer"
+         title: "Подбор тура"
      };
 
 
      navigate = () => {
-         const navigateToScreen2 = NavigationActions.navigate({
-             routeName: "screen2",
-             params: { name: "Screen2"}
+         const navigateToStep1 = NavigationActions.navigate({
+             routeName: "Step1",
+             params: { name: "Step1"}
          });
-         this.props.navigation.dispatch(navigateToScreen2);
+         this.props.navigation.dispatch(navigateToStep1);
      };
 
     render() {
@@ -36,6 +36,7 @@ import { NavigationActions } from "react-navigation";
 
                 <Container>
                     <Content>
+
                         <TouchableOpacity
                             style={{
                                 paddingVertical: 15,
@@ -45,19 +46,9 @@ import { NavigationActions } from "react-navigation";
                             onPress={this.navigate}
                         >
                             <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
-                                Screen2
+                                Step1
                             </Text>
                         </TouchableOpacity>
-                        <ScrollView style={{flex: 1}}>
-                            <View style={{flex: 1}}>
-                                <FlightChooserForm children={children}
-                                                   setChildren={setChildren}
-                                                   form={form}
-                                                   setForm={setForm}
-                                                   cleanFilter = {cleanFilter}
-                                />
-                            </View>
-                        </ScrollView>
                     </Content>
                 </Container>
 

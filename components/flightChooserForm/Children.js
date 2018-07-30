@@ -30,10 +30,10 @@ export default class Children extends React.Component {
 
     render()
 {
+    console.log("render");
     let childrenArray = this.props.childrenArray;
     let children = childrenArray.children;
     let childrenCount = childrenArray.childrenCount;
-
     let that = this;
     return (
         <View>
@@ -43,7 +43,6 @@ export default class Children extends React.Component {
                         <Col>
                             <Text style={formStyles.title}>Детей</Text>
                             <Picker
-
                                 selectedValue={childrenCount}
                                 onValueChange={this.onValueChangeChildren.bind(this)}
                                 mode="dropdown"
@@ -87,7 +86,6 @@ export default class Children extends React.Component {
                 </Grid>
             </Item>
         </View>
-
     )
 }}
 

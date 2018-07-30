@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import storeFunc from './store/configureStore.js'
 import { Font, AppLoading } from "expo";
-import MainContainer from './MainContainer';
 import AppNavigator from './AppNavigator'
 
 

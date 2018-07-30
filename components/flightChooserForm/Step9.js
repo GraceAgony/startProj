@@ -1,17 +1,40 @@
 import React from "react";
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { StyleSheet, ScrollView, View,TouchableOpacity } from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { Container, Header, Content, Form, Item, Picker, Left, Body, Right, Button, Title, Text, DatePicker, Input } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { formStyles } from "./style";
 import CheckBoxComponent  from "./CheckBox";
-import Children from "./Children";
+import * as formAction from "../../actions/FormActions";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { NavigationActions } from "react-navigation";
+import * as childrenActions from "../../actions/ChildrenActions";
 
-export default class Step9 extends React.Component {
+ class Step9 extends React.Component {
+
     static navigationOptions = {
         title: "Шаг9"
     };
-    render() {
+
+     onValueChange(key, value) {
+         const { formAction } = this.props;
+         const {setForm} = formAction;
+         setForm({[key] : value});
+         this.forceUpdate();
+     };
+
+     navigate = () => {
+         const navigateToStep10 = NavigationActions.navigate({
+             routeName: "Step10",
+             params: { name: "Step10"}
+         });
+         this.props.navigation.dispatch(navigateToStep10);
+     };
+
+
+     render() {
+         const {form} = this.props;
         return (
             <View style={{ flex: 1}}>
                 <Item>
@@ -21,8 +44,8 @@ export default class Step9 extends React.Component {
                                 Цена от
                             </Text>
                             <Item >
-                                <Input onChangeText = {(value)=> this.props.onValueChange('priceFrom', value)}
-                                       value={this.props.form.priceFrom}
+                                <Input onChangeText = {(value)=> this.onValueChange.bind(this)('priceFrom', value)}
+                                       value={form.priceFrom}
                                 />
                             </Item>
                         </Col>
@@ -31,8 +54,8 @@ export default class Step9 extends React.Component {
                                 Цена до
                             </Text>
                             <Item >
-                                <Input onChangeText = {(value)=> this.props.onValueChange('priceTo', value)}
-                                       value={this.props.form.priceTo}/>
+                                <Input onChangeText = {(value)=> this.onValueChange.bind(this)('priceTo', value)}
+                                       value={form.priceTo}/>
                             </Item>
                         </Col>
                         <Col>
@@ -44,8 +67,8 @@ export default class Step9 extends React.Component {
                                 placeholder="Select One"
                                 placeholderStyle={{ color: "#2874F0" }}
                                 note={false}
-                                selectedValue={this.props.form.currency}
-                                onValueChange={(value)=> this.props.onValueChange('currency', value)}
+                                selectedValue={form.currency}
+                                onValueChange={(value)=> this.onValueChange.bind(this)('currency', value)}
                             >
                                 <Picker.Item label="грн" value="грн" />
                                 <Picker.Item label="USD" value="USD" />
@@ -53,6 +76,34 @@ export default class Step9 extends React.Component {
                         </Col>
                     </Grid>
                 </Item>
+                <TouchableOpacity
+                    style={{
+                        paddingVertical: 15,
+                        paddingHorizontal: 40,
+                        backgroundColor: "indigo"
+                    }}
+                    onPress={this.navigate}
+                >
+                    <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
+                        Step10
+                    </Text>
+                </TouchableOpacity>
             </View>
         )};
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+        childrenActions: bindActionCreators(childrenActions, dispatch),
+        formAction: bindActionCreators(formAction, dispatch)
+    }
+}
+
+function mapStateToProps (state) {
+    return{
+        children: state.children,
+        form: state.form
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Step9);

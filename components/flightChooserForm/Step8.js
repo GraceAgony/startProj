@@ -1,17 +1,39 @@
 import React from "react";
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { StyleSheet, ScrollView, View ,TouchableOpacity} from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { Container, Header, Content, Form, Item, Picker, Left, Body, Right, Button, Title, Text, DatePicker, Input } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { formStyles } from "./style";
 import CheckBoxComponent  from "./CheckBox";
-import Children from "./Children";
+import * as formAction from "../../actions/FormActions";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { NavigationActions } from "react-navigation";
+import * as childrenActions from "../../actions/ChildrenActions";
 
-export default class Step8 extends React.Component {
+class Step8 extends React.Component {
+
     static navigationOptions = {
         title: "Шаг8"
     };
+
+    onValueChange(key, value) {
+        const { formAction } = this.props;
+        const {setForm} = formAction;
+        setForm({[key] : value});
+        this.forceUpdate();
+    };
+
+    navigate = () => {
+        const navigateToStep9 = NavigationActions.navigate({
+            routeName: "Step9",
+            params: { name: "Step9"}
+        });
+        this.props.navigation.dispatch(navigateToStep9);
+    };
+
     render() {
+        const {form} = this.props;
         return (
             <View style={{ flex: 1 }}>
                 <Item>
@@ -20,34 +42,62 @@ export default class Step8 extends React.Component {
                             <Text style = {formStyles.title} >
                                 Питание
                             </Text>
-                            <CheckBoxComponent text = {this.props.text1}
-                                               onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
-                                               addToState = {(key)=> this.props.onValueChange(key, false)}
-                                               form = {this.props.form}
+                            <CheckBoxComponent text = "RO"
+                                               onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
+                                               addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
+                                               form = {form}
                             />
-                            <CheckBoxComponent text = {this.props.text2}
-                                               onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
-                                               addToState = {(key)=> this.props.onValueChange(key, false)}
-                                               form = {this.props.form}
+                            <CheckBoxComponent text = "BB"
+                                               onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
+                                               addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
+                                               form = {form}
                             />
                         </Col>
                         <Col>
                             <Text style = {formStyles.title} >
                                 Категория отеля
                             </Text>
-                            <CheckBoxComponent text = {this.props.text3}
-                                               onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
-                                               addToState = {(key)=> this.props.onValueChange(key, false)}
-                                               form = {this.props.form}
+                            <CheckBoxComponent text = "2*"
+                                               onValueChange={(cheked, key)=>this.onValueChange.bind(this)(key, cheked)}
+                                               addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
+                                               form = {form}
                             />
-                            <CheckBoxComponent text = {this.props.text4}
-                                               onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
-                                               addToState = {(key)=> this.props.onValueChange(key, false)}
-                                               form = {this.props.form}
+                            <CheckBoxComponent text = "3*"
+                                               onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
+                                               addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
+                                               form = {form}
                             />
                         </Col>
                     </Grid>
                 </Item>
+                <TouchableOpacity
+                    style={{
+                        paddingVertical: 15,
+                        paddingHorizontal: 40,
+                        backgroundColor: "indigo"
+                    }}
+                    onPress={this.navigate}
+                >
+                    <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
+                        Step9
+                    </Text>
+                </TouchableOpacity>
             </View>
         )};
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+        childrenActions: bindActionCreators(childrenActions, dispatch),
+        formAction: bindActionCreators(formAction, dispatch)
+    }
+}
+
+function mapStateToProps (state) {
+    return{
+        children: state.children,
+        form: state.form
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Step8);
