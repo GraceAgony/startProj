@@ -27,6 +27,10 @@ export const formStyles = StyleSheet.create(
         },
         marginSm:{
             margin: padding.sm
+        },
+        searchResult:{
+             borderColor: colors.secondary,
+             borderWidth: 2,
         }
     }
 );

@@ -67,7 +67,7 @@ class Step10 extends React.Component {
                         <Row>
                             <Col>
                                 <CheckBoxComponent text="Не отображать stop-sale"
-                                                   onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
+                                                   onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
                                                    addToState = {(key)=>  this.onValueChange.bind(this)(key, false)}
                                                    form = {form}
                                 />
@@ -76,7 +76,7 @@ class Step10 extends React.Component {
                         <Row>
                             <Col>
                                 <CheckBoxComponent text="Не отображать Promo туры"
-                                                   onValueChange={(cheked, key)=> this.props.onValueChange(key, cheked)}
+                                                   onValueChange={(cheked, key)=>this.onValueChange.bind(this)(key, cheked)}
                                                    addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
                                                    form = {form}
                                 />

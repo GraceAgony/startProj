@@ -8,6 +8,9 @@ import CheckBoxComponent  from "./CheckBox";
 import * as formAction from "../../actions/FormActions";
 import { connect } from 'react-redux';
 import * as childrenActions from "../../actions/ChildrenActions";
+import { bindActionCreators } from 'redux';
+import SearchResult from "./../SearchResult"
+import {NavigationActions} from "react-navigation";
 
 class Step12 extends React.Component {
 
@@ -18,7 +21,7 @@ class Step12 extends React.Component {
 
     handleSubmit(){
         console.log('submit');
-        let form = this.props;
+        let form = this.props.form;
         console.log(form);
         fetch('https://www.tpg.ua/index.php', {
             method: 'POST',
@@ -29,9 +32,18 @@ class Step12 extends React.Component {
             body: JSON.stringify({
                 form
             }),
-        }) .then((response) => response.json())
-
+        }) .then((response) =>  this.props.navigation.navigate('SearchResult', response))
     }
+
+   /* navigate = (params) => {
+        const navigateToSearchResult = NavigationActions.navigate({
+            routeName: "SearchResult",
+            params: { name: "SearchResult" , params}
+        });
+        this.props.navigation(navigateToSearchResult);
+    };
+*/
+
 
     onValueChange(key, value) {
         const { formAction } = this.props;
@@ -117,7 +129,7 @@ class Step12 extends React.Component {
                     </View>
                     <View style={formStyles.buttonContainer}>
                         <Button style={formStyles.button} onPress={()=> {
-                            this.cleanFilter();
+                            cleanFilter();
                             this.forceUpdate();
                         }}>
                             <Text>Очистить фильтр</Text>

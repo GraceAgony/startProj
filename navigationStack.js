@@ -1,5 +1,4 @@
 import { StackNavigator } from "react-navigation";
-import Screen2 from "./components/Screen2";
 import MainContainer from "./MainContainer";
 import Step1 from "./components/flightChooserForm/Step1";
 import Step2 from "./components/flightChooserForm/Step2";
@@ -13,13 +12,11 @@ import Step9 from "./components/flightChooserForm/Step9";
 import Step10 from "./components/flightChooserForm/Step10";
 import Step11 from "./components/flightChooserForm/Step11";
 import Step12 from "./components/flightChooserForm/Step12";
+import SearchResult from "./components/SearchResult";
 
 const navigator = StackNavigator({
     MainContainer: {
         screen: MainContainer
-    },
-    screen2: {
-        screen: Screen2
     },
     Step1: {
         screen: Step1
@@ -57,6 +54,10 @@ const navigator = StackNavigator({
     Step12: {
         screen: Step12
     },
+
+    SearchResult:{
+        screen: SearchResult
+    }
 
 });
 
