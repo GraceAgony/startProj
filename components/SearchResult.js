@@ -124,6 +124,13 @@ export default class SearchResult extends React.Component {
                                                    <Text>{item.price}</Text>
                                                </Col>
                                            </Row>
+                                           <Row style={formStyles.buttonContainer}>
+                                               <Button style={formStyles.button} onPress={()=> {
+                                                   console.log("press");
+                                               }}>
+                                                   <Text>Заказать</Text>
+                                               </Button>
+                                           </Row>
                                        </Grid>
                                     )
                                 })}

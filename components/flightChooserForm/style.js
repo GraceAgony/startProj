@@ -31,6 +31,7 @@ export const formStyles = StyleSheet.create(
         searchResult:{
              borderColor: colors.secondary,
              borderWidth: 2,
+             padding: padding.sm
         }
     }
 );
