@@ -22,6 +22,13 @@ import { NavigationActions } from "react-navigation";
          this.props.navigation.dispatch(navigateToStep2);
      };
 
+     navigate12 = () => {
+         const navigateToStep12 = NavigationActions.navigate({
+             routeName: "Step12",
+             params: { name: "Step12"}
+         });
+         this.props.navigation.dispatch(navigateToStep12);
+     };
 
 
      onValueChange(key, value) {
@@ -52,15 +59,27 @@ import { NavigationActions } from "react-navigation";
                     </Picker>
                 </Item>
                 <TouchableOpacity
+                style={{
+                    paddingVertical: 15,
+                    paddingHorizontal: 40,
+                    backgroundColor: "indigo"
+                }}
+                onPress={this.navigate}
+            >
+                <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
+                    Step2
+                </Text>
+            </TouchableOpacity>
+                <TouchableOpacity
                     style={{
                         paddingVertical: 15,
                         paddingHorizontal: 40,
                         backgroundColor: "indigo"
                     }}
-                    onPress={this.navigate}
+                    onPress={this.navigate12}
                 >
                     <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
-                        Step2
+                        Step12
                     </Text>
                 </TouchableOpacity>
             </View>

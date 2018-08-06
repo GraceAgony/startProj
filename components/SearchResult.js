@@ -4,12 +4,20 @@ import { Col, Row, Grid } from "react-native-easy-grid";
 import { Container, Content, Form, Item, Button, Text, Input } from 'native-base';
 import { Icon } from 'react-native-elements';
 import {formStyles} from "./flightChooserForm/style";
+import { NavigationActions } from "react-navigation";
+
 export default class SearchResult extends React.Component {
 
+    navigate = () => {
+        const navigateToTourDetails = NavigationActions.navigate({
+            routeName: "TourDetails",
+            params: { url: "https://www.tpg.ua/ru/tour/?tour=81FA0CC47A59F1BB11E81954B3661296"}
+        });
+        this.props.navigation.dispatch(navigateToTourDetails);
+    };
 
     render() {
         const { navigation } = this.props;
-        console.log("navigate");
         tours = [
         {
             number: 1,
@@ -25,7 +33,7 @@ export default class SearchResult extends React.Component {
             price: "19101грн 602€"
         }
         ];
-        console.log(tours);
+        let that = this;
         return (
             <Container>
                 <Content>
@@ -125,11 +133,18 @@ export default class SearchResult extends React.Component {
                                                </Col>
                                            </Row>
                                            <Row style={formStyles.buttonContainer}>
-                                               <Button style={formStyles.button} onPress={()=> {
-                                                   console.log("press");
-                                               }}>
-                                                   <Text>Заказать</Text>
-                                               </Button>
+                                               <Col>
+                                                   <Button style={formStyles.button} onPress={()=> {
+                                                       console.log("press");
+                                                   }}>
+                                                       <Text>Заказать</Text>
+                                                   </Button>
+                                               </Col>
+                                               <Col>
+                                                   <Button style={formStyles.button} onPress={that.navigate}>
+                                                       <Text>Больше...</Text>
+                                                   </Button>
+                                               </Col>
                                            </Row>
                                        </Grid>
                                     )

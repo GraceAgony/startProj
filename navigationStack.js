@@ -13,6 +13,7 @@ import Step10 from "./components/flightChooserForm/Step10";
 import Step11 from "./components/flightChooserForm/Step11";
 import Step12 from "./components/flightChooserForm/Step12";
 import SearchResult from "./components/SearchResult";
+import TourDetails from "./components/TourDetails";
 
 const navigator = StackNavigator({
     MainContainer: {
@@ -57,6 +58,10 @@ const navigator = StackNavigator({
 
     SearchResult:{
         screen: SearchResult
+    },
+
+    TourDetails:{
+        screen: TourDetails
     }
 
 });
