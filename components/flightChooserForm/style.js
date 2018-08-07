@@ -22,9 +22,10 @@ export const formStyles = StyleSheet.create(
 
         },
         button: {
-            borderColor: colors.secondary,
-            borderWidth: 2,
+            borderRadius: 40,
+           
         },
+
         marginSm:{
             margin: padding.sm
         },
@@ -32,6 +33,18 @@ export const formStyles = StyleSheet.create(
              borderColor: colors.secondary,
              borderWidth: 2,
              padding: padding.sm
-        }
+        },
+        stepTitle:{
+            backgroundColor: colors.blue,
+            height: 60,
+            display: 'flex',
+            justifyContent:  'space-around'
+        },
+        stepTitleText:{
+            fontSize: 23,
+            fontWeight: "600",
+            color: colors.white
+        },
+
     }
 );

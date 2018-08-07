@@ -60,11 +60,7 @@ import { NavigationActions } from "react-navigation";
                     </Picker>
                 </Item>
                 <TouchableOpacity
-                style={{
-                    paddingVertical: 15,
-                    paddingHorizontal: 40,
-                    backgroundColor: "indigo"
-                }}
+                    style={formStyles.stepTitle}
                 onPress={this.navigate}
             >
                 <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
@@ -72,11 +68,7 @@ import { NavigationActions } from "react-navigation";
                 </Text>
             </TouchableOpacity>
                 <TouchableOpacity
-                    style={{
-                        paddingVertical: 15,
-                        paddingHorizontal: 40,
-                        backgroundColor: "indigo"
-                    }}
+                    style={formStyles.stepTitle}
                     onPress={this.navigate2}
                 >
                     <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
