@@ -13,7 +13,12 @@ import Step10 from "./components/flightChooserForm/Step10";
 import Step11 from "./components/flightChooserForm/Step11";
 import Step12 from "./components/flightChooserForm/Step12";
 import SearchResult from "./components/SearchResult";
+<<<<<<< Updated upstream
 import TourDetails from "./components/TourDetails";
+=======
+import TourPage from "./components/TourPage";
+
+>>>>>>> Stashed changes
 
 const navigator = StackNavigator({
     MainContainer: {
@@ -60,8 +65,13 @@ const navigator = StackNavigator({
         screen: SearchResult
     },
 
+<<<<<<< Updated upstream
     TourDetails:{
         screen: TourDetails
+=======
+    TourPage:{
+        screen: TourPage
+>>>>>>> Stashed changes
     }
 
 });
