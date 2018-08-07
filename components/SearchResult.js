@@ -5,21 +5,16 @@ import { Container, Content, Form, Item, Button, Text, Input } from 'native-base
 import { Icon } from 'react-native-elements';
 import { NavigationActions } from "react-navigation";
 import {formStyles} from "./flightChooserForm/style";
-<<<<<<< Updated upstream
 import { NavigationActions } from "react-navigation";
-=======
->>>>>>> Stashed changes
 
 export default class SearchResult extends React.Component {
 
     navigate = () => {
-<<<<<<< Updated upstream
         const navigateToTourDetails = NavigationActions.navigate({
             routeName: "TourDetails",
             params: { url: "https://www.tpg.ua/ru/tour/?tour=81FA0CC47A59F1BB11E81954B3661296"}
         });
         this.props.navigation.dispatch(navigateToTourDetails);
-=======
         const navigateToTourPage = NavigationActions.navigate({
             routeName: "TourPage",
             params: {
@@ -28,15 +23,11 @@ export default class SearchResult extends React.Component {
             }
         });
         this.props.navigation.dispatch(navigateToTourPage);
->>>>>>> Stashed changes
     };
 
     render() {
         const { navigation } = this.props;
-<<<<<<< Updated upstream
-=======
-        let that = this;
->>>>>>> Stashed changes
+         let that = this;
         tours = [
         {
             number: 1,
@@ -52,12 +43,8 @@ export default class SearchResult extends React.Component {
             price: "19101грн 602€"
         }
         ];
-<<<<<<< Updated upstream
-        let that = this;
-=======
 
 
->>>>>>> Stashed changes
         return (
             <Container>
                 <Content>
