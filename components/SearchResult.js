@@ -5,7 +5,6 @@ import { Container, Content, Form, Item, Button, Text, Input } from 'native-base
 import { Icon } from 'react-native-elements';
 import { NavigationActions } from "react-navigation";
 import {formStyles} from "./flightChooserForm/style";
-import { NavigationActions } from "react-navigation";
 
 export default class SearchResult extends React.Component {
 
