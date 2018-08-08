@@ -6,11 +6,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavigationActions } from "react-navigation";
 import * as childrenActions from "../../actions/ChildrenActions";
+import {formStyles} from "./style";
 
  class Step5 extends React.Component {
 
     static navigationOptions = {
-        title: "Шаг5"
+        title: "Шаг 5".toUpperCase(),
+        headerTitleStyle: formStyles.stepNavigationTitle
     };
 
     onValueChange(key, value) {
@@ -63,15 +65,11 @@ import * as childrenActions from "../../actions/ChildrenActions";
 
                 </Item>
                 <TouchableOpacity
-                    style={{
-                        paddingVertical: 15,
-                        paddingHorizontal: 40,
-                        backgroundColor: "indigo"
-                    }}
+                    style={formStyles.stepTitle}
                     onPress={this.navigate}
                 >
-                    <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
-                        Step6
+                    <Text style={formStyles.stepTitleText}>
+                       Шаг 6
                     </Text>
                 </TouchableOpacity>
             </View>

@@ -10,11 +10,11 @@ import { bindActionCreators } from 'redux';
 import { NavigationActions } from "react-navigation";
 import * as childrenActions from "../../actions/ChildrenActions";
 
-
 class Step10 extends React.Component {
 
     static navigationOptions = {
-        title: "Шаг10"
+        title: "Шаг 2".toUpperCase(),
+        headerTitleStyle: formStyles.stepNavigationTitle
     };
 
     onValueChange(key, value) {
@@ -85,15 +85,11 @@ class Step10 extends React.Component {
                     </Grid>
                 </Item>
                 <TouchableOpacity
-                    style={{
-                        paddingVertical: 15,
-                        paddingHorizontal: 40,
-                        backgroundColor: "indigo"
-                    }}
+                    style={formStyles.stepTitle}
                     onPress={this.navigate}
                 >
-                    <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
-                        Step11
+                    <Text   style={formStyles.stepTitleText}>
+                        Шаг 11
                     </Text>
                 </TouchableOpacity>
             </View>

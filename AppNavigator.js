@@ -4,6 +4,8 @@ import { addNavigationHelpers } from "react-navigation";
 import NavigationStack from "./navigationStack";
 
 class AppNavigation extends Component {
+
+
     render() {
         const { navigationState, dispatch } = this.props;
         return (

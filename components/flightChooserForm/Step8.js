@@ -13,7 +13,8 @@ import * as childrenActions from "../../actions/ChildrenActions";
 class Step8 extends React.Component {
 
     static navigationOptions = {
-        title: "Шаг8"
+        title: "Шаг 8".toUpperCase(),
+        headerTitleStyle: formStyles.stepNavigationTitle
     };
 
     onValueChange(key, value) {
@@ -70,15 +71,11 @@ class Step8 extends React.Component {
                     </Grid>
                 </Item>
                 <TouchableOpacity
-                    style={{
-                        paddingVertical: 15,
-                        paddingHorizontal: 40,
-                        backgroundColor: "indigo"
-                    }}
+                    style={formStyles.stepTitle}
                     onPress={this.navigate}
                 >
-                    <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
-                        Step9
+                    <Text   style={formStyles.stepTitleText}>
+                        Шаг 9
                     </Text>
                 </TouchableOpacity>
             </View>

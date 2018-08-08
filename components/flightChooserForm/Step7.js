@@ -10,11 +10,11 @@ import { bindActionCreators } from 'redux';
 import { NavigationActions } from "react-navigation";
 import * as childrenActions from "../../actions/ChildrenActions";
 
-
  class Step7 extends React.Component {
 
     static navigationOptions = {
-        title: "Шаг7"
+        title: "Шаг 7".toUpperCase(),
+        headerTitleStyle: formStyles.stepNavigationTitle
     };
 
      onValueChange(key, value) {
@@ -51,8 +51,16 @@ import * as childrenActions from "../../actions/ChildrenActions";
                                     selectedValue={form.nightFrom}
                                     onValueChange={(value)=> this.onValueChange.bind(this)('nightFrom', value)}
                                 >
-                                    <Picker.Item label="1" value="1" />
-                                    <Picker.Item label="2" value="2" />
+                                    <Picker.Item
+                                        label="1"
+                                        value="1"
+                                        color= "#0e73a7"
+                                    />
+                                    <Picker.Item
+                                        label="2"
+                                        value="2"
+                                        color= "#0e73a7"
+                                    />
                                 </Picker>
                             </Col>
                             <Col>
@@ -65,8 +73,16 @@ import * as childrenActions from "../../actions/ChildrenActions";
                                     selectedValue={form.nightTo}
                                     onValueChange={(value)=> this.onValueChange.bind(this)('nightTo', value)}
                                 >
-                                    <Picker.Item label="1" value="1" />
-                                    <Picker.Item label="2" value="2" />
+                                    <Picker.Item
+                                        label="1"
+                                        value="1"
+                                        color= "#0e73a7"
+                                    />
+                                    <Picker.Item
+                                        label="2"
+                                        value="2"
+                                        color= "#0e73a7"
+                                    />
                                 </Picker>
                             </Col>
                         </Row>
@@ -82,15 +98,11 @@ import * as childrenActions from "../../actions/ChildrenActions";
                     </Grid>
                 </Item>
                 <TouchableOpacity
-                    style={{
-                        paddingVertical: 15,
-                        paddingHorizontal: 40,
-                        backgroundColor: "indigo"
-                    }}
+                    style={formStyles.stepTitle}
                     onPress={this.navigate}
                 >
-                    <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
-                        Step8
+                    <Text style={formStyles.stepTitleText}>
+                        Шаг 8
                     </Text>
                 </TouchableOpacity>
             </View>

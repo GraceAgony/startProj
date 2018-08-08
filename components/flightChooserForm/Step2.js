@@ -6,11 +6,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavigationActions } from "react-navigation";
 import * as childrenActions from "../../actions/ChildrenActions";
+import {formStyles} from "./style";
 
  class Step2 extends React.Component {
 
     static navigationOptions = {
-        title: "Шаг2"
+        title: "Шаг 2".toUpperCase(),
+        headerTitleStyle: formStyles.stepNavigationTitle
     };
 
     onValueChange(key, value) {
@@ -42,20 +44,24 @@ import * as childrenActions from "../../actions/ChildrenActions";
                                 selectedValue={form.transport}
                                 onValueChange={(value)=> this.onValueChange.bind(this)('transport', value)}
                             >
-                                <Picker.Item label="Блоки / Чартеры" value="Блоки / Чартеры" />
-                                <Picker.Item label="Без авиа / Автобус" value="Без авиа / Автобус" />
+                                <Picker.Item
+                                    label="Блоки / Чартеры"
+                                    value="Блоки / Чартеры"
+                                    color= "#0e73a7"
+                                />
+                                <Picker.Item
+                                    label="Без авиа / Автобус"
+                                    value="Без авиа / Автобус"
+                                    color= "#0e73a7"
+                                />
                             </Picker>
                         </Item>
                 <TouchableOpacity
-                    style={{
-                        paddingVertical: 15,
-                        paddingHorizontal: 40,
-                        backgroundColor: "indigo"
-                    }}
+                    style={formStyles.stepTitle}
                     onPress={this.navigate}
                 >
-                    <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
-                        Step3
+                    <Text style={formStyles.stepTitleText}>
+                        Шаг 3
                     </Text>
                 </TouchableOpacity>
             </View>

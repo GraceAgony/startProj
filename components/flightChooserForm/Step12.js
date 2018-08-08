@@ -15,7 +15,8 @@ import {NavigationActions} from "react-navigation";
 class Step12 extends React.Component {
 
     static navigationOptions = {
-        title: "Шаг12"
+        title: "Шаг 12".toUpperCase(),
+        headerTitleStyle: formStyles.stepNavigationTitle
     };
 
 

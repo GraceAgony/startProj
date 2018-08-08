@@ -10,7 +10,8 @@ import * as childrenActions from "../../actions/ChildrenActions";
 
  class Step4 extends React.Component {
     static navigationOptions = {
-        title: "Шаг4"
+        title: "Шаг 4".toUpperCase(),
+        headerTitleStyle: formStyles.stepNavigationTitle
     };
 
      onValueChange(key, value) {
@@ -45,8 +46,16 @@ import * as childrenActions from "../../actions/ChildrenActions";
                                     return <Picker.Item key={index} label={item} value={item} />;
                                 })
                             */}
-                        <Picker.Item label="Все" value="Все" />
-                        <Picker.Item label="Отели Барселоны" value="Отели Барселоны" />
+                        <Picker.Item
+                            label="Все"
+                            value="Все"
+                            color= "#0e73a7"
+                        />
+                        <Picker.Item
+                            label="Отели Барселоны"
+                            value="Отели Барселоны"
+                            color= "#0e73a7"
+                        />
                     </Picker>
                 </Item>
                 <Text style = {formStyles.title}>Тип тура</Text>
@@ -59,20 +68,20 @@ import * as childrenActions from "../../actions/ChildrenActions";
                         selectedValue={form.type}
                         onValueChange={(value)=> this.onValueChange.bind(this)('type', value)}
                     >
-                        <Picker.Item label="Все" value="Все" />
+                        <Picker.Item
+                            label="Все"
+                            value="Все"
+                            color= "#0e73a7"
+                        />
 
                     </Picker>
                 </Item>
                 <TouchableOpacity
-                    style={{
-                        paddingVertical: 15,
-                        paddingHorizontal: 40,
-                        backgroundColor: "indigo"
-                    }}
+                    style={formStyles.stepTitle}
                     onPress={this.navigate}
                 >
-                    <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
-                        Step5
+                    <Text   style={formStyles.stepTitleText}>
+                        Шаг 5
                     </Text>
                 </TouchableOpacity>
             </View>

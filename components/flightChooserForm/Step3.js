@@ -10,7 +10,8 @@ import * as childrenActions from "../../actions/ChildrenActions";
 
  class Step3 extends React.Component {
     static navigationOptions = {
-        title: "Шаг3"
+        title: "Шаг 3".toUpperCase(),
+        headerTitleStyle: formStyles.stepNavigationTitle
     };
 
     onValueChange(key, value) {
@@ -42,20 +43,24 @@ import * as childrenActions from "../../actions/ChildrenActions";
                         selectedValue={form.city}
                         onValueChange={(value)=> this.onValueChange.bind(this)('city', value)}
                     >
-                        <Picker.Item label="Баку" value="Баку" />
-                        <Picker.Item label="Киев" value="Киев" />
+                        <Picker.Item
+                            label="Баку"
+                            value="Баку"
+                            color= "#0e73a7"
+                        />
+                        <Picker.Item
+                            label="Киев"
+                            value="Киев"
+                            color= "#0e73a7"
+                        />
                     </Picker>
                 </Item>
                 <TouchableOpacity
-                    style={{
-                        paddingVertical: 15,
-                        paddingHorizontal: 40,
-                        backgroundColor: "indigo"
-                    }}
+                    style={formStyles.stepTitle}
                     onPress={this.navigate}
                 >
-                    <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
-                        Step4
+                    <Text  style={formStyles.stepTitleText}>
+                        Шаг 4
                     </Text>
                 </TouchableOpacity>
             </View>

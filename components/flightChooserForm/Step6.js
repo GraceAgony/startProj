@@ -10,11 +10,11 @@ import { bindActionCreators } from 'redux';
 import { NavigationActions } from "react-navigation";
 import * as childrenActions from "../../actions/ChildrenActions";
 
-
 class Step6 extends React.Component {
 
     static navigationOptions = {
-        title: "Шаг6"
+        title: "Шаг 6".toUpperCase(),
+        headerTitleStyle: formStyles.stepNavigationTitle
     };
 
     onValueChange(key, value) {
@@ -52,8 +52,16 @@ class Step6 extends React.Component {
                             selectedValue={form.people}
                             onValueChange={(value)=> this.onValueChange.bind(this)('people', value)}
                         >
-                            <Picker.Item label="1" value="1" />
-                            <Picker.Item label="2" value="2" />
+                            <Picker.Item
+                                label="1"
+                                value="1"
+                                color= "#0e73a7"
+                            />
+                            <Picker.Item
+                                label="2"
+                                value="2"
+                                color= "#0e73a7"
+                            />
                         </Picker>
                     </Col>
                 </Item>
@@ -63,15 +71,11 @@ class Step6 extends React.Component {
                           onChangeAge = {(key, age)=> this.onValueChange.bind(this)(key+'children', age)}
                 />
                 <TouchableOpacity
-                    style={{
-                        paddingVertical: 15,
-                        paddingHorizontal: 40,
-                        backgroundColor: "indigo"
-                    }}
+                    style={formStyles.stepTitle}
                     onPress={this.navigate}
                 >
-                    <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
-                        Step7
+                    <Text style={formStyles.stepTitleText}>
+                       Шаг 7
                     </Text>
                 </TouchableOpacity>
             </View>

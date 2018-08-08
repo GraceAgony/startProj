@@ -1,6 +1,6 @@
 import React from "react";
 import {  TouchableOpacity, View } from 'react-native';
-import {  Item, Picker,  Text} from 'native-base';
+import {  Item, Picker,  Text, Icon} from 'native-base';
 import { formStyles } from "./style";
 import * as childrenActions from "../../actions/ChildrenActions";
 import * as formAction from "../../actions/FormActions";
@@ -11,7 +11,8 @@ import { NavigationActions } from "react-navigation";
  class Step1 extends React.Component {
 
     static navigationOptions = {
-        title: "Шаг1"
+        title: "Шаг 1".toUpperCase(),
+        headerTitleStyle: formStyles.stepNavigationTitle
     };
 
     navigate = () => {
@@ -44,10 +45,13 @@ import { NavigationActions } from "react-navigation";
 
 
         return (
-            <View style={{ flex: 1}}>
-                <Text style = {formStyles.title}>Страна отдыха</Text>
-                <Item picker>
+            <View style={formStyles.stepBox}>
+                <Text style = {formStyles.stepLabelText}>{'Страна отдыха'.toUpperCase()}</Text>
+                <Item picker  style={formStyles.picker}>
                     <Picker
+                        textStyle={{ color: 'blue' }}
+                        itemStyle={formStyles.pickerItemsText}
+                        itemTextStyle ={formStyles.pickerItemsText}
                         mode="dropdown"
                         placeholder="Select One"
                         placeholderStyle={{ color: "#2874F0" }}
@@ -55,24 +59,32 @@ import { NavigationActions } from "react-navigation";
                         selectedValue= { form.country}
                         onValueChange = {(value)=> this.onValueChange.bind(this)('country', value)}
                     >
-                        <Picker.Item label="Австралия" value="Австралия" />
-                        <Picker.Item label="Австрия" value="Австрия" />
+                        <Picker.Item
+                            label="Австралия"
+                            value="Австралия"
+                            color= "#0e73a7"
+                        />
+                        <Picker.Item
+                            label="Австрия"
+                            value="Австрия"
+                            color= "#0e73a7"
+                        />
                     </Picker>
                 </Item>
                 <TouchableOpacity
                     style={formStyles.stepTitle}
                 onPress={this.navigate}
             >
-                <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
-                    Step2
+                <Text style={formStyles.stepTitleText}>
+                    Шаг 2
                 </Text>
             </TouchableOpacity>
                 <TouchableOpacity
                     style={formStyles.stepTitle}
                     onPress={this.navigate2}
                 >
-                    <Text style={{ fontSize: 23, fontWeight: "600", color: "white" }}>
-                        Step12
+                    <Text style={formStyles.stepTitleText}>
+                        Шаг 12
                     </Text>
                 </TouchableOpacity>
             </View>

@@ -8,17 +8,19 @@ import * as formAction from './actions/FormActions'
 import { NavigationActions } from "react-navigation";
 import { colors } from "./baseStyles";
 import {formStyles} from "./components/flightChooserForm/style";
+import { Font, AppLoading } from 'expo';
 
 class MainContainer extends Component {
 
-     static navigationOptions = {
-         title: "Подбор тура",
-         headerStyle: {
-             backgroundColor: colors.blue
-         },
-         headerTintColor: '#fff',
-     };
+    constructor(props){
+        super(props);
+    }
 
+
+    static navigationOptions = {
+         title: "Подбор тура".toUpperCase(),
+         headerTitleStyle: formStyles.stepNavigationTitle
+     };
 
      navigate = () => {
          const navigateToStep1 = NavigationActions.navigate({
@@ -29,10 +31,10 @@ class MainContainer extends Component {
      };
 
     render() {
-       let prop = this.props;
-        const { formAction } = prop;
-        return (
 
+            let prop = this.props;
+            const {formAction} = prop;
+            return (
                 <Container>
                     <Content>
 
@@ -47,7 +49,7 @@ class MainContainer extends Component {
                     </Content>
                 </Container>
 
-        );
+            );
     }
 
 
