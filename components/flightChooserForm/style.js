@@ -1,5 +1,6 @@
 import {colors, dimensions, fonts, padding} from "../../baseStyles";
 import {StyleSheet} from 'react-native'
+import { Dimensions } from 'react-native'
 
 export const formStyles = StyleSheet.create(
     {
@@ -16,9 +17,13 @@ export const formStyles = StyleSheet.create(
         },
         buttonContainer: {
             borderRadius: 40,
+            height: 50,
+            alignSelf: 'flex-start'
         },
         button: {
             backgroundColor: 'rgba(0,0,0,0)',
+            height: 50,
+            borderRadius: 40,
         },
 
         marginSm:{

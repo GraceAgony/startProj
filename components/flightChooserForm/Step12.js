@@ -116,42 +116,22 @@ class Step12 extends React.Component {
                         </Row>
                     </Grid>
                 </Item>
-                <Form>
 
-                    <View style={[formStyles.buttonContainer, formStyles.marginSm]}>
-                        {/*<Button success style={[formStyles.button, formStyles.marginSm]}
-                                onPress={this.handleSubmit.bind(this)}>
-                            <Text>Подобрать тур</Text>
-                        </Button>*/}
-
-                        {/*<ImageBackground
-                            resizeMode='cover'
-                            source={{uri: 'https://cdn.tpg.ua/ZjlkNWU5YWUx/templates/scms_default/images/patterns/det_btn.png'}}
-                            style={{ flex: 1 }}>
-                            <View >
-                                <Button style={{backgroundColor: 'rgba(0,0,0,0)'}}
-                                        onPress={this.handleSubmit.bind(this)}>
-                                    <Text>Подобрать тур</Text>
-                                </Button>
-                                </View>
-                        </ImageBackground>*/}
-                        <ButtonRed/>
-
-
-                        <Button  success style={formStyles.button}>
-                            <Text>Сгенерировать ссылку</Text>
-                        </Button>
-                    </View>
-                    <View style={formStyles.buttonContainer}>
-                        <Button style={formStyles.button} onPress={()=> {
+                        <ButtonRed
+                            text = 'Подобрать тур'
+                            onPress={this.handleSubmit.bind(this)}
+                        />
+                        <ButtonRed
+                            text = 'Сгенерировать ссылку'
+                            onPress={()=>{}}
+                        />
+                        <ButtonRed
+                        text = 'Очистить фильтр'
+                        onPress={()=> {
                             cleanFilter();
                             this.forceUpdate();
-                        }}>
-                            <Text>Очистить фильтр</Text>
-                            <Icon  type='material-community'  name='delete' color='red' size={40}/>
-                        </Button>
-                    </View>
-                </Form>
+                        }}
+                    />
             </View>
                 </Content>
             </Container>

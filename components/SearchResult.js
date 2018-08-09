@@ -5,6 +5,7 @@ import { Container, Content, Form, Item, Button, Text, Input } from 'native-base
 import { Icon } from 'react-native-elements';
 import { NavigationActions } from "react-navigation";
 import {formStyles} from "./flightChooserForm/style";
+import ButtonRed from "./flightChooserForm/ButtonRed"
 
 export default class SearchResult extends React.Component {
 
@@ -144,16 +145,17 @@ export default class SearchResult extends React.Component {
                                            </Row>
                                            <Row style={formStyles.buttonContainer}>
                                                <Col>
-                                                   <Button style={formStyles.button} onPress={()=> {
-                                                       console.log("press");
-                                                   }}>
-                                                       <Text>Заказать</Text>
-                                                   </Button>
+                                                   <ButtonRed
+                                                       text = 'Заказать'
+                                                       onPress={()=> {
+                                                           console.log("press");
+                                                       }}/>
                                                </Col>
                                                <Col>
-                                                   <Button style={formStyles.button} onPress={that.navigate}>
-                                                       <Text>Больше...</Text>
-                                                   </Button>
+                                                   <ButtonRed
+                                                       text = 'Больше...'
+                                                       onPress={that.navigate}
+                                                   />
                                                </Col>
                                            </Row>
                                        </Grid>

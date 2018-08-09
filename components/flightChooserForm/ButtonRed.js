@@ -13,6 +13,10 @@ import SearchResult from "./../SearchResult"
 import {NavigationActions} from "react-navigation";
 
 export default class ButtonRed extends React.Component {
+    constructor(props){
+        super(props);
+    }
+
 
     render(){
         return(
@@ -23,9 +27,11 @@ export default class ButtonRed extends React.Component {
                     source={{uri: 'https://cdn.tpg.ua/ZjlkNWU5YWUx/templates/scms_default/images/patterns/det_btn.png'}}
                     style={{flex: 1}}>
                     <View >
-                        <Button style={formStyles.button}
+                        <Button
+                            style={formStyles.button}
+                            onPress={this.props.onPress}
                         >
-                            <Text>Подобрать тур</Text>
+                            <Text>{this.props.text}</Text>
                         </Button>
                     </View>
                 </ImageBackground>
