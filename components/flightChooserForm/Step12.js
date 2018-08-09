@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from 'react-native';
+import { View, Image} from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { Container, Content, Form, Item, Button, Text, Input } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -118,10 +118,18 @@ class Step12 extends React.Component {
                 <Form>
 
                     <View style={[formStyles.buttonContainer, formStyles.marginSm]}>
-                        <Button success style={[formStyles.button, formStyles.marginSm]}
+                        {/*<Button success style={[formStyles.button, formStyles.marginSm]}
                                 onPress={this.handleSubmit.bind(this)}>
                             <Text>Подобрать тур</Text>
-                        </Button>
+                        </Button>*/}
+                        <TouchableOpacity >
+                            <View >
+                                <Text>Подобрать тур</Text>
+                            </View>
+                            <Image source={{uri :'https://cdn.tpg.ua/ZjlkNWU5YWUx/templates/scms_default/images/patterns/det_btn.png'}}  />
+                        </TouchableOpacity>
+
+
                         <Button  success style={formStyles.button}>
                             <Text>Сгенерировать ссылку</Text>
                         </Button>
