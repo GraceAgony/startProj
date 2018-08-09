@@ -15,15 +15,10 @@ export const formStyles = StyleSheet.create(
             margin: padding.sm
         },
         buttonContainer: {
-            display: 'flex',
-            justifyContent: 'space-around',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-
+            borderRadius: 40,
         },
         button: {
-            borderRadius: 40,
-           
+            backgroundColor: 'rgba(0,0,0,0)',
         },
 
         marginSm:{

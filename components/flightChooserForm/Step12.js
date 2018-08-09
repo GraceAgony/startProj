@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image} from 'react-native';
+import { View, Image, TouchableOpacity,TouchableHighlight, ImageBackground} from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { Container, Content, Form, Item, Button, Text, Input } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -11,6 +11,7 @@ import * as childrenActions from "../../actions/ChildrenActions";
 import { bindActionCreators } from 'redux';
 import SearchResult from "./../SearchResult"
 import {NavigationActions} from "react-navigation";
+import ButtonRed from "./ButtonRed";
 
 class Step12 extends React.Component {
 
@@ -122,12 +123,19 @@ class Step12 extends React.Component {
                                 onPress={this.handleSubmit.bind(this)}>
                             <Text>Подобрать тур</Text>
                         </Button>*/}
-                        <TouchableOpacity >
+
+                        {/*<ImageBackground
+                            resizeMode='cover'
+                            source={{uri: 'https://cdn.tpg.ua/ZjlkNWU5YWUx/templates/scms_default/images/patterns/det_btn.png'}}
+                            style={{ flex: 1 }}>
                             <View >
-                                <Text>Подобрать тур</Text>
-                            </View>
-                            <Image source={{uri :'https://cdn.tpg.ua/ZjlkNWU5YWUx/templates/scms_default/images/patterns/det_btn.png'}}  />
-                        </TouchableOpacity>
+                                <Button style={{backgroundColor: 'rgba(0,0,0,0)'}}
+                                        onPress={this.handleSubmit.bind(this)}>
+                                    <Text>Подобрать тур</Text>
+                                </Button>
+                                </View>
+                        </ImageBackground>*/}
+                        <ButtonRed/>
 
 
                         <Button  success style={formStyles.button}>
