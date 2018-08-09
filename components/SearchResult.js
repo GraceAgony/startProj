@@ -47,7 +47,7 @@ export default class SearchResult extends React.Component {
         return (
             <Container>
                 <Content>
-                    <View >
+                    <View style={formStyles.stepBox}>
                         <Item>
                         <Grid>
                             {tours.map(function (item, i) {

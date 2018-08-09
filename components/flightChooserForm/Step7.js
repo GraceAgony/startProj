@@ -37,13 +37,15 @@ import * as childrenActions from "../../actions/ChildrenActions";
         return (
             <Container>
                 <Content>
-            <View style={{ flex: 1}}>
+            <View style={formStyles.stepBox}>
                 <Item picker>
                     <Grid>
                         <Row>
                             <Col>
-                                <Text style = {formStyles.title} >Ночей: С</Text>
+                                <Text   style = {formStyles.stepLabelText} >Ночей: С</Text>
+
                                 <Picker
+                                    style={formStyles.picker}
                                     mode="dropdown"
                                     placeholder="Select One"
                                     placeholderStyle={{ color: "#2874F0" }}
@@ -63,9 +65,12 @@ import * as childrenActions from "../../actions/ChildrenActions";
                                     />
                                 </Picker>
                             </Col>
+                        </Row>
+                        <Row>
                             <Col>
-                                <Text style = {formStyles.title} >По</Text>
+                                <Text  style = {formStyles.stepLabelText} >По</Text>
                                 <Picker
+                                    style={formStyles.picker}
                                     mode="dropdown"
                                     placeholder="Select One"
                                     placeholderStyle={{ color: "#2874F0" }}
@@ -86,6 +91,7 @@ import * as childrenActions from "../../actions/ChildrenActions";
                                 </Picker>
                             </Col>
                         </Row>
+
                         <Row>
                             <Col>
                                 <CheckBoxComponent text = "Раннее бронирование"

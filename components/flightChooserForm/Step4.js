@@ -32,10 +32,12 @@ import * as childrenActions from "../../actions/ChildrenActions";
     render() {
         const {form} = this.props;
         return (
-            <View style={{ flex: 1 }}>
-                <Text style = {formStyles.title}>Источник цены</Text>
+            <View style={formStyles.stepBox}>
+                <Text  style = {formStyles.stepLabelText} >Источник цены</Text>
                 <Item picker>
-                    <Picker mode="dropdown"
+                    <Picker
+                            style={formStyles.picker}
+                            mode="dropdown"
                             placeholder="Select One"
                             placeholderStyle={{ color: "#2874F0" }}
                             note={false}
@@ -58,9 +60,10 @@ import * as childrenActions from "../../actions/ChildrenActions";
                         />
                     </Picker>
                 </Item>
-                <Text style = {formStyles.title}>Тип тура</Text>
+                <Text style = {formStyles.stepLabelText}>Тип тура</Text>
                 <Item picker>
                     <Picker
+                        style={formStyles.picker}
                         mode="dropdown"
                         placeholder="Select One"
                         placeholderStyle={{ color: "#2874F0" }}

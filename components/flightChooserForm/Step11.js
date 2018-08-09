@@ -38,12 +38,12 @@ class Step11 extends React.Component {
         return (
             <Container>
                 <Content>
-            <View style={{ flex: 1 }}>
+            <View style={formStyles.stepBox}>
                 <Item>
                     <Grid>
-                        <Row>
-                            <Text style = {formStyles.title} >Города и курорты</Text>
-                        </Row>
+
+                            <Text style = {formStyles.stepLabelText} >Города и курорты</Text>
+
                         <Row>
                             <Col>
                                 <CheckBoxComponent text="Отображать выбранные"
@@ -56,7 +56,7 @@ class Step11 extends React.Component {
                         <Row>
                             <Col size={3}>
                                 <Item>
-                                    <Input placeholder="Поиск" />
+                                    <Input style={formStyles.pickerItemsText} placeholder="Поиск" />
                                 </Item>
                             </Col>
                             <Col size={1}>

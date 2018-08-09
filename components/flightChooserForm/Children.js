@@ -41,8 +41,9 @@ export default class Children extends React.Component {
                 <Grid>
                     <Row>
                         <Col>
-                            <Text style={formStyles.title}>Детей</Text>
+                            <Text style = {formStyles.stepLabelText}>Детей</Text>
                             <Picker
+                                style={formStyles.picker}
                                 selectedValue={childrenCount}
                                 onValueChange={this.onValueChangeChildren.bind(this)}
                                 mode="dropdown"
@@ -51,11 +52,31 @@ export default class Children extends React.Component {
                                 note={false}
 
                             >
-                                <Picker.Item label="0" value="0"/>
-                                <Picker.Item label="1" value="1"/>
-                                <Picker.Item label="2" value="2"/>
-                                <Picker.Item label="3" value="3"/>
-                                <Picker.Item label="4" value="4"/>
+                                <Picker.Item
+                                    label="0"
+                                    value="0"
+                                    color= "#0e73a7"
+                                />
+                                <Picker.Item
+                                    label="1"
+                                    value="1"
+                                    color= "#0e73a7"
+                                />
+                                <Picker.Item
+                                    label="2"
+                                    value="2"
+                                    color= "#0e73a7"
+                                />
+                                <Picker.Item
+                                    label="3"
+                                    value="3"
+                                    color= "#0e73a7"
+                                />
+                                <Picker.Item
+                                    label="4"
+                                    value="4"
+                                    color= "#0e73a7"
+                                />
                             </Picker>
                         </Col>
                     </Row>
@@ -70,15 +91,18 @@ export default class Children extends React.Component {
                             return (
                                 <Row key={i}>
                                     <Col size={1}>
-                                        <Text>{i + 1}-й:</Text>
+                                        <Text  style = {formStyles.stepLabelText} >{i + 1}-й:</Text>
                                     </Col>
                                     <Col size={3}>
                                         <Item>
-                                            <Input onChangeText={(text) => that.onChangeAge.bind(that)(text, i)}/>
+                                            <Input
+                                                style={formStyles.pickerItemsText}
+                                                onChangeText={(text) => that.onChangeAge.bind(that)(text, i)}
+                                            />
                                         </Item>
                                     </Col>
                                     <Col size={1}>
-                                        <Text>лет</Text>
+                                        <Text  style = {formStyles.stepLabelText}>{"лет".toUpperCase()}</Text>
                                     </Col>
                                 </Row>
                             )

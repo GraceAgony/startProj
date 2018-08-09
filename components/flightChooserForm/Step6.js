@@ -40,11 +40,12 @@ class Step6 extends React.Component {
         return (
             <Container>
                 <Content>
-            <View style={{ flex: 1}}>
+            <View style={formStyles.stepBox}>
                 <Item picker>
                     <Col>
-                        <Text style = {formStyles.title}>Взрослых</Text>
+                        <Text  style = {formStyles.stepLabelText} >Взрослых</Text>
                         <Picker
+                            style={formStyles.picker}
                             mode="dropdown"
                             placeholder="Select One"
                             placeholderStyle={{ color: "#2874F0" }}

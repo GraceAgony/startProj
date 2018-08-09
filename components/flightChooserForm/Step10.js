@@ -13,7 +13,7 @@ import * as childrenActions from "../../actions/ChildrenActions";
 class Step10 extends React.Component {
 
     static navigationOptions = {
-        title: "Шаг 2".toUpperCase(),
+        title: "Шаг 10".toUpperCase(),
         headerTitleStyle: formStyles.stepNavigationTitle
     };
 
@@ -38,14 +38,13 @@ class Step10 extends React.Component {
         return (
             <Container>
                 <Content>
-            <View style={{ flex: 1}}>
+            <View style={formStyles.stepBox}>
                 <Item>
                     <Grid>
-                        <Row>
-                            <Text style = {formStyles.title} >
-                                Гарантированные места
+                            <Text style = {formStyles.stepLabelText} >
+                                {"Гарантированные места".toUpperCase()}
                             </Text>
-                        </Row>
+
                         <Row>
                             <Col>
                                 <CheckBoxComponent text="Авиа/Автобус"

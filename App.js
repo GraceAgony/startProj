@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import storeFunc from './store/configureStore.js'
 import { Font, AppLoading } from "expo";
 import AppNavigator from './AppNavigator'
+import {formStyles} from "./components/flightChooserForm/style";
 
 let store = storeFunc();
  export default class App extends Component {
@@ -19,6 +20,8 @@ let store = storeFunc();
         await Font.loadAsync({
             'sans-narrow': require('./fonts/pt_sans-narrow-web-regular.ttf'),
             'arial': require('./fonts/arial.ttf'),
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
         });
         this.setState({loading: false});
     }
@@ -32,7 +35,7 @@ let store = storeFunc();
             );
         }
             return (
-                <Provider store={store}>
+                <Provider store={store} >
                   <AppNavigator/>
                 </Provider>
             );

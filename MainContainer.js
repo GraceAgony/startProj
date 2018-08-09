@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TouchableOpacity} from 'react-native';
+import { TouchableOpacity, View} from 'react-native';
 import { Container, Content, Text, } from 'native-base';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -35,9 +35,10 @@ class MainContainer extends Component {
             let prop = this.props;
             const {formAction} = prop;
             return (
+
                 <Container>
                     <Content>
-
+                        <View style={formStyles.stepBox}>
                         <TouchableOpacity
                             style={formStyles.stepTitle}
                             onPress={this.navigate}
@@ -46,6 +47,7 @@ class MainContainer extends Component {
                                 Перейти к подбору тура
                             </Text>
                         </TouchableOpacity>
+                        </View>
                     </Content>
                 </Container>
 

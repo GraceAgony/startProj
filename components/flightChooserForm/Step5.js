@@ -33,7 +33,7 @@ import {formStyles} from "./style";
     render() {
         const {form} = this.props;
         return (
-            <View style={{ flex: 1 }}>
+            <View style={formStyles.stepBox}>
                 <Item picker>
                     <DatePicker
                         defaultDate={form.firstDate}

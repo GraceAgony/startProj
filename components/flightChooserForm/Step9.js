@@ -35,33 +35,37 @@ import * as childrenActions from "../../actions/ChildrenActions";
      render() {
          const {form} = this.props;
         return (
-            <View style={{ flex: 1}}>
+            <View style={formStyles.stepBox}>
                 <Item>
                     <Grid>
                         <Col>
-                            <Text style = {formStyles.title} >
+                            <Text style = {[formStyles.checkBoxText, {marginVertical: 10}]}  >
                                 Цена от
                             </Text>
                             <Item >
                                 <Input onChangeText = {(value)=> this.onValueChange.bind(this)('priceFrom', value)}
                                        value={form.priceFrom}
+                                       style={formStyles.pickerItemsText}
                                 />
                             </Item>
                         </Col>
                         <Col>
-                            <Text style = {formStyles.title} >
+                            <Text style = {[formStyles.checkBoxText, {marginVertical: 10}]} >
                                 Цена до
                             </Text>
                             <Item >
                                 <Input onChangeText = {(value)=> this.onValueChange.bind(this)('priceTo', value)}
-                                       value={form.priceTo}/>
+                                       value={form.priceTo}
+                                       style={formStyles.pickerItemsText}
+                                />
                             </Item>
                         </Col>
                         <Col>
-                            <Text style = {formStyles.title} >
+                            <Text style = {[formStyles.checkBoxText, {marginVertical: 10}]}  >
                                 Валюта
                             </Text>
                             <Picker
+                                style={formStyles.picker}
                                 mode="dropdown"
                                 placeholder="Select One"
                                 placeholderStyle={{ color: "#2874F0" }}

@@ -34,9 +34,10 @@ import {formStyles} from "./style";
      render() {
         const {form} = this.props;
         return (
-            <View style={{ flex: 1}}>
+            <View style={formStyles.stepBox}>
                         <Item picker>
                             <Picker
+                                style={formStyles.picker}
                                 mode="dropdown"
                                 placeholder="Select One"
                                 placeholderStyle={{ color: "#2874F0" }}

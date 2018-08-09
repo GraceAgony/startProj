@@ -60,21 +60,23 @@ export const formStyles = StyleSheet.create(
             textAlign: 'center',
             margin: 10,
         },
+        checkBoxText:{
+            fontFamily: 'sans-narrow',
+            color: '#7f7f7f',
+            fontSize: 23,
+        },
         stepBox:{
             backgroundColor: 'rgb(247, 247, 247)',
         },
         picker:{
             backgroundColor: 'rgb(255, 255, 255)',
             borderColor: '#0e73a7',
-            borderRadius: 3,
-            borderWidth:60,
-            paddingLeft: 20
+            paddingLeft: 20,
         },
         pickerItemsText:{
-            // fontFamily: 'arial',
-             color: '#0e73a7',
-          //  backgroundColor: 'red'
-            // fontSize: 20,
+            color: '#0e73a7',
+            backgroundColor:'rgb(255, 255, 255)',
+
         }
 
     }

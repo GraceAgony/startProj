@@ -32,10 +32,11 @@ import * as childrenActions from "../../actions/ChildrenActions";
     render() {
         const {form} = this.props;
         return (
-            <View style={{ flex: 1 }}>
-                <Text style = {formStyles.title}>Город отправления</Text>
+            <View style={formStyles.stepBox}>
+                <Text style = {formStyles.stepLabelText}> {"Город отправления".toUpperCase()}</Text>
                 <Item picker>
                     <Picker
+                        style={formStyles.picker}
                         mode="dropdown"
                         placeholder="Select One"
                         placeholderStyle={{ color: "#2874F0" }}

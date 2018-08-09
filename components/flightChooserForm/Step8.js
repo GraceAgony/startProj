@@ -1,6 +1,6 @@
 import React from "react";
 import {  View ,TouchableOpacity} from 'react-native';
-import { Col, Grid } from "react-native-easy-grid";
+import { Col, Grid, Row } from "react-native-easy-grid";
 import {  Item, Text, } from 'native-base';
 import { formStyles } from "./style";
 import CheckBoxComponent  from "./CheckBox";
@@ -35,11 +35,12 @@ class Step8 extends React.Component {
     render() {
         const {form} = this.props;
         return (
-            <View style={{ flex: 1 }}>
+            <View style={formStyles.stepBox}>
                 <Item>
                     <Grid>
+                        <Row>
                         <Col>
-                            <Text style = {formStyles.title} >
+                            <Text style = {[formStyles.checkBoxText, {marginVertical: 10}]} >
                                 Питание
                             </Text>
                             <CheckBoxComponent text = "RO"
@@ -53,8 +54,11 @@ class Step8 extends React.Component {
                                                form = {form}
                             />
                         </Col>
+                        </Row>
+                    </Grid>
+                    <Grid>
                         <Col>
-                            <Text style = {formStyles.title} >
+                            <Text style = {[formStyles.checkBoxText, {marginVertical: 10}]} >
                                 Категория отеля
                             </Text>
                             <CheckBoxComponent text = "2*"

@@ -47,7 +47,7 @@ export default class TourPage extends React.Component {
         return(
             <Container>
                 <Content>
-                    <View>
+                    <View style={formStyles.stepBox}>
 
                     </View>
                 </Content>
