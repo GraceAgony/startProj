@@ -31,7 +31,7 @@ export default class ButtonRed extends React.Component {
                             style={formStyles.button}
                             onPress={this.props.onPress}
                         >
-                            <Text>{this.props.text}</Text>
+                            <Text style={formStyles.buttonText}>{this.props.text}</Text>
                         </Button>
                     </View>
                 </ImageBackground>

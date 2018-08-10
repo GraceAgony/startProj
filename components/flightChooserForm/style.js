@@ -16,13 +16,17 @@ export const formStyles = StyleSheet.create(
             margin: padding.sm
         },
         buttonContainer: {
+            margin: 10,
             borderRadius: 40,
-            height: 50,
-            alignSelf: 'flex-start'
+            height: 40,
+            display: 'flex',
+            justifyContent:  'space-around',
+            alignSelf: 'center',
+            overflow: 'hidden',
         },
         button: {
             backgroundColor: 'rgba(0,0,0,0)',
-            height: 50,
+            height: 40,
             borderRadius: 40,
         },
 
@@ -43,6 +47,13 @@ export const formStyles = StyleSheet.create(
         stepTitleText:{
             fontFamily: 'sans-narrow',
             fontSize: 23,
+            color: colors.white,
+            textAlign: 'center'
+        },
+
+        buttonText:{
+            fontFamily: 'sans-narrow',
+            fontSize:15,
             color: colors.white,
             textAlign: 'center'
         },
@@ -77,7 +88,13 @@ export const formStyles = StyleSheet.create(
             color: '#0e73a7',
             backgroundColor:'rgb(255, 255, 255)',
 
+        },
+        containerFlex:{
+            display: 'flex',
+            justifyContent:'center',
+            margin: 10
         }
+
 
     }
 );

@@ -108,8 +108,14 @@ export default class SearchResult extends React.Component {
                                                </Col>
                                            </Row>
                                            <Row>
-                                               <Col style={formStyles.searchResult }>
+                                             {/* <Col style={formStyles.searchResult }>
                                                    <Text>Тип цены в формате маски (SPO)</Text>
+                                               </Col>*/}
+                                               <Col style={formStyles.searchResult }>
+                                                   <Text style={{color: 'blue'}}
+                                                         onPress={() => {that.navigate()}}>
+                                                       Тип цены в формате маски (SPO)
+                                                   </Text>
                                                </Col>
                                                <Col style={formStyles.searchResult }>
                                                    <Text>{item.SPO}</Text>
@@ -143,21 +149,18 @@ export default class SearchResult extends React.Component {
                                                    <Text>{item.price}</Text>
                                                </Col>
                                            </Row>
-                                           <Row style={formStyles.buttonContainer}>
-                                               <Col>
+                                   {/*        <View style={{display: 'flex' , flexDirection: 'row', justifyContent: 'space-around'}}>
                                                    <ButtonRed
                                                        text = 'Заказать'
                                                        onPress={()=> {
                                                            console.log("press");
                                                        }}/>
-                                               </Col>
-                                               <Col>
+
                                                    <ButtonRed
                                                        text = 'Больше...'
                                                        onPress={that.navigate}
                                                    />
-                                               </Col>
-                                           </Row>
+                                           </View>*/}
                                        </Grid>
                                     )
                                 })}

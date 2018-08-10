@@ -1,8 +1,8 @@
 import React from "react";
-import { View, Image, TouchableOpacity,TouchableHighlight, ImageBackground} from 'react-native';
+import { View, Image, ImageEditor, TouchableOpacity,TouchableHighlight, ImageBackground} from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { Container, Content, Form, Item, Button, Text, Input } from 'native-base';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Icon } from 'react-native-elements';
 import { formStyles } from "./style";
 import CheckBoxComponent  from "./CheckBox";
 import * as formAction from "../../actions/FormActions";
@@ -116,6 +116,32 @@ class Step12 extends React.Component {
                         </Row>
                     </Grid>
                 </Item>
+                <Row style={formStyles.containerFlex}>
+                    <Icon
+                        name='cancel'
+                        size = {25}
+                        color='red'
+                        onPress={()=> {
+                            cleanFilter();
+                            this.forceUpdate();
+                        }}
+                    />
+                    <Text
+                          style={{
+                              color: 'blue',
+                              textDecorationLine: 'underline',
+                              textDecorationColor: 'rgb(0, 123, 229)' ,
+                              textDecorationStyle: 'dashed',
+                              textAlign: 'center'
+                          }}
+                          onPress={()=> {
+                              cleanFilter();
+                              this.forceUpdate();
+                          }}
+                    >
+                        Очистить фильтр
+                    </Text>
+                </Row>
 
                         <ButtonRed
                             text = 'Подобрать тур'
@@ -125,13 +151,13 @@ class Step12 extends React.Component {
                             text = 'Сгенерировать ссылку'
                             onPress={()=>{}}
                         />
-                        <ButtonRed
+                       {/* <ButtonRed
                         text = 'Очистить фильтр'
                         onPress={()=> {
                             cleanFilter();
                             this.forceUpdate();
                         }}
-                    />
+                    />*/}
             </View>
                 </Content>
             </Container>
