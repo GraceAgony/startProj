@@ -87,13 +87,20 @@ export const formStyles = StyleSheet.create(
         pickerItemsText:{
             color: '#0e73a7',
             backgroundColor:'rgb(255, 255, 255)',
+            borderWidth: 1,
+            borderColor: '#0e73a7',
+            borderRadius: 20,
+            paddingLeft: 10,
+            marginLeft: 10,
+            marginRight: 10,
+            flex: 1
 
         },
         containerFlex:{
             display: 'flex',
             justifyContent:'center',
             margin: 10
-        }
+        },
 
 
     }

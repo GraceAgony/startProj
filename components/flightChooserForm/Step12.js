@@ -60,7 +60,7 @@ class Step12 extends React.Component {
         const { formAction } = this.props;
         const {cleanFilter} = formAction;
         return (
-            <Container>
+            <Container >
                 <Content>
             <View style={formStyles.stepBox}>
                 <Item>
@@ -76,16 +76,19 @@ class Step12 extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col size={3}>
-                                <Item >
-                                    <Input  style={formStyles.pickerItemsText} placeholder="Поиск" />
-                                </Item>
+                            <Col>
+                                    <Input  style={formStyles.pickerItemsText} placeholder="Поиск"/>
                             </Col>
-                            <Col size={1}>
-                                <Button transparent>
-                                    <Text>Поиск</Text>
+                           {/* <Col size={1}>
+                                <Button transparent style={formStyles.searchButton}>
+                                   <Icon
+                                       type='font-awesome'
+                                       name='search'
+                                       size = {25}
+                                       color='#0e73a7'
+                                   />
                                 </Button>
-                            </Col>
+                            </Col>*/}
                         </Row>
                         <Row>
                             <Col>

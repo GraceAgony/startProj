@@ -54,16 +54,7 @@ class Step11 extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col size={3}>
-                                <Item>
-                                    <Input style={formStyles.pickerItemsText} placeholder="Поиск" />
-                                </Item>
-                            </Col>
-                            <Col size={1}>
-                                <Button transparent>
-                                    <Text>Поиск</Text>
-                                </Button>
-                            </Col>
+                         <Input style={formStyles.pickerItemsText} placeholder="Поиск" />
                         </Row>
                         <Row>
                             <Col>
