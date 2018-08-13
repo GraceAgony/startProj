@@ -53,12 +53,10 @@ import * as childrenActions from "../../actions/ChildrenActions";
                             <Text style = {[formStyles.checkBoxText, {marginVertical: 10}]} >
                                 Цена до
                             </Text>
-
                                 <Input onChangeText = {(value)=> this.onValueChange.bind(this)('priceTo', value)}
                                        value={form.priceTo}
                                        style={formStyles.pickerItemsText}
                                 />
-                            
                         </Col>
                         <Col>
                             <Text style = {[formStyles.checkBoxText, {marginVertical: 10}]}  >
