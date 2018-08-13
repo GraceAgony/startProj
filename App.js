@@ -36,8 +36,10 @@ let store = storeFunc();
         }
             return (
                 <Provider store={store} >
-                  <AppNavigator/>
+                  <AppNavigator    sceneStyle={{paddingTop: 44}}/>
                 </Provider>
             );
     }
 }
+
+Expo.registerRootComponent(App);
