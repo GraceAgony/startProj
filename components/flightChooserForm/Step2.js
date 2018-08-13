@@ -37,7 +37,7 @@ import {formStyles} from "./style";
             <View style={formStyles.stepBox}>
                         <Item picker>
                             <Picker
-                                style={formStyles.picker}
+                               // style={formStyles.picker}
                                 mode="dropdown"
                                 placeholder="Select One"
                                 placeholderStyle={{ color: "#2874F0" }}

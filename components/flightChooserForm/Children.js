@@ -43,7 +43,7 @@ export default class Children extends React.Component {
                         <Col>
                             <Text style = {formStyles.stepLabelText}>Детей</Text>
                             <Picker
-                                style={formStyles.picker}
+                               // style={formStyles.picker}
                                 selectedValue={childrenCount}
                                 onValueChange={this.onValueChangeChildren.bind(this)}
                                 mode="dropdown"

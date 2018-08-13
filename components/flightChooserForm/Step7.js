@@ -45,7 +45,7 @@ import * as childrenActions from "../../actions/ChildrenActions";
                                 <Text   style = {formStyles.stepLabelText} >Ночей: С</Text>
 
                                 <Picker
-                                    style={formStyles.picker}
+                                  //  style={formStyles.picker}
                                     mode="dropdown"
                                     placeholder="Select One"
                                     placeholderStyle={{ color: "#2874F0" }}
@@ -70,7 +70,7 @@ import * as childrenActions from "../../actions/ChildrenActions";
                             <Col>
                                 <Text  style = {formStyles.stepLabelText} >По</Text>
                                 <Picker
-                                    style={formStyles.picker}
+                                  //  style={formStyles.picker}
                                     mode="dropdown"
                                     placeholder="Select One"
                                     placeholderStyle={{ color: "#2874F0" }}

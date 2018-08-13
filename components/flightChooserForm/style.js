@@ -53,7 +53,7 @@ export const formStyles = StyleSheet.create(
 
         buttonText:{
             fontFamily: 'sans-narrow',
-            fontSize:15,
+            fontSize:20,
             color: colors.white,
             textAlign: 'center'
         },

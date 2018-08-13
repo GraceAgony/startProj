@@ -36,7 +36,7 @@ import * as childrenActions from "../../actions/ChildrenActions";
                 <Text style = {formStyles.stepLabelText}> {"Город отправления".toUpperCase()}</Text>
                 <Item picker>
                     <Picker
-                        style={formStyles.picker}
+                       // style={formStyles.picker}
                         mode="dropdown"
                         placeholder="Select One"
                         placeholderStyle={{ color: "#2874F0" }}

@@ -49,7 +49,8 @@ import { NavigationActions } from "react-navigation";
                 <Text style = {formStyles.stepLabelText}>{'Страна отдыха'.toUpperCase()}</Text>
                 <Item picker  style={formStyles.picker}>
                     <Picker
-                        style={formStyles.picker}
+                       // style={formStyles.picker}
+                        //style={{ borderWidth:1, borderColor: 'blue'}}
                         mode="dropdown"
                         placeholder="Select One"
                         placeholderStyle={{ color: "#2874F0" }}
