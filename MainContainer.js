@@ -21,6 +21,11 @@ class MainContainer extends Component {
          title: "Подбор тура".toUpperCase(),
          headerTitleStyle: formStyles.stepNavigationTitle
      };
+/*
+    static navigatorStyle = {
+        drawUnderNavBar: true,
+        navBarTranslucent: true
+    };*/
 
      navigate = () => {
          const navigateToStep1 = NavigationActions.navigate({
@@ -36,7 +41,7 @@ class MainContainer extends Component {
             const {formAction} = prop;
             return (
 
-                <Container>
+                <Container >
                     <Content>
                         <View style={formStyles.stepBox}>
                         <TouchableOpacity

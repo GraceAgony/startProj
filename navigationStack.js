@@ -14,11 +14,12 @@ import Step11 from "./components/flightChooserForm/Step11";
 import Step12 from "./components/flightChooserForm/Step12";
 import SearchResult from "./components/SearchResult";
 import TourPage from "./components/TourPage";
-
+import { Platform, StatusBar } from 'react-native';
 
 const navigator = StackNavigator({
     MainContainer: {
-        screen: MainContainer
+        screen: MainContainer,
+
     },
     Step1: {
         screen: Step1
@@ -57,14 +58,20 @@ const navigator = StackNavigator({
         screen: Step12
     },
 
-    SearchResult:{
+    SearchResult: {
         screen: SearchResult
     },
 
-    TourPage:{
+    TourPage: {
         screen: TourPage
+    },
+},
+    {
+        cardStyle: {
+            paddingTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+        }
     }
 
-});
+);
 
 export default navigator;
