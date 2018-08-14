@@ -48,105 +48,116 @@ export default class SearchResult extends React.Component {
         return (
             <Container>
                 <Content>
-                    <View style={formStyles.stepBox}>
+                    <View style={[{padding: 10}, formStyles.stepBox]}>
                         <Item>
                         <Grid>
                             {tours.map(function (item, i) {
                                     return (
                                        <Grid key={i}>
                                            <Row>
-                                                <Col style={formStyles.searchResult }>
-                                                    <Text>№{item.number}</Text>
+                                                <Col style={formStyles.searchResultName }>
+                                                    <Text style={formStyles.searchResultNameText}>№</Text>
                                                 </Col>
+                                               <Col style={formStyles.searchResult }>
+                                                   <Text style={formStyles.searchResultText}>{item.number}</Text>
+                                               </Col>
                                             </Row>
                                            <Row>
-                                               <Col style={formStyles.searchResult }>
-                                                  <Text>Дата вылета/Дата прилета</Text>
+                                               <Col style={formStyles.searchResultName }>
+                                                  <Text  style={formStyles.searchResultNameText}>Дата вылета/Дата прилета</Text>
                                                </Col>
                                                <Col style={formStyles.searchResult }>
-                                                   <Text>{item.dates}</Text>
-                                               </Col>
-                                           </Row>
-                                           <Row>
-                                               <Col style={formStyles.searchResult }>
-                                                   <Text>Ночей</Text>
-                                               </Col>
-                                               <Col style={formStyles.searchResult }>
-                                                   <Text>{item.nights}</Text>
+                                                   <Text style={formStyles.searchResultText}>{item.dates}</Text>
                                                </Col>
                                            </Row>
                                            <Row>
-                                               <Col style={formStyles.searchResult }>
-                                                   <Text>Отель</Text>
+                                               <Col style={formStyles.searchResultName }>
+                                                   <Text  style={formStyles.searchResultNameText}>Ночей</Text>
                                                </Col>
                                                <Col style={formStyles.searchResult }>
-                                                   <Text>{item.hotel}</Text>
-                                               </Col>
-                                           </Row>
-                                           <Row>
-                                               <Col style={formStyles.searchResult }>
-                                                   <Text>Курорт</Text>
-                                               </Col>
-                                               <Col style={formStyles.searchResult }>
-                                                   <Text>{item.resort}</Text>
+                                                   <Text style={formStyles.searchResultText}>{item.nights}</Text>
                                                </Col>
                                            </Row>
                                            <Row>
-                                               <Col style={formStyles.searchResult }>
-                                                   <Text>Тип питания</Text>
+                                               <Col style={formStyles.searchResultName }>
+                                                   <Text  style={formStyles.searchResultNameText}>Отель</Text>
                                                </Col>
                                                <Col style={formStyles.searchResult }>
-                                                   <Text>{item.food}</Text>
+                                                   <Text style={formStyles.searchResultText}>{item.hotel}</Text>
                                                </Col>
                                            </Row>
                                            <Row>
-                                               <Col style={formStyles.searchResult }>
-                                                   <Text>Номер/Тип размещения</Text>
+                                               <Col style={formStyles.searchResultName }>
+                                                   <Text  style={formStyles.searchResultNameText}>Курорт</Text>
                                                </Col>
                                                <Col style={formStyles.searchResult }>
-                                                   <Text>{item.room}</Text>
+                                                   <Text style={formStyles.searchResultText}>{item.resort}</Text>
+                                               </Col>
+                                           </Row>
+                                           <Row>
+                                               <Col style={formStyles.searchResultName }>
+                                                   <Text  style={formStyles.searchResultNameText}>Тип питания</Text>
+                                               </Col>
+                                               <Col style={formStyles.searchResult }>
+                                                   <Text style={formStyles.searchResultText}>{item.food}</Text>
+                                               </Col>
+                                           </Row>
+                                           <Row>
+                                               <Col style={formStyles.searchResultName }>
+                                                   <Text  style={formStyles.searchResultNameText}>Номер/Тип размещения</Text>
+                                               </Col>
+                                               <Col style={formStyles.searchResult }>
+                                                   <Text style={formStyles.searchResultText}>{item.room}</Text>
                                                </Col>
                                            </Row>
                                            <Row>
                                              {/* <Col style={formStyles.searchResult }>
                                                    <Text>Тип цены в формате маски (SPO)</Text>
                                                </Col>*/}
-                                               <Col style={formStyles.searchResult }>
-                                                   <Text style={{color: 'blue'}}
+                                               <Col style={formStyles.searchResultName }>
+                                                   <Text style={ formStyles.searchResultNameText}
                                                          onPress={() => {that.navigate()}}>
                                                        Тип цены в формате маски (SPO)
                                                    </Text>
                                                </Col>
                                                <Col style={formStyles.searchResult }>
-                                                   <Text>{item.SPO}</Text>
+                                                   <Text style={[ formStyles.searchResultText, {color: 'blue'}]}>
+                                                         {item.SPO}</Text>
                                                </Col>
                                             </Row>
                                            <Row>
-                                               <Col style={formStyles.searchResult }>
-                                                   <Text>Кол-во номеров</Text>
+                                               <Col style={formStyles.searchResultName }>
+                                                   <Text  style={formStyles.searchResultNameText}>Кол-во номеров</Text>
                                                </Col>
                                                <Col style={formStyles.searchResult }>
                                                    <Icon
-                                                       name='phone'
+                                                       name='phone-square'
                                                        type='font-awesome'
                                                        color='#00e600'
                                                    />
                                                </Col>
                                            </Row>
                                            <Row>
-                                               <Col style={formStyles.searchResult }>
-                                                   <Text>Билеты</Text>
+                                               <Col style={formStyles.searchResultName }>
+                                                   <Text  style={formStyles.searchResultNameText}>Билеты</Text>
                                                </Col>
                                                <Col style={formStyles.searchResult }>
-                                                   <Text>{item.tickets}</Text>
+                                                   <Text style={formStyles.searchResultText}>{item.tickets}</Text>
+                                                   <Icon
+                                                       name='airplane'
+                                                       type='material-community'
+                                                       color='#00e600'
+
+                                                   />
+
                                                </Col>
                                            </Row>
                                            <Row>
-                                               <Col style={formStyles.searchResult }>
-                                                   <Text>Цена</Text>
+                                               <Col style={formStyles.searchResultName }>
+                                                   <Text  style={formStyles.searchResultNameText}>Цена</Text>
                                                </Col>
                                                <Col style={formStyles.searchResult }>
-                                                   <Text>{item.price}</Text>
+                                                   <Text style={formStyles.searchResultText}>{item.price}</Text>
                                                </Col>
                                            </Row>
                                    {/*        <View style={{display: 'flex' , flexDirection: 'row', justifyContent: 'space-around'}}>

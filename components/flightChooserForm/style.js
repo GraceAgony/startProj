@@ -33,10 +33,28 @@ export const formStyles = StyleSheet.create(
         marginSm:{
             margin: padding.sm
         },
+        searchResultNameText:{
+            color:'white',
+            fontFamily: 'sans-narrow',
+            fontSize: 20,
+        },
+        searchResultName:{
+             borderColor: 'rgb(128, 189, 243)',
+             borderWidth: 1,
+             padding: padding.sm,
+            backgroundColor: 'rgb(0, 123, 229)'
+        },
+
+        searchResultText:{
+            fontFamily: 'sans-narrow',
+            fontSize: 20,
+        },
+
         searchResult:{
-             borderColor: colors.secondary,
-             borderWidth: 2,
-             padding: padding.sm
+            borderColor: 'rgb(191, 191, 191)',
+            borderWidth:1,
+            padding: padding.sm,
+            backgroundColor: 'white'
         },
         stepTitle:{
             backgroundColor: colors.blue,
