@@ -47,7 +47,7 @@ import { NavigationActions } from "react-navigation";
         return (
             <View style={formStyles.stepBox}>
                 <Text style = {formStyles.stepLabelText}>{'Страна отдыха'.toUpperCase()}</Text>
-                <Item picker  style={formStyles.picker}>
+                <Item picker>
                     <Picker
                        // style={formStyles.picker}
                         //style={{ borderWidth:1, borderColor: 'blue'}}
@@ -78,14 +78,14 @@ import { NavigationActions } from "react-navigation";
                     Шаг 2
                 </Text>
             </TouchableOpacity>
-                <TouchableOpacity
+           {/*     <TouchableOpacity
                     style={formStyles.stepTitle}
                     onPress={this.navigate2}
                 >
                     <Text style={formStyles.stepTitleText}>
                         Шаг 12
                     </Text>
-                </TouchableOpacity>
+                </TouchableOpacity>*/}
             </View>
         );
     }

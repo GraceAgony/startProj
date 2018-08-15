@@ -89,17 +89,15 @@ export default class Children extends React.Component {
                         children.map(function (item, i) {
 
                             return (
-                                <Row key={i}>
+                                <Row key={i} style={{height: 50, margin: 5 }}>
                                     <Col size={1}>
                                         <Text  style = {formStyles.stepLabelText} >{i + 1}-й:</Text>
                                     </Col>
                                     <Col size={3}>
-                                        <Item>
                                             <Input
                                                 style={formStyles.pickerItemsText}
                                                 onChangeText={(text) => that.onChangeAge.bind(that)(text, i)}
                                             />
-                                        </Item>
                                     </Col>
                                     <Col size={1}>
                                         <Text  style = {formStyles.stepLabelText}>{"лет".toUpperCase()}</Text>
