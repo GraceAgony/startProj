@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { Container, Content, Form, Item, Button, Text, Input } from 'native-base';
 import { Icon } from 'react-native-elements';
@@ -115,10 +115,12 @@ export default class SearchResult extends React.Component {
                                                    <Text>Тип цены в формате маски (SPO)</Text>
                                                </Col>*/}
                                                <Col style={formStyles.searchResultName }>
+                                                   <TouchableOpacity>
                                                    <Text style={ formStyles.searchResultNameText}
                                                          onPress={() => {that.navigate()}}>
                                                        Тип цены в формате маски (SPO)
                                                    </Text>
+                                                   </TouchableOpacity>
                                                </Col>
                                                <Col style={formStyles.searchResult }>
                                                    <Text style={[ formStyles.searchResultText, {color: 'blue'}]}>

@@ -14,6 +14,9 @@ class MainContainer extends Component {
 
     constructor(props){
         super(props);
+        this.state = {
+            step1: ''
+        }
     }
 
 
@@ -21,11 +24,20 @@ class MainContainer extends Component {
          title: "Подбор тура".toUpperCase(),
          headerTitleStyle: formStyles.stepNavigationTitle
      };
-/*
-    static navigatorStyle = {
-        drawUnderNavBar: true,
-        navBarTranslucent: true
-    };*/
+
+    getData() {
+        fetch("https://www.tpg.ua/ru/choosetour/")
+            .then((response) => response.text())
+            .then((text) => {
+                html = text;
+                let regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"cv\"|'cv')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
+                let index = html.indexOf('>', html.search(regexp));
+                console.log(html.slice(index +1 , index+ 1000));
+             /*   let lastIndex = html.indexOf('<', index +1);
+                console.log(index + ' '+ lastIndex);
+                console.log(html.slice(index, lastIndex));*/
+            });
+    }
 
      navigate = () => {
          const navigateToStep1 = NavigationActions.navigate({
@@ -36,6 +48,7 @@ class MainContainer extends Component {
      };
 
     render() {
+        this.getData();
 
             let prop = this.props;
             const {formAction} = prop;

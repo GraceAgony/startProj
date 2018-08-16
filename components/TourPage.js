@@ -9,8 +9,8 @@ import DOMParser from 'react-native-html-parser';
 
 export default class TourPage extends React.Component {
 
-
-   /* parse(html){
+/*
+   parse(html){
         try {
             const parser = new DOMParser.DOMParser();
             const parsed = parser.parseFromString(html, 'text/html');
@@ -19,7 +19,7 @@ export default class TourPage extends React.Component {
         }
     }*/
 
-   parse(html){
+   /*parse(html){
        console.log(XPathResult);
        console.log(window.XPathResult);
        let headings = html.evaluate("//body/h1", html, null,
@@ -27,7 +27,9 @@ export default class TourPage extends React.Component {
        );
 
        console.log("headings" + headings);
-   }
+   }*/
+
+
 
 
     getHtml(url){
@@ -36,7 +38,9 @@ export default class TourPage extends React.Component {
             .then((response) => response.text())
             .then((text)=>{
                 html = text;
-                this.parse(html);
+               // this.parse(html);
+                //let regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"cv\"|'cv')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
+                //console.log(html.search(regexp))
             });
     }
 

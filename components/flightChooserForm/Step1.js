@@ -33,12 +33,16 @@ import { NavigationActions } from "react-navigation";
      };
 
 
+
      onValueChange(key, value) {
          const { formAction } = this.props;
          const {setForm} = formAction;
          setForm({[key] : value});
          this.forceUpdate();
      }
+
+
+
 
     render() {
         const {form} = this.props;
@@ -78,14 +82,14 @@ import { NavigationActions } from "react-navigation";
                     Шаг 2
                 </Text>
             </TouchableOpacity>
-           {/*     <TouchableOpacity
+               <TouchableOpacity
                     style={formStyles.stepTitle}
                     onPress={this.navigate2}
                 >
                     <Text style={formStyles.stepTitleText}>
                         Шаг 12
                     </Text>
-                </TouchableOpacity>*/}
+                </TouchableOpacity>
             </View>
         );
     }
