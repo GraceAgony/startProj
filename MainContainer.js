@@ -66,6 +66,7 @@ class MainContainer extends Component {
      };
 
     render() {
+        console.log(this.props);
         if (this.state.loading) {
             return (
                 <AppLoading/>
