@@ -7,8 +7,18 @@ import * as formAction from "../../actions/FormActions";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavigationActions } from "react-navigation";
+import { AppLoading } from "expo";
 
  class Step1 extends React.Component {
+
+     constructor(props){
+         super(props);
+         const { navigation } = this.props;
+         this.state = {
+             data : navigation.state.params.data
+         }
+     }
+
 
     static navigationOptions = {
         title: "Шаг 1".toUpperCase(),
@@ -44,10 +54,32 @@ import { NavigationActions } from "react-navigation";
 
 
 
+     /*getData() {
+         let stepArray = [];
+         fetch("https://www.tpg.ua/ru/choosetour/")
+             .then((response) => response.text())
+             .then((text) => {
+                 html = text;
+                 let regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"cv\"|'cv')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
+                 let index = html.indexOf('>', html.search(regexp));
+                 let element  = html.slice(index +1);
+                 let id = 0;
+                 while (element.indexOf('cl'+ id) > -1){
+                     console.log(element.slice(element.indexOf('>',element.indexOf('cl' +id)+1) +1 ,
+                         element.indexOf('</span>',element.indexOf('cl'+ id)+1 )));
+                     stepArray.push(
+                         element.slice(element.indexOf('>',element.indexOf('cl' +id)+1) +1 ,
+                             element.indexOf('</span>',element.indexOf('cl'+ id)+1 ))
+                     );
+                     id++;
+                 }
+             });
+         return stepArray;
+     }*/
+
     render() {
         const {form} = this.props;
-
-
+     console.log(this.state.data);
         return (
             <View style={formStyles.stepBox}>
                 <Text style = {formStyles.stepLabelText}>{'Страна отдыха'.toUpperCase()}</Text>
@@ -62,16 +94,22 @@ import { NavigationActions } from "react-navigation";
                         selectedValue= { form.country}
                         onValueChange = {(value)=> this.onValueChange.bind(this)('country', value)}
                     >
+
+                     {/*  {  data.map((item, index) =>
+                                <Picker.Item
+                                    key={index}
+                                    label={item}
+                                    value={item}
+                                    color= "#0e73a7"
+                                />
+                       )}*/}
+                    { this.state.data.map((item, index) =>
                         <Picker.Item
-                            label="Австралия"
-                            value="Австралия"
+                            key={index}
+                            label={item}
+                            value={item}
                             color= "#0e73a7"
-                        />
-                        <Picker.Item
-                            label="Австрия"
-                            value="Австрия"
-                            color= "#0e73a7"
-                        />
+                        />)}
                     </Picker>
                 </Item>
                 <TouchableOpacity

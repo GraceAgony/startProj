@@ -17,6 +17,8 @@ let store = storeFunc();
     }
 
     async componentWillMount() {
+        let that = this;
+        let stepArray = [];
         await Font.loadAsync({
             'sans-narrow': require('./fonts/pt_sans-narrow-web-regular.ttf'),
             'arial': require('./fonts/arial.ttf'),
@@ -24,6 +26,27 @@ let store = storeFunc();
             Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
         });
         this.setState({loading: false});
+        /* fetch("https://www.tpg.ua/ru/choosetour/")
+           .then((response) => response.text())
+            .then((text) => {
+                html = text;
+                let regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"cv\"|'cv')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
+                let index = html.indexOf('>', html.search(regexp));
+                let element  = html.slice(index +1);
+                let id = 0;
+                while (element.indexOf('cl'+ id) > -1){
+                    //   console.log(element.slice(element.indexOf('>',element.indexOf('cl' +id)+1) +1 ,
+                    //     element.indexOf('</span>',element.indexOf('cl'+ id)+1 )));
+                    stepArray.push(
+                        element.slice(element.indexOf('>',element.indexOf('cl' +id)+1) +1 ,
+                            element.indexOf('</span>',element.indexOf('cl'+ id)+1 ))
+                    );
+                    id++;
+                }
+                    console.log('done');
+                    this.setState({loading: false});
+            }
+                )*/
     }
 
     render() {
@@ -36,7 +59,7 @@ let store = storeFunc();
         }
             return (
                 <Provider store={store} >
-                  <AppNavigator    sceneStyle={{paddingTop: 44}}/>
+                  <AppNavigator sceneStyle={{paddingTop: 44}}/>
                 </Provider>
             );
     }

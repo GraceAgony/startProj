@@ -12,44 +12,64 @@ import { Font, AppLoading } from 'expo';
 
 class MainContainer extends Component {
 
-    constructor(props){
-        super(props);
+    constructor(props) {
+        super();
         this.state = {
-            step1: ''
-        }
+            loading: true,
+            html : ''
+        };
     }
 
+    async componentWillMount() {
+        let that = this;
+        let stepArray = [];
+        fetch("https://www.tpg.ua/ru/choosetour/")
+           .then((response) => response.text())
+            .then((text) => {
+                html = text;
+             /*   let regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"cv\"|'cv')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
+                let index = html.indexOf('>', html.search(regexp));
+                let element  = html.slice(index +1);
+                let id = 0;
+                while (element.indexOf('cl'+ id) > -1){
+                    //   console.log(element.slice(element.indexOf('>',element.indexOf('cl' +id)+1) +1 ,
+                    //     element.indexOf('</span>',element.indexOf('cl'+ id)+1 )));
+                    stepArray.push(
+                        element.slice(element.indexOf('>',element.indexOf('cl' +id)+1) +1 ,
+                            element.indexOf('</span>',element.indexOf('cl'+ id)+1 ))
+                    );
+                    id++;
+                }*/
+                    this.setState({loading: false, html: html});
+                    console.log('done');
+
+            }
+                )
+    }
 
     static navigationOptions = {
          title: "Подбор тура".toUpperCase(),
          headerTitleStyle: formStyles.stepNavigationTitle
      };
 
-    getData() {
-        fetch("https://www.tpg.ua/ru/choosetour/")
-            .then((response) => response.text())
-            .then((text) => {
-                html = text;
-                let regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"cv\"|'cv')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
-                let index = html.indexOf('>', html.search(regexp));
-                console.log(html.slice(index +1 , index+ 1000));
-             /*   let lastIndex = html.indexOf('<', index +1);
-                console.log(index + ' '+ lastIndex);
-                console.log(html.slice(index, lastIndex));*/
-            });
-    }
+
+
 
      navigate = () => {
          const navigateToStep1 = NavigationActions.navigate({
              routeName: "Step1",
-             params: { name: "Step1"}
+             params: { name: "Step1", data: this.state.data}
          });
          this.props.navigation.dispatch(navigateToStep1);
      };
 
     render() {
-        this.getData();
+        if (this.state.loading) {
+            return (
+                <AppLoading/>
 
+            );
+        }
             let prop = this.props;
             const {formAction} = prop;
             return (
