@@ -16,18 +16,20 @@ class MainContainer extends Component {
         super();
         this.state = {
             loading: true,
-            html : ''
+            data : []
         };
     }
 
     async componentWillMount() {
         let that = this;
         let stepArray = [];
+
         fetch("https://www.tpg.ua/ru/choosetour/")
            .then((response) => response.text())
             .then((text) => {
                 html = text;
-             /*   let regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"cv\"|'cv')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
+
+                let regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"cv\"|'cv')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
                 let index = html.indexOf('>', html.search(regexp));
                 let element  = html.slice(index +1);
                 let id = 0;
@@ -39,8 +41,8 @@ class MainContainer extends Component {
                             element.indexOf('</span>',element.indexOf('cl'+ id)+1 ))
                     );
                     id++;
-                }*/
-                    this.setState({loading: false, html: html});
+                }
+                    this.setState({loading: false, data: stepArray});
                     console.log('done');
 
             }
