@@ -4,6 +4,7 @@ import {  Item, Picker,  Text, Icon} from 'native-base';
 import { formStyles } from "./style";
 import * as childrenActions from "../../actions/ChildrenActions";
 import * as formAction from "../../actions/FormActions";
+import * as dataActions from "../../actions/dataActions";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavigationActions } from "react-navigation";
@@ -13,10 +14,6 @@ import { AppLoading } from "expo";
 
      constructor(props){
          super(props);
-         const { navigation } = this.props;
-         this.state = {
-             data : navigation.state.params.data
-         }
      }
 
 
@@ -53,33 +50,12 @@ import { AppLoading } from "expo";
 
 
 
-
-     /*getData() {
-         let stepArray = [];
-         fetch("https://www.tpg.ua/ru/choosetour/")
-             .then((response) => response.text())
-             .then((text) => {
-                 html = text;
-                 let regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"cv\"|'cv')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
-                 let index = html.indexOf('>', html.search(regexp));
-                 let element  = html.slice(index +1);
-                 let id = 0;
-                 while (element.indexOf('cl'+ id) > -1){
-                     console.log(element.slice(element.indexOf('>',element.indexOf('cl' +id)+1) +1 ,
-                         element.indexOf('</span>',element.indexOf('cl'+ id)+1 )));
-                     stepArray.push(
-                         element.slice(element.indexOf('>',element.indexOf('cl' +id)+1) +1 ,
-                             element.indexOf('</span>',element.indexOf('cl'+ id)+1 ))
-                     );
-                     id++;
-                 }
-             });
-         return stepArray;
-     }*/
-
     render() {
         const {form} = this.props;
-     console.log(this.state.data);
+        const {data} = this.props;
+        const dataStep = data.step1Data;
+
+
         return (
             <View style={formStyles.stepBox}>
                 <Text style = {formStyles.stepLabelText}>{'Страна отдыха'.toUpperCase()}</Text>
@@ -95,15 +71,7 @@ import { AppLoading } from "expo";
                         onValueChange = {(value)=> this.onValueChange.bind(this)('country', value)}
                     >
 
-                     {/*  {  data.map((item, index) =>
-                                <Picker.Item
-                                    key={index}
-                                    label={item}
-                                    value={item}
-                                    color= "#0e73a7"
-                                />
-                       )}*/}
-                    { this.state.data.map((item, index) =>
+                    { dataStep.map((item, index) =>
                         <Picker.Item
                             key={index}
                             label={item}
@@ -137,14 +105,16 @@ import { AppLoading } from "expo";
 function mapDispatchToProps(dispatch) {
     return {
         childrenActions: bindActionCreators(childrenActions, dispatch),
-        formAction: bindActionCreators(formAction, dispatch)
+        formAction: bindActionCreators(formAction, dispatch),
+        dataActions: bindActionCreators(dataActions,dispatch)
     }
 }
 
 function mapStateToProps (state) {
     return{
         children: state.children,
-        form: state.form
+        form: state.form,
+        data : state.data
     }
 }
 

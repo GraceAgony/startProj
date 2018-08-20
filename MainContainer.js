@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as childrenActions from './actions/ChildrenActions'
 import * as formAction from './actions/FormActions'
+import * as dataActions from './actions/dataActions'
 import { NavigationActions } from "react-navigation";
 import { colors } from "./baseStyles";
 import {formStyles} from "./components/flightChooserForm/style";
@@ -16,7 +17,6 @@ class MainContainer extends Component {
         super();
         this.state = {
             loading: true,
-            data : []
         };
     }
 
@@ -42,11 +42,11 @@ class MainContainer extends Component {
                     );
                     id++;
                 }
-                    this.setState({loading: false, data: stepArray});
-                    console.log('done');
-
-            }
-                )
+                    let {dataActions} = that.props;
+                    dataActions.setData({step1Data : stepArray});
+                    console.log(that.props.data.step1Data);
+                    that.setState({loading: false, data: stepArray});
+            })
     }
 
     static navigationOptions = {
@@ -66,7 +66,6 @@ class MainContainer extends Component {
      };
 
     render() {
-        console.log(this.props);
         if (this.state.loading) {
             return (
                 <AppLoading/>
@@ -74,7 +73,6 @@ class MainContainer extends Component {
             );
         }
             let prop = this.props;
-            const {formAction} = prop;
             return (
 
                 <Container >
@@ -101,14 +99,16 @@ class MainContainer extends Component {
 function mapDispatchToProps(dispatch) {
     return {
         childrenActions: bindActionCreators(childrenActions, dispatch),
-        formAction: bindActionCreators(formAction, dispatch)
+        formAction: bindActionCreators(formAction, dispatch),
+        dataActions: bindActionCreators(dataActions, dispatch),
     }
 }
 
 function mapStateToProps (state) {
     return{
         children: state.children,
-        form: state.form
+        form: state.form,
+        data: state.data
     }
 }
 
