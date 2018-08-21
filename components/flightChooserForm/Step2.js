@@ -33,6 +33,9 @@ import {formStyles} from "./style";
 
      render() {
         const {form} = this.props;
+         const {data} = this.props;
+         const dataStep = data.step2Data;
+
         return (
             <View style={formStyles.stepBox}>
                         <Item picker>
@@ -45,16 +48,13 @@ import {formStyles} from "./style";
                                 selectedValue={form.transport}
                                 onValueChange={(value)=> this.onValueChange.bind(this)('transport', value)}
                             >
-                                <Picker.Item
-                                    label="Блоки / Чартеры"
-                                    value="Блоки / Чартеры"
-                                    color= "#0e73a7"
-                                />
-                                <Picker.Item
-                                    label="Без авиа / Автобус"
-                                    value="Без авиа / Автобус"
-                                    color= "#0e73a7"
-                                />
+                                { dataStep.map((item, index) =>
+                                    <Picker.Item
+                                        key={index}
+                                        label={item}
+                                        value={item}
+                                        color= "#0e73a7"
+                                    />)}
                             </Picker>
                         </Item>
                 <TouchableOpacity
@@ -80,7 +80,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps (state) {
     return{
         children: state.children,
-        form: state.form
+        form: state.form,
+        data: state.data
     }
 }
 

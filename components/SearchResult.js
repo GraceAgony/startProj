@@ -117,13 +117,14 @@ export default class SearchResult extends React.Component {
                                                <Col style={formStyles.searchResultName }>
                                                    <TouchableOpacity>
                                                    <Text style={ formStyles.searchResultNameText}
-                                                         onPress={() => {that.navigate()}}>
+                                                         >
                                                        Тип цены в формате маски (SPO)
                                                    </Text>
                                                    </TouchableOpacity>
                                                </Col>
                                                <Col style={formStyles.searchResult }>
-                                                   <Text style={[ formStyles.searchResultText, {color: 'blue'}]}>
+                                                   <Text style={[ formStyles.searchResultText, {color: 'blue'}]}
+                                                         onPress={() => {that.navigate()}}>
                                                          {item.SPO}</Text>
                                                </Col>
                                             </Row>

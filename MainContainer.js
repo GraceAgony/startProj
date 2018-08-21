@@ -29,13 +29,13 @@ class MainContainer extends Component {
             .then((text) => {
                 html = text;
 
+                //step1 data
+
                 let regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"cv\"|'cv')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
                 let index = html.indexOf('>', html.search(regexp));
                 let element  = html.slice(index +1);
                 let id = 0;
                 while (element.indexOf('cl'+ id) > -1){
-                    //   console.log(element.slice(element.indexOf('>',element.indexOf('cl' +id)+1) +1 ,
-                    //     element.indexOf('</span>',element.indexOf('cl'+ id)+1 )));
                     stepArray.push(
                         element.slice(element.indexOf('>',element.indexOf('cl' +id)+1) +1 ,
                             element.indexOf('</span>',element.indexOf('cl'+ id)+1 ))
@@ -44,8 +44,36 @@ class MainContainer extends Component {
                 }
                     let {dataActions} = that.props;
                     dataActions.setData({step1Data : stepArray});
-                    console.log(that.props.data.step1Data);
-                    that.setState({loading: false, data: stepArray});
+
+                //step2 data
+
+                 stepArray = [];
+                 regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"switch-regular\"|'switch-regular')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
+                 index = html.indexOf('"switch-regular">', html.search(regexp)) + '"switch-regular">'.length -1;
+                 element  = html.slice(index +1, html.indexOf('</label>', html.search(regexp)));
+                 stepArray.push(element);
+                 regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"switch-not-avia\"|'switch-not-avia')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
+                 index = html.indexOf('"switch-not-avia">', html.search(regexp)) + '"switch-not-avia">'.length -1;
+                 element  = html.slice(index +1, html.indexOf('</label>', html.search(regexp)));
+                 stepArray.push(element);
+                 regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"switch_avia\"|'switch_avia')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
+                 index = html.indexOf('"switch_avia">', html.search(regexp)) + '"switch_avia">'.length -1;
+                 element  = html.slice(index +1, html.indexOf('</label>', html.search(regexp)));
+                 stepArray.push(element);
+                 dataActions.setData({step2Data : stepArray});
+
+                //step3 data
+
+                 stepArray = [];
+                 regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"ct\"|'ct')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
+                 index = html.indexOf('"value">', html.search(regexp)) + '"value">'.length -1;
+                 element  = html.slice(index +1, html.indexOf('</div>', html.search(regexp)));
+                 stepArray.push(element);
+
+                dataActions.setData({step3Data : stepArray});
+
+
+                that.setState({loading: false});
             })
     }
 
