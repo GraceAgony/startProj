@@ -43,7 +43,7 @@ export default class TourDescription extends React.Component {
             <Container>
                 <Content>
                     <View style={{padding: 10}}>
-                        <Text style={formStyles.stepNavigationTitle}>СПО-4 Отели Лондона (АВИА) а/к МАУ- БЕЗ БАГАЖА</Text>
+                        <Text style={formStyles.stepNavigationTitle}> Отели Лондона (АВИА) - Early booking</Text>
                         <Grid>
                             <Row>
                                 <Col>

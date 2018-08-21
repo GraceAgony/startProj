@@ -16,6 +16,8 @@ import SearchResult from "./components/SearchResult";
 import TourPage from "./components/TourPage";
 import TourDescription from "./components/tourDescription";
 import { Platform, StatusBar } from 'react-native';
+import TourProgram from "./components/TourProgram";
+import TourPrice from "./components/TourPrice";
 
 const navigator = StackNavigator({
     MainContainer: {
@@ -69,6 +71,14 @@ const navigator = StackNavigator({
 
     TourDescription :{
         screen: TourDescription
+    },
+
+    TourProgram: {
+        screen: TourProgram
+    },
+
+    TourPrice:{
+        screen: TourPrice
     }
 },
     {

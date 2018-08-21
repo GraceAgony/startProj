@@ -38,6 +38,22 @@ export default class TourPage extends React.Component {
         this.props.navigation.dispatch(navigateToTourDescription);
     };
 
+    navigateTourProgram = () => {
+        const navigateToTourProgram = NavigationActions.navigate({
+            routeName: "TourProgram",
+
+        });
+        this.props.navigation.dispatch(navigateToTourProgram);
+    };
+
+    navigateTourPrice = () => {
+        const navigateToTourProgram = NavigationActions.navigate({
+            routeName: "TourPrice",
+
+        });
+        this.props.navigation.dispatch(navigateToTourProgram);
+    };
+
     static navigationOptions = {
         title: "Тур".toUpperCase(),
         headerTitleStyle: formStyles.stepNavigationTitle
@@ -216,11 +232,11 @@ export default class TourPage extends React.Component {
                                     />
                                     <ButtonRed
                                         text = 'Программа тура'
-                                        onPress={()=>{}}
+                                        onPress={()=>{that.navigateTourProgram()}}
                                     />
                                     <ButtonRed
                                         text = 'Цены и условия'
-                                        onPress={()=>{}}
+                                        onPress={()=>{that.navigateTourPrice()}}
                                     />
                                 </Grid>
                         </View>
