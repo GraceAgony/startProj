@@ -32,11 +32,19 @@ import { AppLoading } from "expo";
 
      navigate2 = () => {
 
-         const navigateToStep12 = NavigationActions.navigate({
-             routeName: "Step12",
-             params: { name: "Step12"}
+         const navigateToTourDetails = NavigationActions.navigate({
+             routeName: "TourDetails",
+             params: { url: "https://www.tpg.ua/ru/tour/?tour=81FA0CC47A59F1BB11E81954B3661296"}
          });
-         this.props.navigation.dispatch(navigateToStep12);
+         this.props.navigation.dispatch(navigateToTourDetails);
+         const navigateToTourPage = NavigationActions.navigate({
+             routeName: "TourPage",
+             params: {
+                 name: "TourPage",
+                 url: "https://www.tpg.ua/ru/tour/?tour=81FA0CC47A59F1BB11E81954B3661296"
+             }
+         });
+         this.props.navigation.dispatch(navigateToTourPage);
      };
 
 
@@ -93,7 +101,7 @@ import { AppLoading } from "expo";
                     onPress={this.navigate2}
                 >
                     <Text style={formStyles.stepTitleText}>
-                        Шаг 12
+                        Tour Page
                     </Text>
                 </TouchableOpacity>
             </View>

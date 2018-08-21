@@ -23,7 +23,7 @@ class MainContainer extends Component {
     async componentWillMount() {
         let that = this;
         let stepArray = [];
-
+/*
         fetch("https://www.tpg.ua/ru/choosetour/")
            .then((response) => response.text())
             .then((text) => {
@@ -74,7 +74,8 @@ class MainContainer extends Component {
 
 
                 that.setState({loading: false});
-            })
+            })*/
+        that.setState({loading: false});
     }
 
     static navigationOptions = {

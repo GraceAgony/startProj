@@ -114,12 +114,25 @@ export const formStyles = StyleSheet.create(
             flex: 1
 
         },
+        tourTitleText:{
+            fontFamily: 'sans-narrow',
+            fontSize: 23,
+            color: 'rgb(1, 121, 231)',
+            textAlign: 'center',
+        },
         containerFlex:{
             display: 'flex',
             justifyContent:'center',
             margin: 10
         },
-
+        tourResultName:{
+            padding: padding.sm,
+        },
+        tourResultNameText:{
+            fontFamily: 'sans-narrow',
+            fontSize: 20,
+            color: 'rgb(1, 121, 231)'
+        },
 
     }
 );
