@@ -14,6 +14,7 @@ import Step11 from "./components/flightChooserForm/Step11";
 import Step12 from "./components/flightChooserForm/Step12";
 import SearchResult from "./components/SearchResult";
 import TourPage from "./components/TourPage";
+import TourDescription from "./components/tourDescription";
 import { Platform, StatusBar } from 'react-native';
 
 const navigator = StackNavigator({
@@ -65,6 +66,10 @@ const navigator = StackNavigator({
     TourPage: {
         screen: TourPage
     },
+
+    TourDescription :{
+        screen: TourDescription
+    }
 },
     {
         cardStyle: {

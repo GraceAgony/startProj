@@ -133,6 +133,10 @@ export const formStyles = StyleSheet.create(
             fontSize: 20,
             color: 'rgb(1, 121, 231)'
         },
+        descriptionText: {
+            fontFamily: 'sans-narrow',
+            fontSize: 20,
+        }
 
     }
 );

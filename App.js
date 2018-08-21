@@ -23,7 +23,8 @@ let store = storeFunc();
             'sans-narrow': require('./fonts/pt_sans-narrow-web-regular.ttf'),
             'arial': require('./fonts/arial.ttf'),
             Roboto: require("native-base/Fonts/Roboto.ttf"),
-            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+            'tahoma': require('./fonts/tahoma.ttf')
         });
         this.setState({loading: false});
         /* fetch("https://www.tpg.ua/ru/choosetour/")

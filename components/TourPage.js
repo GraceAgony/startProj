@@ -30,6 +30,13 @@ export default class TourPage extends React.Component {
        console.log("headings" + headings);
    }*/
 
+    navigate = () => {
+        const navigateToTourDescription = NavigationActions.navigate({
+            routeName: "TourDescription",
+
+        });
+        this.props.navigation.dispatch(navigateToTourDescription);
+    };
 
     static navigationOptions = {
         title: "Тур".toUpperCase(),
@@ -49,6 +56,7 @@ export default class TourPage extends React.Component {
     }
 
     render(){
+        let that = this;
         const { navigation } = this.props;
         let url = navigation.state.params.url;
         this.getHtml(url);
@@ -204,7 +212,7 @@ export default class TourPage extends React.Component {
                                     </Row>
                                     <ButtonRed
                                         text = 'Описание тура'
-                                        onPress={()=>{}}
+                                        onPress={()=>{that.navigate()}}
                                     />
                                     <ButtonRed
                                         text = 'Программа тура'
