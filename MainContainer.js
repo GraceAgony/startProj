@@ -89,7 +89,7 @@ class MainContainer extends Component {
      navigate = () => {
          const navigateToStep1 = NavigationActions.navigate({
              routeName: "Step1",
-             params: { name: "Step1", data: this.state.data}
+             params: { name: "Step1", data: this.state.data, setData: dataActions.setData}
          });
          this.props.navigation.dispatch(navigateToStep1);
      };

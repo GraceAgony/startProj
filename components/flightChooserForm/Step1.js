@@ -50,10 +50,13 @@ import { AppLoading } from "expo";
 
 
      onValueChange(key, value) {
+         console.log(this.props);
          const { formAction } = this.props;
          const {setForm} = formAction;
          setForm({[key] : value});
-        /* let formData = new FormData();
+         const {dataAction} = this.props;
+         const {setData} = dataAction;
+/*         let formData = new FormData();
          formData.append("action", 'selectCountry');
          formData.append("data[city]", '1069');
          formData.append("data[country]", '6');
@@ -65,10 +68,11 @@ import { AppLoading } from "expo";
          formData.append("is_ajax", 'true');
          formData.append("module", 'choosetour');*/
 
+
          let details = {
              "action": 'selectCountry',
              "data[city]": '1069',
-             "data[country]": '6',
+             "data[country]": '139',
              "data[dateFrom]": '27.08.2018',
              "data[dateTo]": '10.09.2018',
              "data[nightsFrom]": '3',
@@ -86,6 +90,7 @@ import { AppLoading } from "expo";
          }
          formBody = formBody.join("&");
 
+         console.log('start');
 
          fetch('https://www.tpg.ua/ru/choosetour/index.php', {
              method: 'POST',
@@ -100,8 +105,27 @@ import { AppLoading } from "expo";
              },
              body: formBody,
          })
-             .then((response) => {
-                 console.log(response);
+             .then((response) => response.json())
+             .then((responseJson) => {
+                  console.log(responseJson.content.cityList);
+                  cityList = responseJson.content.cityList.list;
+
+                 //step3 data
+
+                 let stepArray = [];
+             //    regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"ct\"|'ct')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
+
+                let index = cityList.indexOf('\">' , cityList.indexOf('data-value'))+2;
+                let startIndex =0;
+                while (startIndex !== -1) {
+                     element = cityList.slice(index, cityList.indexOf('</span>', index));
+                     stepArray.push(element);
+                    startIndex = cityList.indexOf('data-value', index);
+                     index = cityList.indexOf('\">' , startIndex)+2
+                 }
+
+                setData({step3Data : stepArray}) ;
+                console.log(stepArray);
              })
              .catch((error) => {
                  console.error(error);
@@ -116,7 +140,7 @@ import { AppLoading } from "expo";
         const {form} = this.props;
         const {data} = this.props;
         const dataStep = data.step1Data;
-
+        console.log(data);
 
         return (
             <View style={formStyles.stepBox}>
