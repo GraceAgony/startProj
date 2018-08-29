@@ -31,6 +31,9 @@ import * as childrenActions from "../../actions/ChildrenActions";
 
     render() {
         const {form} = this.props;
+        const {data} = this.props;
+        const dataStep = data.step3Data;
+        console.log(dataStep);
         return (
             <View style={formStyles.stepBox}>
                 <Text style = {formStyles.stepLabelText}> {"Город отправления".toUpperCase()}</Text>
@@ -44,16 +47,15 @@ import * as childrenActions from "../../actions/ChildrenActions";
                         selectedValue={form.city}
                         onValueChange={(value)=> this.onValueChange.bind(this)('city', value)}
                     >
-                        <Picker.Item
-                            label="Баку"
-                            value="Баку"
-                            color= "#0e73a7"
-                        />
-                        <Picker.Item
-                            label="Киев"
-                            value="Киев"
-                            color= "#0e73a7"
-                        />
+
+                        { dataStep.map((item, index) =>
+
+                            <Picker.Item
+                                key={index}
+                                label={item}
+                                value={item}
+                                color= "#0e73a7"
+                            />)}
                     </Picker>
                 </Item>
                 <TouchableOpacity
@@ -78,7 +80,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps (state) {
     return{
         children: state.children,
-        form: state.form
+        form: state.form,
+        data: state.data
     }
 }
 

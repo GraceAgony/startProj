@@ -50,29 +50,17 @@ import { AppLoading } from "expo";
 
 
      onValueChange(key, value) {
-         console.log(this.props);
          const { formAction } = this.props;
          const {setForm} = formAction;
          setForm({[key] : value});
-         const {dataAction} = this.props;
-         const {setData} = dataAction;
-/*         let formData = new FormData();
-         formData.append("action", 'selectCountry');
-         formData.append("data[city]", '1069');
-         formData.append("data[country]", '6');
-         formData.append("data[dateFrom]", '27.08.2018');
-         formData.append("data[dateTo]", '10.09.2018');
-         formData.append("data[nightsFrom]", '3');
-         formData.append("data[nightsTo]", '5');
-         formData.append("data[spo]", '0');
-         formData.append("is_ajax", 'true');
-         formData.append("module", 'choosetour');*/
+         const {dataActions} = this.props;
+         const {setData} = dataActions;
 
 
          let details = {
              "action": 'selectCountry',
              "data[city]": '1069',
-             "data[country]": '139',
+             "data[country]": value,
              "data[dateFrom]": '27.08.2018',
              "data[dateTo]": '10.09.2018',
              "data[nightsFrom]": '3',
@@ -160,8 +148,8 @@ import { AppLoading } from "expo";
                     { dataStep.map((item, index) =>
                         <Picker.Item
                             key={index}
-                            label={item}
-                            value={item}
+                            label={item.city}
+                            value={item.value}
                             color= "#0e73a7"
                         />)}
                     </Picker>

@@ -36,12 +36,16 @@ class MainContainer extends Component {
                 let element  = html.slice(index +1);
                 let id = 0;
                 while (element.indexOf('cl'+ id) > -1){
+                    let req = element.indexOf('data-value=', element.indexOf('cl' + id) + 1) + 'data-value="'.length;
                     stepArray.push(
-                        element.slice(element.indexOf('>',element.indexOf('cl' +id)+1) +1 ,
-                            element.indexOf('</span>',element.indexOf('cl'+ id)+1 ))
-                    );
+                        obj = {
+                          city: element.slice(element.indexOf('>', element.indexOf('cl' + id) + 1) + 1,
+                            element.indexOf('</span>', element.indexOf('cl' + id) + 1)),
+                           value:  parseInt(element.slice(req, element.indexOf("'>", element.indexOf('cl' + id) + 1)), 10)
+                });
                     id++;
                 }
+
                     let {dataActions} = that.props;
                     dataActions.setData({step1Data : stepArray});
 
