@@ -1,8 +1,8 @@
 const defaultState = {};
 const initialState = {
-    country: 'Австралия',
+    country:  {label: 'Греция', value: 44},
     transport: 'Блоки / Чартеры',
-    city: 'Баку',
+    city: {label: 'Киев', value: 1069},
     price: 'Все',
     type: 'Все',
     firstDate: Date.now(),

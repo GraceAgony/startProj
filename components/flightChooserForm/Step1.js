@@ -50,21 +50,30 @@ import { AppLoading } from "expo";
 
 
      onValueChange(key, value) {
+         const {data} = this.props;
+         const dataStep = data.step1Data;
+         const {form} = this.props;
          const { formAction } = this.props;
          const {setForm} = formAction;
-         setForm({[key] : value});
          const {dataActions} = this.props;
          const {setData} = dataActions;
 
+         dataStep.map((item, index) =>{
+             if(item.value === value ){
+                 setForm({[key]:  {["value"]: value, ["label"]: item.city}});
+             }
+         });
+         this.forceUpdate();
+         console.log(console.log(form));
 
          let details = {
              "action": 'selectCountry',
-             "data[city]": '1069',
-             "data[country]": value,
-             "data[dateFrom]": '27.08.2018',
-             "data[dateTo]": '10.09.2018',
-             "data[nightsFrom]": '3',
-             "data[nightsTo]": '5',
+             "data[city]": form.city.value,
+             "data[country]": form.country.value,
+             "data[dateFrom]": form.firstDate,
+             "data[dateTo]": form.secondDate,
+             "data[nightsFrom]": form.nightFrom,
+             "data[nightsTo]": form.nightTo,
              "data[spo]": '0',
              "is_ajax": 'true',
              "module": 'choosetour'
@@ -78,7 +87,6 @@ import { AppLoading } from "expo";
          }
          formBody = formBody.join("&");
 
-         console.log('start');
 
          fetch('https://www.tpg.ua/ru/choosetour/index.php', {
              method: 'POST',
@@ -114,11 +122,11 @@ import { AppLoading } from "expo";
 
                 setData({step3Data : stepArray}) ;
                 console.log(stepArray);
+
              })
              .catch((error) => {
                  console.error(error);
              });
-         this.forceUpdate();
 
      }
 
@@ -128,7 +136,6 @@ import { AppLoading } from "expo";
         const {form} = this.props;
         const {data} = this.props;
         const dataStep = data.step1Data;
-        console.log(data);
 
         return (
             <View style={formStyles.stepBox}>
@@ -141,7 +148,7 @@ import { AppLoading } from "expo";
                         placeholder="Select One"
                         placeholderStyle={{ color: "#2874F0" }}
                         note={false}
-                        selectedValue= { form.country}
+                        selectedValue= { form.country.label}
                         onValueChange = {(value)=> this.onValueChange.bind(this)('country', value)}
                     >
 
