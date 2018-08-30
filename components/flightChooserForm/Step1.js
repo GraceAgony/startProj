@@ -121,6 +121,20 @@ import { AppLoading } from "expo";
 
                 setData({step3Data : stepArray}) ;
 
+                //step4 data
+                 
+                 stepArray = [];
+                 spoList = responseJson.content.spo.spoList;
+                  index = spoList.indexOf('\">' , spoList.indexOf('data-value'))+2;
+                  startIndex =0;
+                 while (startIndex !== -1) {
+                     element = spoList.slice(index, cityList.indexOf('</span>', index));
+                     stepArray.push(element);
+                     startIndex = spoList.indexOf('data-value', index);
+                     index = spoList.indexOf('\">' , startIndex)+2
+                 }
+                 console.log(stepArray);
+
              })
              .catch((error) => {
                  console.error(error);
@@ -135,7 +149,7 @@ import { AppLoading } from "expo";
         const {data} = this.props;
         const dataStep = data.step1Data;
         let that = this;
-        console.log(form);
+      //  console.log(form);
         return (
             <View style={formStyles.stepBox}>
                 <Text style = {formStyles.stepLabelText}>{'Страна отдыха'.toUpperCase()}</Text>

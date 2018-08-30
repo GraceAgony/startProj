@@ -33,7 +33,7 @@ import * as childrenActions from "../../actions/ChildrenActions";
         const {form} = this.props;
         const {data} = this.props;
         const dataStep = data.step3Data;
-        console.log(dataStep);
+        //console.log(dataStep);
         return (
             <View style={formStyles.stepBox}>
                 <Text style = {formStyles.stepLabelText}> {"Город отправления".toUpperCase()}</Text>
