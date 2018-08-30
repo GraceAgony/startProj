@@ -14,6 +14,7 @@ import { AppLoading } from "expo";
 
      constructor(props){
          super(props);
+         const {form} = this.props;
      }
 
 
@@ -58,13 +59,11 @@ import { AppLoading } from "expo";
          const {dataActions} = this.props;
          const {setData} = dataActions;
 
-         dataStep.map((item, index) =>{
+         dataStep.map((item) =>{
              if(item.value === value ){
                  setForm({[key]:  {["value"]: value, ["label"]: item.city}});
              }
          });
-         this.forceUpdate();
-         console.log(console.log(form));
 
          let details = {
              "action": 'selectCountry',
@@ -103,7 +102,7 @@ import { AppLoading } from "expo";
          })
              .then((response) => response.json())
              .then((responseJson) => {
-                  console.log(responseJson.content.cityList);
+
                   cityList = responseJson.content.cityList.list;
 
                  //step3 data
@@ -121,22 +120,22 @@ import { AppLoading } from "expo";
                  }
 
                 setData({step3Data : stepArray}) ;
-                console.log(stepArray);
 
              })
              .catch((error) => {
                  console.error(error);
              });
 
+         this.forceUpdate();
      }
-
 
 
     render() {
         const {form} = this.props;
         const {data} = this.props;
         const dataStep = data.step1Data;
-
+        let that = this;
+        console.log(form);
         return (
             <View style={formStyles.stepBox}>
                 <Text style = {formStyles.stepLabelText}>{'Страна отдыха'.toUpperCase()}</Text>
@@ -148,8 +147,8 @@ import { AppLoading } from "expo";
                         placeholder="Select One"
                         placeholderStyle={{ color: "#2874F0" }}
                         note={false}
-                        selectedValue= { form.country.label}
-                        onValueChange = {(value)=> this.onValueChange.bind(this)('country', value)}
+                        selectedValue = { form.country.value }
+                        onValueChange = {(value)=> {this.onValueChange.bind(this)('country', value)}}
                     >
 
                     { dataStep.map((item, index) =>
