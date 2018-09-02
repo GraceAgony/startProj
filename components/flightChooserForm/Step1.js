@@ -128,7 +128,8 @@ import { AppLoading } from "expo";
                   index = spoList.indexOf('\">' , spoList.indexOf('data-value'))+2;
                   startIndex =0;
                  while (startIndex !== -1) {
-                     element = spoList.slice(index, cityList.indexOf('</span>', index));
+                    // element = spoList.slice(index, cityList.indexOf('</span>', index));
+                     element = spoList.slice(index, cityList.indexOf('</s', index));
                      stepArray.push(element);
                      startIndex = spoList.indexOf('data-value', index);
                      index = spoList.indexOf('\">' , startIndex)+2
