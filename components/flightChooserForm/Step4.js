@@ -31,6 +31,8 @@ import * as childrenActions from "../../actions/ChildrenActions";
 
     render() {
         const {form} = this.props;
+        const {data} = this.props;
+        const dataStep = data.step4Data.price;
         return (
             <View style={formStyles.stepBox}>
                 <Text  style = {formStyles.stepLabelText} >Источник цены</Text>
@@ -48,16 +50,14 @@ import * as childrenActions from "../../actions/ChildrenActions";
                                     return <Picker.Item key={index} label={item} value={item} />;
                                 })
                             */}
-                        <Picker.Item
-                            label="Все"
-                            value="Все"
-                            color= "#0e73a7"
-                        />
-                        <Picker.Item
-                            label="Отели Барселоны"
-                            value="Отели Барселоны"
-                            color= "#0e73a7"
-                        />
+                        { dataStep.map((item, index) =>
+
+                            <Picker.Item
+                                key={index}
+                                label={item}
+                                value={item}
+                                color= "#0e73a7"
+                            />)}
                     </Picker>
                 </Item>
                 <Text style = {formStyles.stepLabelText}>Тип тура</Text>
@@ -101,7 +101,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps (state) {
     return{
         children: state.children,
-        form: state.form
+        form: state.form,
+        data: state.data
     }
 }
 

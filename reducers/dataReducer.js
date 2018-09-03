@@ -3,7 +3,7 @@ const initialState = {
     step1Data: new Array(),
     step2Data: new Array(),
     step3Data: new Array(),
-    step4Data: new Array(),
+    step4Data: {},
     step5Data: new Array(),
     step6Data: new Array(),
     step7Data: new Array(),

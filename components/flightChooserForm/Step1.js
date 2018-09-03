@@ -114,7 +114,7 @@ import { AppLoading } from "expo";
                 let startIndex =0;
                 while (startIndex !== -1) {
                      element = cityList.slice(index, cityList.indexOf('</span>', index));
-                     stepArray.push(element);
+                     stepArray.push(element.trim());
                     startIndex = cityList.indexOf('data-value', index);
                      index = cityList.indexOf('\">' , startIndex)+2
                  }
@@ -130,11 +130,11 @@ import { AppLoading } from "expo";
                  while (startIndex !== -1) {
                     // element = spoList.slice(index, cityList.indexOf('</span>', index));
                      element = spoList.slice(index, spoList.indexOf('</span>', index));
-                     stepArray.push(element);
+                     stepArray.push(element.trim());
                      startIndex = spoList.indexOf('data-value', index);
                      index = spoList.indexOf('\">' , startIndex)+2
                  }
-                 setData({step4Data : stepArray}) ;
+                 setData({step4Data : {price: stepArray}}) ;
 
              })
              .catch((error) => {
