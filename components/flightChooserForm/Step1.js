@@ -129,12 +129,12 @@ import { AppLoading } from "expo";
                   startIndex =0;
                  while (startIndex !== -1) {
                     // element = spoList.slice(index, cityList.indexOf('</span>', index));
-                     element = spoList.slice(index, cityList.indexOf('</s', index));
+                     element = spoList.slice(index, spoList.indexOf('</span>', index));
                      stepArray.push(element);
                      startIndex = spoList.indexOf('data-value', index);
                      index = spoList.indexOf('\">' , startIndex)+2
                  }
-                 console.log(stepArray);
+                 setData({step4Data : stepArray}) ;
 
              })
              .catch((error) => {
