@@ -171,7 +171,7 @@ import { AppLoading } from "expo";
 
                  defaultFrom = responseJson.content.parameters.defaultFrom;
                  defaultTo = responseJson.content.parameters.defaultTo;
-                 setData({step7Data : {nightFrom: defaultFrom, nightTo:defaultTo}});
+                 setData({step7Data : {nightFrom: defaultFrom, nightTo:default To}});
 
              })
              .catch((error) => {
