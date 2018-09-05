@@ -34,6 +34,10 @@ import * as childrenActions from "../../actions/ChildrenActions";
 
     render() {
         const {form} = this.props;
+        const {data} = this.props;
+        console.log(data);
+        const nightFrom = data.step7Data.nightFrom;
+        const nightTo = data.step7Data.nightTo;
         return (
             <Container>
                 <Content>
@@ -50,7 +54,7 @@ import * as childrenActions from "../../actions/ChildrenActions";
                                     placeholder="Select One"
                                     placeholderStyle={{ color: "#2874F0" }}
                                     note={false}
-                                    selectedValue={form.nightFrom}
+                                    selectedValue={nightFrom}
                                     onValueChange={(value)=> this.onValueChange.bind(this)('nightFrom', value)}
                                 >
                                     <Picker.Item
@@ -75,7 +79,7 @@ import * as childrenActions from "../../actions/ChildrenActions";
                                     placeholder="Select One"
                                     placeholderStyle={{ color: "#2874F0" }}
                                     note={false}
-                                    selectedValue={form.nightTo}
+                                    selectedValue={nightTo}
                                     onValueChange={(value)=> this.onValueChange.bind(this)('nightTo', value)}
                                 >
                                     <Picker.Item

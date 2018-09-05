@@ -34,6 +34,7 @@ export default class Children extends React.Component {
     let childrenArray = this.props.childrenArray;
     let children = childrenArray.children;
     let childrenCount = childrenArray.childrenCount;
+    let child = this.props.child;
     let that = this;
     return (
         <View>
@@ -52,31 +53,14 @@ export default class Children extends React.Component {
                                 note={false}
 
                             >
-                                <Picker.Item
-                                    label="0"
-                                    value="0"
-                                    color= "#0e73a7"
-                                />
-                                <Picker.Item
-                                    label="1"
-                                    value="1"
-                                    color= "#0e73a7"
-                                />
-                                <Picker.Item
-                                    label="2"
-                                    value="2"
-                                    color= "#0e73a7"
-                                />
-                                <Picker.Item
-                                    label="3"
-                                    value="3"
-                                    color= "#0e73a7"
-                                />
-                                <Picker.Item
-                                    label="4"
-                                    value="4"
-                                    color= "#0e73a7"
-                                />
+                            {/*    { child.map((item, index) =>
+
+                                    <Picker.Item
+                                        key={index}
+                                        label={item}
+                                        value={item}
+                                        color= "#0e73a7"
+                                    />)}*/}
                             </Picker>
                         </Col>
                     </Row>

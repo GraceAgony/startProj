@@ -32,6 +32,9 @@ import {formStyles} from "./style";
 
     render() {
         const {form} = this.props;
+        /*     const {data} = this.props;
+           const dateFrom= data.step4Data.price;
+            const dateTo = data.step4Data.tourType;*/
         return (
             <View style={formStyles.stepBox}>
                 <Item picker>

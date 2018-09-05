@@ -136,6 +136,43 @@ import { AppLoading } from "expo";
                  }
                  setData({step4Data : {price: stepArray}}) ;
 
+                 stepArray = [];
+                 tourTypeList = responseJson.content.tourType.tourTypeList;
+                 index = tourTypeList.indexOf('\">' , spoList.indexOf('data-value'))+2;
+                 startIndex =0;
+                 while (startIndex !== -1) {
+                     // element = spoList.slice(index, cityList.indexOf('</span>', index));
+                     element = tourTypeList.slice(index, tourTypeList.indexOf('</span>', index));
+                     stepArray.push(element.trim());
+                     startIndex = tourTypeList.indexOf('data-value', index);
+                     index = tourTypeList.indexOf('\">' , startIndex)+2
+                 }
+                 setData({step4Data : Object.assign(data.step4Data, data.step4Data,  {tourType: stepArray})});
+
+                 //step5 data
+
+                 defaultDateFrom = responseJson.content.parameters.defaultDateFrom;
+                 defaultDateTo = responseJson.content.parameters.defaultDateTo;
+                 setData({step5Data : {dateFrom: defaultDateFrom, dateTo:defaultDateTo}});
+
+                 //ste6 data
+                 people = [];
+                 for(let i=0; i<=16; i ++){
+                     people.push(i);
+                 }
+                 children = [];
+                 for(let i=0; i<=4; i++){
+                     children.push(i);
+                 }
+
+                 setData({step6Data: {people: people, children: children}});
+
+                 //step7 data
+
+                 defaultFrom = responseJson.content.parameters.defaultFrom;
+                 defaultTo = responseJson.content.parameters.defaultTo;
+                 setData({step7Data : {nightFrom: defaultFrom, nightTo:defaultTo}});
+
              })
              .catch((error) => {
                  console.error(error);

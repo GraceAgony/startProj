@@ -32,7 +32,9 @@ import * as childrenActions from "../../actions/ChildrenActions";
     render() {
         const {form} = this.props;
         const {data} = this.props;
+        console.log(data);
         const dataStep = data.step4Data.price;
+        const dataStepType = data.step4Data.tourType;
         return (
             <View style={formStyles.stepBox}>
                 <Text  style = {formStyles.stepLabelText} >Источник цены</Text>
@@ -71,11 +73,14 @@ import * as childrenActions from "../../actions/ChildrenActions";
                         selectedValue={form.type}
                         onValueChange={(value)=> this.onValueChange.bind(this)('type', value)}
                     >
-                        <Picker.Item
-                            label="Все"
-                            value="Все"
-                            color= "#0e73a7"
-                        />
+                        { dataStepType.map((item, index) =>
+
+                            <Picker.Item
+                                key={index}
+                                label={item}
+                                value={item}
+                                color= "#0e73a7"
+                            />)}
 
                     </Picker>
                 </Item>
