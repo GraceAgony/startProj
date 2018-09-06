@@ -111,12 +111,17 @@ import { AppLoading } from "expo";
              //    regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"ct\"|'ct')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
 
                 let index = cityList.indexOf('\">' , cityList.indexOf('data-value'))+2;
-                let startIndex =0;
+                let indexValue = cityList.indexOf('data-value=')+ 'data-value="'.length;
+                let startIndex = 0;
                 while (startIndex !== -1) {
                      element = cityList.slice(index, cityList.indexOf('</span>', index));
+                    elementValue = cityList.slice(indexValue, cityList.indexOf('"', indexValue) );
+                    console.log(elementValue);
                      stepArray.push(element.trim());
                     startIndex = cityList.indexOf('data-value', index);
-                     index = cityList.indexOf('\">' , startIndex)+2
+                     index = cityList.indexOf('\">' , startIndex)+2;
+                     indexValue = cityList.indexOf('data-value=', indexValue)+ 'data-value="'.length;
+
                  }
 
                 setData({step3Data : stepArray}) ;
@@ -126,7 +131,7 @@ import { AppLoading } from "expo";
                  stepArray = [];
                  spoList = responseJson.content.spo.spoList;
                   index = spoList.indexOf('\">' , spoList.indexOf('data-value'))+2;
-                  startIndex =0;
+                  startIndex = 0;
                  while (startIndex !== -1) {
                     // element = spoList.slice(index, cityList.indexOf('</span>', index));
                      element = spoList.slice(index, spoList.indexOf('</span>', index));
@@ -171,7 +176,8 @@ import { AppLoading } from "expo";
 
                  defaultFrom = responseJson.content.parameters.defaultFrom;
                  defaultTo = responseJson.content.parameters.defaultTo;
-                 setData({step7Data : {nightFrom: defaultFrom, nightTo:default To}});
+                 setData({step7Data : {nightFrom: defaultFrom, nightTo:defaultTo}});
+
 
              })
              .catch((error) => {
@@ -206,7 +212,7 @@ import { AppLoading } from "expo";
                     { dataStep.map((item, index) =>
                         <Picker.Item
                             key={index}
-                            label={item.city}
+                            label={item.country}
                             value={item.value}
                             color= "#0e73a7"
                         />)}
