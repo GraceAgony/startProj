@@ -1,10 +1,10 @@
 const defaultState = {};
 const initialState = {
     country:  {label: 'Греция', value: 44},
-    transport: 'Блоки / Чартеры',
+    transport:{ label: "Блоки / Чартеры", value: "1"},
     city: {label: 'Киев', value: 1069},
-    price: 'Все',
-    type: 'Все',
+    price: {label: 'Все', value: 0},
+    type: {label: 'Все', value: 0},
     firstDate: Date.now(),
     secondDate: Date.now(),
     people: 2,

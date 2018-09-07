@@ -20,7 +20,6 @@ import {formStyles} from "./style";
         const dataStep = data.step2Data;
         const { formAction } = this.props;
         const {setForm} = formAction;
-        setForm({[key] : value});
         const {form} = this.props;
 
         dataStep.map((item) =>{
@@ -29,7 +28,6 @@ import {formStyles} from "./style";
             }
         });
 
-        console.log(form);
 
         let details = {
             "action": 'turnSwiper',
@@ -99,7 +97,7 @@ import {formStyles} from "./style";
                                 placeholder="Select One"
                                 placeholderStyle={{ color: "#2874F0" }}
                                 note={false}
-                                selectedValue={form.transport}
+                                selectedValue={form.transport.value}
                                 onValueChange={(value)=> this.onValueChange.bind(this)('transport', value)}
                             >
                                 { dataStep.map((item, index) =>

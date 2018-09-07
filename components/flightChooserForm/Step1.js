@@ -116,8 +116,7 @@ import { AppLoading } from "expo";
                 while (startIndex !== -1) {
                      element = cityList.slice(index, cityList.indexOf('</span>', index));
                     elementValue = cityList.slice(indexValue, cityList.indexOf('"', indexValue) );
-                    console.log(elementValue);
-                     stepArray.push(element.trim());
+                     stepArray.push({item: element.trim(), value: elementValue});
                     startIndex = cityList.indexOf('data-value', index);
                      index = cityList.indexOf('\">' , startIndex)+2;
                      indexValue = cityList.indexOf('data-value=', indexValue)+ 'data-value="'.length;
@@ -131,28 +130,33 @@ import { AppLoading } from "expo";
                  stepArray = [];
                  spoList = responseJson.content.spo.spoList;
                   index = spoList.indexOf('\">' , spoList.indexOf('data-value'))+2;
+                  indexValue = cityList.indexOf('data-value=')+ 'data-value="'.length;
                   startIndex = 0;
                  while (startIndex !== -1) {
-                    // element = spoList.slice(index, cityList.indexOf('</span>', index));
                      element = spoList.slice(index, spoList.indexOf('</span>', index));
-                     stepArray.push(element.trim());
+                     elementValue = cityList.slice(indexValue, cityList.indexOf('"', indexValue) );
+                     stepArray.push({item: element.trim(), value: elementValue});
                      startIndex = spoList.indexOf('data-value', index);
-                     index = spoList.indexOf('\">' , startIndex)+2
+                     index = spoList.indexOf('\">' , startIndex)+2;
+                     indexValue = cityList.indexOf('data-value=', indexValue)+ 'data-value="'.length;
                  }
                  setData({step4Data : {price: stepArray}}) ;
 
                  stepArray = [];
                  tourTypeList = responseJson.content.tourType.tourTypeList;
                  index = tourTypeList.indexOf('\">' , spoList.indexOf('data-value'))+2;
+                 indexValue = cityList.indexOf('data-value=')+ 'data-value="'.length;
                  startIndex =0;
                  while (startIndex !== -1) {
-                     // element = spoList.slice(index, cityList.indexOf('</span>', index));
                      element = tourTypeList.slice(index, tourTypeList.indexOf('</span>', index));
-                     stepArray.push(element.trim());
+                     elementValue = cityList.slice(indexValue, cityList.indexOf('"', indexValue) );
+                     stepArray.push({item: element.trim(), value: elementValue});
                      startIndex = tourTypeList.indexOf('data-value', index);
                      index = tourTypeList.indexOf('\">' , startIndex)+2
+                     indexValue = cityList.indexOf('data-value=', indexValue)+ 'data-value="'.length;
                  }
                  setData({step4Data : Object.assign(data.step4Data, data.step4Data,  {tourType: stepArray})});
+
 
                  //step5 data
 

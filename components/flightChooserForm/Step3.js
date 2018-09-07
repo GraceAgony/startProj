@@ -17,8 +17,18 @@ import * as childrenActions from "../../actions/ChildrenActions";
     onValueChange(key, value) {
         const { formAction } = this.props;
         const {setForm} = formAction;
-        setForm({[key] : value});
+        const {data} = this.props;
+        const dataStep = data.step3Data;
+        const {form} = this.props;
+
+        dataStep.map((item) =>{
+            if(item.value === value ){
+                setForm({[key]:  {["value"]: value, ["label"]: item.item}});
+            }
+        });
+
         this.forceUpdate();
+        console.log(form);
     }
 
      navigate = () => {
@@ -44,7 +54,7 @@ import * as childrenActions from "../../actions/ChildrenActions";
                         placeholder="Select One"
                         placeholderStyle={{ color: "#2874F0" }}
                         note={false}
-                        selectedValue={form.city}
+                        selectedValue={form.city.value}
                         onValueChange={(value)=> this.onValueChange.bind(this)('city', value)}
                     >
 
@@ -52,8 +62,8 @@ import * as childrenActions from "../../actions/ChildrenActions";
 
                             <Picker.Item
                                 key={index}
-                                label={item}
-                                value={item}
+                                label={item.item}
+                                value={item.value}
                                 color= "#0e73a7"
                             />)}
                     </Picker>

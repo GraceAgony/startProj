@@ -15,9 +15,18 @@ import * as childrenActions from "../../actions/ChildrenActions";
     };
 
      onValueChange(key, value) {
+         const {data} = this.props;
+         const dataStep = data.step4Data;
          const { formAction } = this.props;
          const {setForm} = formAction;
-         setForm({[key] : value});
+         const {form} = this.props;
+
+         dataStep.map((item) =>{
+             if(item.value === value ){
+                 setForm({[key]:  {["value"]: value, ["label"]: item.item}});
+             }
+         });
+        console.log(form);
          this.forceUpdate();
      }
 
@@ -45,7 +54,7 @@ import * as childrenActions from "../../actions/ChildrenActions";
                             placeholder="Select One"
                             placeholderStyle={{ color: "#2874F0" }}
                             note={false}
-                            selectedValue={form.price}
+                            selectedValue={form.price.value}
                             onValueChange={(value)=> this.onValueChange.bind(this)('price', value)}>
                         {/*
                                 this.props.categories.map((item,index)=>{
@@ -70,7 +79,7 @@ import * as childrenActions from "../../actions/ChildrenActions";
                         placeholder="Select One"
                         placeholderStyle={{ color: "#2874F0" }}
                         note={false}
-                        selectedValue={form.type}
+                        selectedValue={form.type.value}
                         onValueChange={(value)=> this.onValueChange.bind(this)('type', value)}
                     >
                         { dataStepType.map((item, index) =>
