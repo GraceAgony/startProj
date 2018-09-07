@@ -16,11 +16,20 @@ import {formStyles} from "./style";
     };
 
     onValueChange(key, value) {
+        const {data} = this.props;
+        const dataStep = data.step2Data;
         const { formAction } = this.props;
         const {setForm} = formAction;
         setForm({[key] : value});
         const {form} = this.props;
 
+        dataStep.map((item) =>{
+            if(item.value === value ){
+                setForm({[key]:  {["value"]: value, ["label"]: item.item}});
+            }
+        });
+
+        console.log(form);
 
         let details = {
             "action": 'turnSwiper',
@@ -96,8 +105,8 @@ import {formStyles} from "./style";
                                 { dataStep.map((item, index) =>
                                     <Picker.Item
                                         key={index}
-                                        label={item}
-                                        value={item}
+                                        label={item.item}
+                                        value={item.value}
                                         color= "#0e73a7"
                                     />)}
                             </Picker>
