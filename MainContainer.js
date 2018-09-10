@@ -81,15 +81,29 @@ class MainContainer extends Component {
                  dataActions.setData({step2Data : stepArray});
 
 
-        /*        //step3 data
 
-                 stepArray = [];
-                 regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"ct\"|'ct')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
-                 index = html.indexOf('"value">', html.search(regexp)) + '"value">'.length -1;
-                 element  = html.slice(index +1, html.indexOf('</div>', html.search(regexp)));
-                 stepArray.push(element);
+                    //ste6 data
+                    people = [];
+                    for(let i=1; i<=16; i ++){
+                        people.push({item: i, value: i});
+                    }
+                    children = [];
+                    for(let i=1; i<=4; i++){
+                        children.push({item: i, value: i});
+                    }
 
-                dataActions.setData({step3Data : stepArray});*/
+                    setData({step6Data: {people: people, children: children}});
+
+
+                /*        //step3 data
+
+                         stepArray = [];
+                         regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"ct\"|'ct')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
+                         index = html.indexOf('"value">', html.search(regexp)) + '"value">'.length -1;
+                         element  = html.slice(index +1, html.indexOf('</div>', html.search(regexp)));
+                         stepArray.push(element);
+
+                        dataActions.setData({step3Data : stepArray});*/
 
 
                // that.setState({loading: false});
