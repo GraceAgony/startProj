@@ -92,7 +92,7 @@ class MainContainer extends Component {
                         children.push({item: i, value: i});
                     }
 
-                    setData({step6Data: {people: people, children: children}});
+                    dataActions.setData({step6Data: {people: people, children: children}});
 
 
                 /*        //step3 data

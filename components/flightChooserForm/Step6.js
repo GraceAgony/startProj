@@ -47,7 +47,7 @@ class Step6 extends React.Component {
                 <Item picker>
                     <Col>
                         <Text  style = {formStyles.stepLabelText} >Взрослых</Text>
-                      {/*  <Picker
+                        <Picker
                           //  style={formStyles.picker}
                             mode="dropdown"
                             placeholder="Select One"
@@ -64,7 +64,7 @@ class Step6 extends React.Component {
                                     value={item.value}
                                     color= "#0e73a7"
                                 />)}
-                        </Picker>*/}
+                        </Picker>
                     </Col>
                 </Item>
                {/* <Children
