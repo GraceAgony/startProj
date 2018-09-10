@@ -155,7 +155,7 @@ import { AppLoading } from "expo";
                      index = tourTypeList.indexOf('\">' , startIndex)+2
                      indexValue = cityList.indexOf('data-value=', indexValue)+ 'data-value="'.length;
                  }
-                 setData({step4Data : Object.assign(data.step4Data, data.step4Data,  {tourType: stepArray})});
+                 setData({step4Data : Object.assign(data.step4Data, data.step4Data,  {type: stepArray})});
 
 
                  //step5 data
@@ -166,15 +166,16 @@ import { AppLoading } from "expo";
 
                  //ste6 data
                  people = [];
-                 for(let i=0; i<=16; i ++){
-                     people.push(i);
+                 for(let i=1; i<=16; i ++){
+                     people.push({item: i, value: i});
                  }
                  children = [];
-                 for(let i=0; i<=4; i++){
-                     children.push(i);
+                 for(let i=1; i<=4; i++){
+                     children.push({item: i, value: i});
                  }
 
                  setData({step6Data: {people: people, children: children}});
+                 console.log(data.step6Data);
 
                  //step7 data
 

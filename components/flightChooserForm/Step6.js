@@ -36,6 +36,9 @@ class Step6 extends React.Component {
         const {form} = this.props;
         const { children } = this.props;
         const { setChildren } = this.props.childrenActions;
+        const {data} = this.props;
+        console.log(data);
+        const dataStep = data.step6Data.people;
 
         return (
             <Container>
@@ -50,27 +53,25 @@ class Step6 extends React.Component {
                             placeholder="Select One"
                             placeholderStyle={{ color: "#2874F0" }}
                             note={false}
-                            selectedValue={form.people}
+                            selectedValue={form.people.value}
                             onValueChange={(value)=> this.onValueChange.bind(this)('people', value)}
                         >
-                            <Picker.Item
-                                label="1"
-                                value="1"
-                                color= "#0e73a7"
-                            />
-                            <Picker.Item
-                                label="2"
-                                value="2"
-                                color= "#0e73a7"
-                            />
+                            { dataStep.map((item, index) =>
+
+                                <Picker.Item
+                                    key={index}
+                                    label={item.item}
+                                    value={item.value}
+                                    color= "#0e73a7"
+                                />)}
                         </Picker>
                     </Col>
                 </Item>
-                <Children
+               {/* <Children
                           childrenArray = {children}
                           setChildren = {setChildren}
                           onChangeAge = {(key, age)=> this.onValueChange.bind(this)(key+'children', age)}
-                />
+                />*/}
                 <TouchableOpacity
                     style={formStyles.stepTitle}
                     onPress={this.navigate}
@@ -95,7 +96,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps (state) {
     return{
         children: state.children,
-        form: state.form
+        form: state.form,
+        data: state.data
     }
 }
 

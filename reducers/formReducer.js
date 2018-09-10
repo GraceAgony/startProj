@@ -7,7 +7,7 @@ const initialState = {
     type: {label: 'Все', value: 0},
     firstDate: Date.now(),
     secondDate: Date.now(),
-    people: 2,
+    people: {label: '2', value: '2'},
     nightFrom: 1,
     nightTo: 1,
     currency: 'грн',

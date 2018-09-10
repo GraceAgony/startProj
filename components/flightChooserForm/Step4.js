@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavigationActions } from "react-navigation";
 import * as childrenActions from "../../actions/ChildrenActions";
+import data from "../../reducers/dataReducer";
 
  class Step4 extends React.Component {
     static navigationOptions = {
@@ -16,7 +17,8 @@ import * as childrenActions from "../../actions/ChildrenActions";
 
      onValueChange(key, value) {
          const {data} = this.props;
-         const dataStep = data.step4Data;
+         const dataStep = data.step4Data[key];
+         console.log(dataStep);
          const { formAction } = this.props;
          const {setForm} = formAction;
          const {form} = this.props;
@@ -41,9 +43,8 @@ import * as childrenActions from "../../actions/ChildrenActions";
     render() {
         const {form} = this.props;
         const {data} = this.props;
-        console.log(data);
         const dataStep = data.step4Data.price;
-        const dataStepType = data.step4Data.tourType;
+        const dataStepType = data.step4Data.type;
         return (
             <View style={formStyles.stepBox}>
                 <Text  style = {formStyles.stepLabelText} >Источник цены</Text>
@@ -56,17 +57,12 @@ import * as childrenActions from "../../actions/ChildrenActions";
                             note={false}
                             selectedValue={form.price.value}
                             onValueChange={(value)=> this.onValueChange.bind(this)('price', value)}>
-                        {/*
-                                this.props.categories.map((item,index)=>{
-                                    return <Picker.Item key={index} label={item} value={item} />;
-                                })
-                            */}
                         { dataStep.map((item, index) =>
 
                             <Picker.Item
                                 key={index}
-                                label={item}
-                                value={item}
+                                label={item.item}
+                                value={item.value}
                                 color= "#0e73a7"
                             />)}
                     </Picker>
@@ -86,8 +82,8 @@ import * as childrenActions from "../../actions/ChildrenActions";
 
                             <Picker.Item
                                 key={index}
-                                label={item}
-                                value={item}
+                                label={item.item}
+                                value={item.value}
                                 color= "#0e73a7"
                             />)}
 
