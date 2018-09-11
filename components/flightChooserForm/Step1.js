@@ -79,7 +79,7 @@ import { AppLoading } from "expo";
              "module": 'choosetour'
          };
        getData(details);
-        
+
          this.forceUpdate();
      }
 

@@ -20,7 +20,16 @@ class Step6 extends React.Component {
     onValueChange(key, value) {
         const { formAction } = this.props;
         const {setForm} = formAction;
-        setForm({[key] : value});
+        const {data} = this.props;
+        const dataStep = data.step6Data[key];
+        const {form} = this.props;
+
+        dataStep.map((item) =>{
+            if(item.value === value ){
+                setForm({[key]:  {["value"]: value, ["label"]: item.item}});
+            }
+        });
+
         this.forceUpdate();
     };
 
@@ -34,56 +43,59 @@ class Step6 extends React.Component {
 
     render() {
         const {form} = this.props;
-        const { children } = this.props;
-        const { setChildren } = this.props.childrenActions;
+        const {children} = this.props;
+        const {setChildren} = this.props.childrenActions;
         const {data} = this.props;
-        console.log(data);
         const dataStep = data.step6Data.people;
+        try {
+            return (
+                <Container>
+                    <Content>
+                        <View style={formStyles.stepBox}>
+                            <Item picker>
+                                <Col>
+                                    <Text style={formStyles.stepLabelText}>Взрослых</Text>
+                                    <Picker
+                                        //  style={formStyles.picker}
+                                        mode="dropdown"
+                                        placeholder="Select One"
+                                        placeholderStyle={{color: "#2874F0"}}
+                                        note={false}
+                                        selectedValue={form.people.value}
+                                        onValueChange={(value) => this.onValueChange.bind(this)('people', value)}
+                                    >
+                                       {dataStep.map((item, index) =>
 
-        return (
-            <Container>
-                <Content>
-            <View style={formStyles.stepBox}>
-                <Item picker>
-                    <Col>
-                        <Text  style = {formStyles.stepLabelText} >Взрослых</Text>
-                        <Picker
-                          //  style={formStyles.picker}
-                            mode="dropdown"
-                            placeholder="Select One"
-                            placeholderStyle={{ color: "#2874F0" }}
-                            note={false}
-                            selectedValue={form.people.value}
-                            onValueChange={(value)=> this.onValueChange.bind(this)('people', value)}
-                        >
-                           {/* { dataStep.map((item, index) =>
-
-                                <Picker.Item
-                                    key={index}
-                                    label={item.item}
-                                    value={item.value}
-                                    color= "#0e73a7"
-                                />)}*/}
-                        </Picker>
-                    </Col>
-                </Item>
-               {/* <Children
+                                            <Picker.Item
+                                                key={index}
+                                                label={item.item.toString()}
+                                                value={item.value}
+                                                color="#0e73a7"
+                                            />)}
+                                    </Picker>
+                                </Col>
+                            </Item>
+                            <Children
                           childrenArray = {children}
                           setChildren = {setChildren}
                           onChangeAge = {(key, age)=> this.onValueChange.bind(this)(key+'children', age)}
-                />*/}
-                <TouchableOpacity
-                    style={formStyles.stepTitle}
-                    onPress={this.navigate}
-                >
-                    <Text style={formStyles.stepTitleText}>
-                       Шаг 7
-                    </Text>
-                </TouchableOpacity>
-            </View>
-                </Content>
-            </Container>
-        )};
+                />
+                            <TouchableOpacity
+                                style={formStyles.stepTitle}
+                                onPress={this.navigate}
+                            >
+                                <Text style={formStyles.stepTitleText}>
+                                    Шаг 7
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    </Content>
+                </Container>
+            )
+        }catch (e) {
+            console.log(e);
+        }
+    }
 }
 
 function mapDispatchToProps(dispatch) {

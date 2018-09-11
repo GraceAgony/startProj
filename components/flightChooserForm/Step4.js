@@ -28,7 +28,7 @@ import data from "../../reducers/dataReducer";
                  setForm({[key]:  {["value"]: value, ["label"]: item.item}});
              }
          });
-        console.log(form);
+
          this.forceUpdate();
      }
 

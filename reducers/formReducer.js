@@ -13,6 +13,7 @@ const initialState = {
     currency: 'грн',
     priceFrom: '1',
     priceTo: '1',
+    children : [],
     "2*": false,
     "3*": false,
     "BB": false,

@@ -21,7 +21,7 @@ export default function data(state = initialState, action) {
         case 'SET_DATA':
             return Object.assign(state,action.payload) ;
         case 'GET_DATA':
-            console.log('getData');
+
             let formBody = [];
             for (let prop in action.details) {
                 let encodedKey = encodeURIComponent(prop);
@@ -101,7 +101,6 @@ export default function data(state = initialState, action) {
                         indexValue = cityList.indexOf('data-value=', indexValue)+ 'data-value="'.length;
                     }
                     Object.assign(state, {step4Data : { price: stepArray ,type: stepArray1}});
-                    console.log(state);
                     //step5 data
 
                     defaultDateFrom = responseJson.content.parameters.defaultDateFrom;

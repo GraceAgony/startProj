@@ -60,8 +60,6 @@ class MainContainer extends Component {
                   });
                     id++;
                 }
-
-                    let {dataActions} = that.props;
                     dataActions.setData({step1Data : stepArray});
 
                 //step2 data
@@ -108,9 +106,9 @@ class MainContainer extends Component {
 
                     dataActions.setData({step6Data: {people: people, children: children}});
 
-
+                that.setState({loading: false});
             });
-        that.setState({loading: false});
+
     }
 
     static navigationOptions = {
