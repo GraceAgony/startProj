@@ -75,30 +75,30 @@ export default function data(state = initialState, action) {
                     stepArray = [];
                     spoList = responseJson.content.spo.spoList;
                     index = spoList.indexOf('\">' , spoList.indexOf('data-value'))+2;
-                    indexValue = cityList.indexOf('data-value=')+ 'data-value="'.length;
+                    indexValue = spoList.indexOf('data-value=')+ 'data-value="'.length;
                     startIndex = 0;
                     while (startIndex !== -1) {
                         element = spoList.slice(index, spoList.indexOf('</span>', index));
-                        elementValue = cityList.slice(indexValue, cityList.indexOf('"', indexValue) );
+                        elementValue = spoList.slice(indexValue, spoList.indexOf('"', indexValue) );
                         stepArray.push({item: element.trim(), value: elementValue});
                         startIndex = spoList.indexOf('data-value', index);
                         index = spoList.indexOf('\">' , startIndex)+2;
-                        indexValue = cityList.indexOf('data-value=', indexValue)+ 'data-value="'.length;
+                        indexValue = spoList.indexOf('data-value=', indexValue)+ 'data-value="'.length;
                     }
 
 
                     let stepArray1 = [];
                     tourTypeList = responseJson.content.tourType.tourTypeList;
-                    index = tourTypeList.indexOf('\">' , spoList.indexOf('data-value'))+2;
-                    indexValue = cityList.indexOf('data-value=')+ 'data-value="'.length;
+                    index = tourTypeList.indexOf('\">' , tourTypeList.indexOf('data-value'))+2;
+                    indexValue = tourTypeList.indexOf('data-value=')+ 'data-value="'.length;
                     startIndex =0;
                     while (startIndex !== -1) {
                         element = tourTypeList.slice(index, tourTypeList.indexOf('</span>', index));
-                        elementValue = cityList.slice(indexValue, cityList.indexOf('"', indexValue) );
+                        elementValue = tourTypeList.slice(indexValue, tourTypeList.indexOf('"', indexValue) );
                         stepArray1.push({item: element.trim(), value: elementValue});
                         startIndex = tourTypeList.indexOf('data-value', index);
                         index = tourTypeList.indexOf('\">' , startIndex)+2;
-                        indexValue = cityList.indexOf('data-value=', indexValue)+ 'data-value="'.length;
+                        indexValue = tourTypeList.indexOf('data-value=', indexValue)+ 'data-value="'.length;
                     }
                     Object.assign(state, {step4Data : { price: stepArray ,type: stepArray1}});
                     //step5 data
@@ -110,9 +110,44 @@ export default function data(state = initialState, action) {
 
                     defaultFrom = responseJson.content.parameters.defaultFrom;
                     defaultTo = responseJson.content.parameters.defaultTo;
-                    Object.assign(state,{step7Data : {nightFrom: defaultFrom, nightTo:defaultTo}});
+
+                    stepArray = [];
+                    spoList = responseJson.content.parametersBySpo.nightsFromList;
+                    index = spoList.indexOf('\">' , spoList.indexOf('data-value'))+2;
+                    indexValue = spoList.indexOf('data-value=')+ 'data-value="'.length;
+                    startIndex = 0;
+                    while (startIndex !== -1) {
+                        element = spoList.slice(index, spoList.indexOf('</span>', index));
+                        elementValue = spoList.slice(indexValue, spoList.indexOf('"', indexValue) );
+                        stepArray.push({item: element.trim(), value: elementValue});
+                        startIndex = spoList.indexOf('data-value', index);
+                        index = spoList.indexOf('\">' , startIndex)+2;
+                        indexValue = spoList.indexOf('data-value=', indexValue)+ 'data-value="'.length;
+                    }
+
+
+                    stepArray1 = [];
+                    spoList = responseJson.content.parametersBySpo.nightsToList;
+                    index = spoList.indexOf('\">' , spoList.indexOf('data-value'))+2;
+                    indexValue = spoList.indexOf('data-value=')+ 'data-value="'.length;
+                    startIndex = 0;
+                    while (startIndex !== -1) {
+                        element = spoList.slice(index, spoList.indexOf('</span>', index));
+                        elementValue = spoList.slice(indexValue, spoList.indexOf('"', indexValue) );
+                        stepArray1.push({item: element.trim(), value: elementValue});
+                        startIndex = spoList.indexOf('data-value', index);
+                        index = spoList.indexOf('\">' , startIndex)+2;
+                        indexValue = spoList.indexOf('data-value=', indexValue)+ 'data-value="'.length;
+                    }
+                    Object.assign(state,{step7Data : {nightFrom: {item: defaultFrom, value: defaultFrom},
+                            nightFromList: stepArray,
+                            nightTo:{item: defaultTo, value: defaultTo},
+                           nightToList: stepArray1}});
+
+                    console.log(state);
 
                 });
+
 
             return state;
 

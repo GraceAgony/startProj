@@ -20,7 +20,16 @@ import * as childrenActions from "../../actions/ChildrenActions";
      onValueChange(key, value) {
          const { formAction } = this.props;
          const {setForm} = formAction;
-         setForm({[key] : value});
+         const {data} = this.props;
+         const dataStep = data.step7Data[key+'List'];
+         const {form} = this.props;
+
+         dataStep.map((item) =>{
+             if(item.value === value ){
+                 setForm({[key]:  {["value"]: value, ["label"]: item.item}});
+             }
+         });
+
          this.forceUpdate();
      };
 
@@ -38,6 +47,8 @@ import * as childrenActions from "../../actions/ChildrenActions";
         console.log(data);
         const nightFrom = data.step7Data.nightFrom;
         const nightTo = data.step7Data.nightTo;
+        const nightFromList = data.step7Data.nightFromList;
+        const nightToList = data.step7Data.nightToList;
         return (
             <Container>
                 <Content>
@@ -54,19 +65,18 @@ import * as childrenActions from "../../actions/ChildrenActions";
                                     placeholder="Select One"
                                     placeholderStyle={{ color: "#2874F0" }}
                                     note={false}
-                                    selectedValue={nightFrom}
+                                    selectedValue={form.nightFrom.value}
                                     onValueChange={(value)=> this.onValueChange.bind(this)('nightFrom', value)}
                                 >
+                                    {nightFromList.map((item, index) =>
+
                                     <Picker.Item
-                                        label="1"
-                                        value="1"
-                                        color= "#0e73a7"
-                                    />
-                                    <Picker.Item
-                                        label="2"
-                                        value="2"
-                                        color= "#0e73a7"
-                                    />
+                                        key={index}
+                                        label={item.item.toString()}
+                                        value={item.value}
+                                        color="#0e73a7"
+                                    />)}
+
                                 </Picker>
                             </Col>
                         </Row>
@@ -79,30 +89,28 @@ import * as childrenActions from "../../actions/ChildrenActions";
                                     placeholder="Select One"
                                     placeholderStyle={{ color: "#2874F0" }}
                                     note={false}
-                                    selectedValue={nightTo}
+                                    selectedValue={form.nightTo.value}
                                     onValueChange={(value)=> this.onValueChange.bind(this)('nightTo', value)}
                                 >
-                                    <Picker.Item
-                                        label="1"
-                                        value="1"
-                                        color= "#0e73a7"
-                                    />
-                                    <Picker.Item
-                                        label="2"
-                                        value="2"
-                                        color= "#0e73a7"
-                                    />
+                                    {nightToList.map((item, index) =>
+
+                                        <Picker.Item
+                                            key={index}
+                                            label={item.item.toString()}
+                                            value={item.value}
+                                            color="#0e73a7"
+                                        />)}
                                 </Picker>
                             </Col>
                         </Row>
 
                         <Row>
                             <Col>
-                                <CheckBoxComponent text = "Раннее бронирование"
+                            {/*    <CheckBoxComponent text = "Раннее бронирование"
                                                    onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
                                                    addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
                                                    form = {form}
-                                />
+                                />*/}
                             </Col>
                         </Row>
                     </Grid>
