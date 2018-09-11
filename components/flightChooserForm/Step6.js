@@ -56,14 +56,14 @@ class Step6 extends React.Component {
                             selectedValue={form.people.value}
                             onValueChange={(value)=> this.onValueChange.bind(this)('people', value)}
                         >
-                            { dataStep.map((item, index) =>
+                           {/* { dataStep.map((item, index) =>
 
                                 <Picker.Item
                                     key={index}
                                     label={item.item}
                                     value={item.value}
                                     color= "#0e73a7"
-                                />)}
+                                />)}*/}
                         </Picker>
                     </Col>
                 </Item>

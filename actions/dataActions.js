@@ -6,3 +6,11 @@ export function setData(data) {
     }
 
 }
+
+
+export function getData(details) {
+    return{
+        type: 'GET_DATA',
+        details: details
+    }
+}

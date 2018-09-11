@@ -23,6 +23,21 @@ class MainContainer extends Component {
     async componentWillMount() {
         let that = this;
         let stepArray = [];
+        let {form} = this.props;
+        let details = {
+            "action": 'selectCountry',
+            "data[city]": form.city.value,
+            "data[country]": form.country.value,
+            "data[dateFrom]": form.firstDate,
+            "data[dateTo]": form.secondDate,
+            "data[nightsFrom]": form.nightFrom,
+            "data[nightsTo]": form.nightTo,
+            "data[spo]": '0',
+            "is_ajax": 'true',
+            "module": 'choosetour'
+        };
+        let {dataActions} = that.props;
+        dataActions.getData(details);
 
         fetch("https://www.tpg.ua/ru/choosetour/")
            .then((response) => response.text())
@@ -81,7 +96,6 @@ class MainContainer extends Component {
                  dataActions.setData({step2Data : stepArray});
 
 
-
                     //ste6 data
                     people = [];
                     for(let i=1; i<=16; i ++){
@@ -95,18 +109,6 @@ class MainContainer extends Component {
                     dataActions.setData({step6Data: {people: people, children: children}});
 
 
-                /*        //step3 data
-
-                         stepArray = [];
-                         regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"ct\"|'ct')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
-                         index = html.indexOf('"value">', html.search(regexp)) + '"value">'.length -1;
-                         element  = html.slice(index +1, html.indexOf('</div>', html.search(regexp)));
-                         stepArray.push(element);
-
-                        dataActions.setData({step3Data : stepArray});*/
-
-
-               // that.setState({loading: false});
             });
         that.setState({loading: false});
     }
