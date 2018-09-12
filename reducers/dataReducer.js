@@ -106,6 +106,7 @@ export default function data(state = initialState, action) {
                     defaultDateFrom = responseJson.content.parameters.defaultDateFrom;
                     defaultDateTo = responseJson.content.parameters.defaultDateTo;
                     Object.assign(state,{step5Data : {dateFrom: defaultDateFrom, dateTo:defaultDateTo}});
+
                     //step7 data
 
                     defaultFrom = responseJson.content.parameters.defaultFrom;
@@ -143,6 +144,24 @@ export default function data(state = initialState, action) {
                             nightFromList: stepArray,
                             nightTo:{item: defaultTo, value: defaultTo},
                            nightToList: stepArray1}});
+
+                    //step8 data
+
+                     stepArray = [];
+                    //    regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"ct\"|'ct')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
+                    let eatList = responseJson.content.eatList;
+                     index = eatList.indexOf('/i>' , eatList.indexOf('data-value'))+3;
+                     indexValue = eatList.indexOf('data-value=')+ 'data-value="'.length;
+                     startIndex = 0;
+                    while (startIndex !== -1) {
+                        element = eatList.slice(index, eatList.indexOf('</div>', index));
+                        elementValue = eatList.slice(indexValue, eatList.indexOf('"', indexValue) );
+                        stepArray.push({item: element.trim(), value: elementValue});
+                        startIndex = eatList.indexOf('data-value', index);
+                        index = eatList.indexOf('/i>' , startIndex)+3;
+                        indexValue = eatList.indexOf('data-value=', indexValue)+ 'data-value="'.length;
+                    }
+                    Object.assign(state,{step8Data : {eatList :stepArray}});
 
                     console.log(state);
 
