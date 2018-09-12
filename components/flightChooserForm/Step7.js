@@ -51,7 +51,6 @@ import * as childrenActions from "../../actions/ChildrenActions";
     render() {
         const {form} = this.props;
         const {data} = this.props;
-        console.log(data);
         const nightFrom = data.step7Data.nightFrom;
         const nightTo = data.step7Data.nightTo;
         const nightFromList = data.step7Data.nightFromList;
@@ -115,7 +114,8 @@ import * as childrenActions from "../../actions/ChildrenActions";
                             <Col>
                                <CheckBoxComponent text = "Раннее бронирование"
                                                    onValueChange={(checked, key)=> this.onValueChangeCheckBox.bind(this)(key, checked)}
-                                                   form = {form}
+                                                  addToState = {(key)=> this.onValueChangeCheckBox.bind(this)(key, false)}
+                                                  form = {form}
                                 />
                             </Col>
                         </Row>

@@ -14,7 +14,7 @@ export default class CheckBoxComponent extends React.Component{
     }
 
     componentWillMount(){
-     //   this.props.addToState(this.props.text);
+        this.props.addToState(this.props.text);
     }
 
 

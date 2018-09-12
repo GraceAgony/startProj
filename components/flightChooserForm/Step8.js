@@ -34,10 +34,29 @@ class Step8 extends React.Component {
 
     render() {
         const {form} = this.props;
+        const {data} = this.props;
+        const stepData = data.step8Data;
         return (
             <View style={formStyles.stepBox}>
                 <Item>
                     <Grid>
+                        <Row>
+                            <Col>
+                                {/*<Text style = {[formStyles.checkBoxText, {marginVertical: 10}]} >*/}
+                                    {/*Питание*/}
+                                {/*</Text>*/}
+                                {stepData.map((item, index) =>
+                                    <CheckBoxComponent
+                                                       text = item.item
+                                                       onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
+                                                       addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
+                                                       form = {form}
+                                    />
+                            )}
+                            </Col>
+                        </Row>
+                    </Grid>
+                  {/*  <Grid>
                         <Row>
                         <Col>
                             <Text style = {[formStyles.checkBoxText, {marginVertical: 10}]} >
@@ -72,7 +91,9 @@ class Step8 extends React.Component {
                                                form = {form}
                             />
                         </Col>
-                    </Grid>
+                    </Grid>*/}
+
+
                 </Item>
                 <TouchableOpacity
                     style={formStyles.stepTitle}
@@ -96,7 +117,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps (state) {
     return{
         children: state.children,
-        form: state.form
+        form: state.form,
+        data: state.data
     }
 }
 
