@@ -17,6 +17,13 @@ import * as childrenActions from "../../actions/ChildrenActions";
         headerTitleStyle: formStyles.stepNavigationTitle
     };
 
+     onValueChangeCheckBox(key,value){
+         const { formAction } = this.props;
+         const {setForm} = formAction;
+         setForm({[key] : value});
+         this.forceUpdate();
+     }
+
      onValueChange(key, value) {
          const { formAction } = this.props;
          const {setForm} = formAction;
@@ -106,11 +113,10 @@ import * as childrenActions from "../../actions/ChildrenActions";
 
                         <Row>
                             <Col>
-                            {/*    <CheckBoxComponent text = "Раннее бронирование"
-                                                   onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
-                                                   addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
+                               <CheckBoxComponent text = "Раннее бронирование"
+                                                   onValueChange={(checked, key)=> this.onValueChangeCheckBox.bind(this)(key, checked)}
                                                    form = {form}
-                                />*/}
+                                />
                             </Col>
                         </Row>
                     </Grid>
