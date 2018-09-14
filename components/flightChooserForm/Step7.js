@@ -110,15 +110,12 @@ import * as childrenActions from "../../actions/ChildrenActions";
                             </Col>
                         </Row>
 
-                        <Row>
-                            <Col>
                                <CheckBoxComponent text = "Раннее бронирование"
                                                    onValueChange={(checked, key)=> this.onValueChangeCheckBox.bind(this)(key, checked)}
                                                   addToState = {(key)=> this.onValueChangeCheckBox.bind(this)(key, false)}
                                                   form = {form}
                                 />
-                            </Col>
-                        </Row>
+
                     </Grid>
                 </Item>
                 <TouchableOpacity

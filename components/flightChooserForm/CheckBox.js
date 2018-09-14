@@ -1,5 +1,5 @@
 import React from "react";
-import {  Body, CheckBox, Text, ListItem } from 'native-base';
+import {  Body, CheckBox, Text, ListItem, Item } from 'native-base';
 import {formStyles} from "./style";
 
 export default class CheckBoxComponent extends React.Component{
@@ -21,14 +21,16 @@ export default class CheckBoxComponent extends React.Component{
         render() {
         console.log(this.props.text);
             return(
-                <ListItem>
+
+               <ListItem>
                     <CheckBox checked={ this.props.form[this.props.text] }
                         onPress = {this.handlePress.bind(this)}
                     />
                     <Body>
                     <Text style = {formStyles.checkBoxText}>{this.props.text}</Text>
                     </Body>
-                </ListItem>
+
+               </ListItem>
             )
     }
 }

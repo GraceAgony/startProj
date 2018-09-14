@@ -36,19 +36,17 @@ class Step8 extends React.Component {
         const {form} = this.props;
         const {data} = this.props;
         const stepData = data.step8Data.eatList;
-        console.log(stepData);
         return (
             <View style={formStyles.stepBox}>
-                <Item>
-                    <Grid>
+
+                   {/* <Grid>*/}
                    {/*     <Row>
                             <Col>*/}
-                                {/*<Text style = {[formStyles.checkBoxText, {marginVertical: 10}]} >*/}
-                                    {/*Питание*/}
-                                {/*</Text>*/}
+                                <Text style = {[formStyles.checkBoxText, {margin: 10}]} >
+                                    Питание
+                               </Text>
                                 {stepData.map((item, index) =>
-                                    <Row key={index}>
-                                        <Col key={index}>
+
                                     <CheckBoxComponent
                                                         key={index}
                                                        text = {item.item}
@@ -56,12 +54,15 @@ class Step8 extends React.Component {
                                                        addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
                                                        form = {form}
                                     />
-                                        </Col>
-                                    </Row>
+
+
+
                             )}
+
+
                            {/* </Col>
                         </Row>*/}
-                    </Grid>
+                   {/* </Grid>*/}
                   {/*  <Grid>
                         <Row>
                         <Col>
@@ -100,7 +101,6 @@ class Step8 extends React.Component {
                     </Grid>*/}
 
 
-                </Item>
                 <TouchableOpacity
                     style={formStyles.stepTitle}
                     onPress={this.navigate}
