@@ -161,9 +161,29 @@ export default function data(state = initialState, action) {
                         index = eatList.indexOf('/i>' , startIndex)+3;
                         indexValue = eatList.indexOf('data-value=', indexValue)+ 'data-value="'.length;
                     }
-                    Object.assign(state,{step8Data : {eatList :stepArray}});
 
-                    console.log(state);
+                    stepArray1 = [];
+                    //    regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"ct\"|'ct')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
+                    let tourType = responseJson.content.tourType.tourTypeList;
+                    index = tourType.indexOf('\">' , tourType.indexOf('data-value'))+2;
+                    indexValue = tourType.indexOf('data-value=')+ 'data-value="'.length;
+                    startIndex = 0;
+                    while (startIndex !== -1) {
+                        element = tourType.slice(index, tourType.indexOf('</span>', index));
+                        elementValue = tourType.slice(indexValue, tourType.indexOf('"', indexValue) );
+                        stepArray1.push({item: element.trim(), value: elementValue});
+                        startIndex = tourType.indexOf('data-value', index);
+                        index = tourType.indexOf('\">' , startIndex)+2;
+                        indexValue = tourType.indexOf('data-value=', indexValue)+ 'data-value="'.length;
+                    }
+
+                    console.log(stepArray1);
+
+
+                    Object.assign(state,{step8Data : {eatList :stepArray, tourTypeList: stepArray1}});
+
+
+
 
                 });
 
