@@ -36,6 +36,8 @@ class Step8 extends React.Component {
         const {form} = this.props;
         const {data} = this.props;
         const stepData = data.step8Data.eatList;
+        const stepDataType = data.step8Data.tourTypeList;
+        console.log(stepDataType);
         return (
             <View style={formStyles.stepBox}>
 
@@ -58,6 +60,20 @@ class Step8 extends React.Component {
 
 
                             )}
+
+                            <Text style = {[formStyles.checkBoxText, {margin: 10}]}>
+                                Тип тура
+                            </Text>
+                             {stepDataType.map((item, index)=>
+                                    <CheckBoxComponent
+                                        key={index}
+                                        text = {item.item}
+                                        onValueChange={(checked, key)=> this.onValueChange.bind(this)(key, checked)}
+                                        addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
+                                        form = {form}
+                                    />
+                             )}
+
 
 
                            {/* </Col>
