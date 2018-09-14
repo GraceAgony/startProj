@@ -35,26 +35,32 @@ class Step8 extends React.Component {
     render() {
         const {form} = this.props;
         const {data} = this.props;
-        const stepData = data.step8Data;
+        const stepData = data.step8Data.eatList;
+        console.log(stepData);
         return (
             <View style={formStyles.stepBox}>
                 <Item>
                     <Grid>
-                        <Row>
-                            <Col>
+                   {/*     <Row>
+                            <Col>*/}
                                 {/*<Text style = {[formStyles.checkBoxText, {marginVertical: 10}]} >*/}
                                     {/*Питание*/}
                                 {/*</Text>*/}
                                 {stepData.map((item, index) =>
+                                    <Row key={index}>
+                                        <Col key={index}>
                                     <CheckBoxComponent
-                                                       text = item.item
-                                                       onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
+                                                        key={index}
+                                                       text = {item.item}
+                                                       onValueChange={(checked, key)=> this.onValueChange.bind(this)(key, checked)}
                                                        addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
                                                        form = {form}
                                     />
+                                        </Col>
+                                    </Row>
                             )}
-                            </Col>
-                        </Row>
+                           {/* </Col>
+                        </Row>*/}
                     </Grid>
                   {/*  <Grid>
                         <Row>
