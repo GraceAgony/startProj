@@ -111,7 +111,7 @@ class MainContainer extends Component {
                     currency.push({item: 'EUR', value: 3}, {item: 'USD', value: 10}, {item: 'грн', value: 12});
                     dataActions.setData({step9Data: {currency: currency, priceFrom: 1, priceTo: 1}});
 
-                
+
                 that.setState({loading: false});
             });
 

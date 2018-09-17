@@ -177,10 +177,42 @@ export default function data(state = initialState, action) {
                         indexValue = tourType.indexOf('data-value=', indexValue)+ 'data-value="'.length;
                     }
 
-                    console.log(stepArray1);
-
-
                     Object.assign(state,{step8Data : {eatList :stepArray, tourTypeList: stepArray1}});
+
+                    //step11data
+
+                    stepArray = [];
+                    cityHotels = responseJson.content.cityHotels.cityhotels;
+                    indexRecom = cityHotels.indexOf('<div data-recom=' )+ '<div data-recom="'.length;
+                    indexValue = cityHotels.indexOf('data-value=')+ 'data-value="'.length;
+                    let indexEurope = cityHotels.indexOf('data-europe=')+ 'data-europe="'.length;
+                    let link = cityHotels.indexOf('a href=')+ 'a href="'.length;
+                    index = cityHotels.indexOf('blank">' )+ 'blank">'.length;
+                    startIndex = 0;
+                    while (startIndex !== -1) {
+                        element = cityHotels.slice(index, cityHotels.indexOf('</a>', index));
+                        elementValue = cityHotels.slice(indexValue, cityHotels.indexOf('"', indexValue) );
+                        elementRecom = cityHotels.slice(indexRecom, cityHotels.indexOf('"',indexRecom));
+                        elementEurope = cityHotels.slice(indexEurope, cityHotels.indexOf('"', indexEurope));
+                        elementLink = cityHotels.slice(link, cityHotels.indexOf('"', link));
+
+                        stepArray.push({
+                            item: element,
+                            value: elementValue,
+                            recom : elementRecom,
+                            europe: elementEurope,
+                            link: elementLink
+                        });
+
+                        startIndex = cityHotels.indexOf('<div', index);
+                        index = cityHotels.indexOf('blank">' , startIndex)+ 'blank">'.length;
+                        indexValue = cityHotels.indexOf('data-value=', startIndex)+ 'data-value="'.length;
+                        indexEurope = cityHotels.indexOf('data-europe=', startIndex)+ 'data-europe="'.length;
+                        link = cityHotels.indexOf('a href=',startIndex)+ 'a href="'.length;
+                        indexRecom = cityHotels.indexOf('<div data-recom=', startIndex )+ '<div data-recom="'.length;
+                    }
+
+                    Object.assign(state,{step11Data : {cityHotels : stepArray}});
 
 
 
