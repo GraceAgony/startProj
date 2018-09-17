@@ -212,6 +212,28 @@ export default function data(state = initialState, action) {
                         indexRecom = cityHotels.indexOf('<div data-recom=', startIndex )+ '<div data-recom="'.length;
                     }
 
+                    stepArray1 = [];
+                    cityDestanation = responseJson.content.cityHotels.citydestanationtree;
+                    indexValue = cityDestanation.indexOf('data-idx=')+ 'data-idx="'.length;
+                    index = cityDestanation.indexOf('</i>' )+ '</i>'.length;
+                    startIndex = 0;
+                    while (startIndex !== -1) {
+                        element = cityDestanation.slice(index, cityDestanation.indexOf('</div>', index));
+                        elementValue = cityDestanation.slice(indexValue, cityDestanation.indexOf('"', indexValue) );
+
+                        stepArray1.push({
+                            item: element.trim(),
+                            value: elementValue,
+                        });
+
+                        startIndex = cityDestanation.indexOf('<div', index);
+                        index = cityDestanation.indexOf('</i>', startIndex )+ '</i>'.length;
+                        indexValue = cityDestanation.indexOf('data-idx=', startIndex)+ 'data-idx="'.length;
+                    }
+
+
+
+                    console.log(cityDestanation);
                     Object.assign(state,{step11Data : {cityHotels : stepArray}});
 
 
