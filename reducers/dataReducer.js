@@ -197,11 +197,11 @@ export default function data(state = initialState, action) {
                         elementLink = cityHotels.slice(link, cityHotels.indexOf('"', link));
 
                         stepArray.push({
-                            item: element,
-                            value: elementValue,
-                            recom : elementRecom,
-                            europe: elementEurope,
-                            link: elementLink
+                            item: element.trim(),
+                            value: elementValue.trim(),
+                            recom : elementRecom.trim(),
+                            europe: elementEurope.trim(),
+                            link: elementLink.trim()
                         });
 
                         startIndex = cityHotels.indexOf('<div', index);
@@ -213,29 +213,35 @@ export default function data(state = initialState, action) {
                     }
 
                     stepArray1 = [];
-                    cityDestanation = responseJson.content.cityHotels.citydestanationtree;
-                    indexValue = cityDestanation.indexOf('data-idx=')+ 'data-idx="'.length;
-                    index = cityDestanation.indexOf('</i>' )+ '</i>'.length;
+                    cityDestination = responseJson.content.cityHotels.citydestanationtree;
+                    indexValue = cityDestination.indexOf('data-idx=')+ 'data-idx="'.length;
+                    index = cityDestination.indexOf('</i>' )+ '</i>'.length;
+                    indexClass = cityDestination.indexOf("checkbox");
+                    indexCity = cityDestination.indexOf("data-cityId") + 'data-cityId="'.length;
                     startIndex = 0;
                     while (startIndex !== -1) {
-                        element = cityDestanation.slice(index, cityDestanation.indexOf('</div>', index));
-                        elementValue = cityDestanation.slice(indexValue, cityDestanation.indexOf('"', indexValue) );
+                        element = cityDestination.slice(index, cityDestination.indexOf('</div>', index));
+                        elementValue = cityDestination.slice(indexValue, cityDestination.indexOf('"', indexValue) );
+                        elementClass = cityDestination.slice(indexClass, cityDestination.indexOf('"', indexClass) );
+                        elementCityIndex = cityDestination.slice(indexCity, cityDestination.indexOf('"', indexCity));
 
                         stepArray1.push({
                             item: element.trim(),
-                            value: elementValue,
+                            value: elementValue.trim(),
+                            class: elementClass.trim(),
+                            cityIndex: elementCityIndex.trim()
                         });
 
-                        startIndex = cityDestanation.indexOf('<div', index);
-                        index = cityDestanation.indexOf('</i>', startIndex )+ '</i>'.length;
-                        indexValue = cityDestanation.indexOf('data-idx=', startIndex)+ 'data-idx="'.length;
+                        startIndex = cityDestination.indexOf('<div', index);
+                        index = cityDestination.indexOf('</i>', startIndex )+ '</i>'.length;
+                        indexValue = cityDestination.indexOf('data-idx=', startIndex)+ 'data-idx="'.length;
+                        indexClass = cityDestination.indexOf("checkbox", startIndex);
+                        indexCity = cityDestination.indexOf("data-cityId", startIndex) + 'data-cityId="'.length;
                     }
 
 
-
-                    console.log(cityDestanation);
-                    Object.assign(state,{step11Data : {cityHotels : stepArray}});
-
+                    Object.assign(state,{step11Data : {cityHotels : stepArray, cityDestination: stepArray1}});
+                   
 
 
 
