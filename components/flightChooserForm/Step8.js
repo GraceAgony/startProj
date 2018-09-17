@@ -1,5 +1,5 @@
 import React from "react";
-import {  View ,TouchableOpacity} from 'react-native';
+import {  View ,TouchableOpacity, ScrollView} from 'react-native';
 import { Col, Grid, Row } from "react-native-easy-grid";
 import {  Item, Text, } from 'native-base';
 import { formStyles } from "./style";
@@ -40,6 +40,7 @@ class Step8 extends React.Component {
         console.log(stepDataType);
         return (
             <View style={formStyles.stepBox}>
+                    <ScrollView>
 
                    {/* <Grid>*/}
                    {/*     <Row>
@@ -125,6 +126,7 @@ class Step8 extends React.Component {
                         Шаг 9
                     </Text>
                 </TouchableOpacity>
+                    </ScrollView>
             </View>
         )};
 }
