@@ -29,7 +29,6 @@ import * as childrenActions from "../../actions/ChildrenActions";
          const {setForm} = formAction;
          const {data} = this.props;
          const dataStep = data.step7Data[key+'List'];
-         const {form} = this.props;
 
          dataStep.map((item) =>{
              if(item.value === value ){
@@ -51,8 +50,6 @@ import * as childrenActions from "../../actions/ChildrenActions";
     render() {
         const {form} = this.props;
         const {data} = this.props;
-        const nightFrom = data.step7Data.nightFrom;
-        const nightTo = data.step7Data.nightTo;
         const nightFromList = data.step7Data.nightFromList;
         const nightToList = data.step7Data.nightToList;
         return (

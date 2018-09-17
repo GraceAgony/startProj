@@ -42,9 +42,6 @@ class Step8 extends React.Component {
             <View style={formStyles.stepBox}>
                     <ScrollView>
 
-                   {/* <Grid>*/}
-                   {/*     <Row>
-                            <Col>*/}
                                 <Text style = {[formStyles.checkBoxText, {margin: 10}]} >
                                     Питание
                                </Text>
@@ -74,49 +71,6 @@ class Step8 extends React.Component {
                                         form = {form}
                                     />
                              )}
-
-
-
-                           {/* </Col>
-                        </Row>*/}
-                   {/* </Grid>*/}
-                  {/*  <Grid>
-                        <Row>
-                        <Col>
-                            <Text style = {[formStyles.checkBoxText, {marginVertical: 10}]} >
-                                Питание
-                            </Text>
-                            <CheckBoxComponent text = "RO"
-                                               onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
-                                               addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
-                                               form = {form}
-                            />
-                            <CheckBoxComponent text = "BB"
-                                               onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
-                                               addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
-                                               form = {form}
-                            />
-                        </Col>
-                        </Row>
-                    </Grid>
-                    <Grid>
-                        <Col>
-                            <Text style = {[formStyles.checkBoxText, {marginVertical: 10}]} >
-                                Категория отеля
-                            </Text>
-                            <CheckBoxComponent text = "2*"
-                                               onValueChange={(cheked, key)=>this.onValueChange.bind(this)(key, cheked)}
-                                               addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
-                                               form = {form}
-                            />
-                            <CheckBoxComponent text = "3*"
-                                               onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
-                                               addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
-                                               form = {form}
-                            />
-                        </Col>
-                    </Grid>*/}
-
 
                 <TouchableOpacity
                     style={formStyles.stepTitle}

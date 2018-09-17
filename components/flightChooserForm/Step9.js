@@ -19,9 +19,24 @@ import * as childrenActions from "../../actions/ChildrenActions";
      onValueChange(key, value) {
          const { formAction } = this.props;
          const {setForm} = formAction;
-         setForm({[key] : value});
+         const {data} = this.props;
+         const dataStep = data.step9Data[key];
+
+         dataStep.map((item) =>{
+             if(item.value === value ){
+                 setForm({[key]:  {["value"]: value, ["label"]: item.item}});
+             }
+         });
+
          this.forceUpdate();
      };
+
+     onValueChangeInput(key, value){
+         const { formAction } = this.props;
+         const {setForm} = formAction;
+         setForm({[key] : value});
+         this.forceUpdate();
+     }
 
      navigate = () => {
          const navigateToStep10 = NavigationActions.navigate({
@@ -34,6 +49,8 @@ import * as childrenActions from "../../actions/ChildrenActions";
 
      render() {
          const {form} = this.props;
+         const {data} = this.props;
+         const currencyList = data.step9Data.currency;
         return (
             <View style={formStyles.stepBox}>
                 <Item style={{paddingBottom: 10}}>
@@ -43,7 +60,7 @@ import * as childrenActions from "../../actions/ChildrenActions";
                                 Цена от
                             </Text>
 
-                                <Input onChangeText = {(value)=> this.onValueChange.bind(this)('priceFrom', value)}
+                                <Input onChangeText = {(value)=> this.onValueChangeInput.bind(this)('priceFrom', value)}
                                        value={form.priceFrom}
                                        style={formStyles.pickerItemsText}
                                 />
@@ -53,7 +70,7 @@ import * as childrenActions from "../../actions/ChildrenActions";
                             <Text style = {[formStyles.checkBoxText, {marginVertical: 10}]} >
                                 Цена до
                             </Text>
-                                <Input onChangeText = {(value)=> this.onValueChange.bind(this)('priceTo', value)}
+                                <Input onChangeText = {(value)=> this.onValueChangeInput.bind(this)('priceTo', value)}
                                        value={form.priceTo}
                                        style={formStyles.pickerItemsText}
                                 />
@@ -63,24 +80,21 @@ import * as childrenActions from "../../actions/ChildrenActions";
                                 Валюта
                             </Text>
                             <Picker
-                              //  style={formStyles.picker}
                                 mode="dropdown"
                                 placeholder="Select One"
                                 placeholderStyle={{ color: "#2874F0" }}
                                 note={false}
-                                selectedValue={form.currency}
+                                selectedValue={form.currency.value}
                                 onValueChange={(value)=> this.onValueChange.bind(this)('currency', value)}
                             >
-                                <Picker.Item
-                                    label="грн"
-                                    value="грн"
-                                    color= "#0e73a7"
-                                />
-                                <Picker.Item
-                                    label="USD"
-                                    value="USD"
-                                    color= "#0e73a7"
-                                />
+                                {currencyList.map((item, index) =>
+
+                                    <Picker.Item
+                                        key={index}
+                                        label={item.item.toString()}
+                                        value={item.value}
+                                        color="#0e73a7"
+                                    />)}
                             </Picker>
                         </Col>
                     </Grid>
@@ -107,7 +121,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps (state) {
     return{
         children: state.children,
-        form: state.form
+        form: state.form,
+        data: state.data
     }
 }
 

@@ -10,7 +10,7 @@ const initialState = {
     people: {label: '2', value: '2'},
     nightFrom: {label: '1', value: 1},
     nightTo: {label: '1', value: 1},
-    currency: 'грн',
+    currency: {label: 'EUR', value: 3},
     priceFrom: '1',
     priceTo: '1',
     children : [],
