@@ -18,9 +18,11 @@ class Step11 extends React.Component {
     };
 
     onValueChange(key, value) {
+        const {form} = this.props;
         const { formAction } = this.props;
         const {setForm} = formAction;
-        setForm({[key] : value});
+        setForm({step11 : [{[key] : value}]});
+        console.log(form);
         this.forceUpdate();
     };
 
@@ -35,6 +37,10 @@ class Step11 extends React.Component {
 
     render() {
         const {form} = this.props;
+        const {data} = this.props;
+        const stepData = data.step11Data;
+       // console.log(stepData);
+
         return (
             <Container>
                 <Content>
@@ -85,6 +91,16 @@ class Step11 extends React.Component {
                         </Row>
                     </Grid>
                 </Item>
+                {stepData.map((item, index)=>
+                    <CheckBoxComponent
+                        key={index}
+                        text = {item.item}
+                        onValueChange={(checked, key)=> this.onValueChange.bind(this)(key, checked)}
+                        addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
+                        form = {form}
+                    />
+                )}
+
                 <TouchableOpacity
                     style={formStyles.stepTitle}
                     onPress={this.navigate}
@@ -109,7 +125,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps (state) {
     return{
         children: state.children,
-        form: state.form
+        form: state.form,
+        data: state.data
     }
 }
 

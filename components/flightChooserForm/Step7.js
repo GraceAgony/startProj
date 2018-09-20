@@ -108,6 +108,7 @@ import * as childrenActions from "../../actions/ChildrenActions";
                         </Row>
 
                                <CheckBoxComponent text = "Раннее бронирование"
+                                                  checked = {form["Раннее бронирование"]}
                                                    onValueChange={(checked, key)=> this.onValueChangeCheckBox.bind(this)(key, checked)}
                                                   addToState = {(key)=> this.onValueChangeCheckBox.bind(this)(key, false)}
                                                   form = {form}

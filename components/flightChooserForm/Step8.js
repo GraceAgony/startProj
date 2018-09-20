@@ -17,10 +17,40 @@ class Step8 extends React.Component {
         headerTitleStyle: formStyles.stepNavigationTitle
     };
 
-    onValueChange(key, value) {
+    constructor(props){
+        super(props);
+        const {form} = this.props;
+        const {data} = this.props;
+        const stepData = data.step8Data.eatList;
+        const stepDataType = data.step8Data.tourTypeList;
+
+       form.step8['food'] = {};
+        stepData.map((item) =>
+        {
+            form.step8['food'][item.item] = false;
+        });
+
+        form.step8['tourType'] = {};
+        stepDataType.map((item) =>
+        {
+            form.step8['tourType'][item.item] = false;
+        });
+
+        console.log(form);
+    }
+
+    onValueChange(group, key, value) {
+
+        const {form} = this.props;
+        console.log(form);
         const { formAction } = this.props;
         const {setForm} = formAction;
-        setForm({[key] : value});
+        setForm({['step8'] :
+                {
+                    [group] : Object.assign(form.step8[group], {[key]: value})
+
+                }
+        });
         this.forceUpdate();
     };
 
@@ -37,7 +67,10 @@ class Step8 extends React.Component {
         const {data} = this.props;
         const stepData = data.step8Data.eatList;
         const stepDataType = data.step8Data.tourTypeList;
-        console.log(stepDataType);
+
+        console.log('render ');
+        console.log(form);
+
         return (
             <View style={formStyles.stepBox}>
                     <ScrollView>
@@ -49,9 +82,10 @@ class Step8 extends React.Component {
 
                                     <CheckBoxComponent
                                                         key={index}
-                                                       text = {item.item}
-                                                       onValueChange={(checked, key)=> this.onValueChange.bind(this)(key, checked)}
-                                                       addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
+                                                        checked = {form.step8['food'][item.item]}
+                                                        text = {item.item}
+                                                       onValueChange={(checked, key)=> this.onValueChange.bind(this)('food', key, checked)}
+                                                       addToState = {(key)=> this.onValueChange.bind(this)('food', key, false)}
                                                        form = {form}
                                     />
 
@@ -62,16 +96,16 @@ class Step8 extends React.Component {
                             <Text style = {[formStyles.checkBoxText, {margin: 10}]}>
                                 Тип тура
                             </Text>
-                             {stepDataType.map((item, index)=>
+                            {stepDataType.map((item, index)=>
                                     <CheckBoxComponent
                                         key={index}
+                                        checked = {form.step8['tourType'][item.item]}
                                         text = {item.item}
-                                        onValueChange={(checked, key)=> this.onValueChange.bind(this)(key, checked)}
-                                        addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
+                                        onValueChange={(checked, key)=> this.onValueChange.bind(this)('tourType', key, checked)}
+                                        addToState = {(key)=> this.onValueChange.bind(this)('tourType', key, false)}
                                         form = {form}
                                     />
                              )}
-
                 <TouchableOpacity
                     style={formStyles.stepTitle}
                     onPress={this.navigate}

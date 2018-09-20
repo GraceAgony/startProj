@@ -14,10 +14,15 @@ const initialState = {
     priceFrom: '1',
     priceTo: '1',
     children : [],
+    step11 : {},
+    step8: {
+        'food':{},
+        'tourType': {}
+    },
     "2*": false,
     "3*": false,
    // "BB": false,
-    "Must Have": false,
+/*    "Must Have": false,
  //   "RO": false,
      "Авиа/Автобус": false,
      "Не отображать Promo туры": false,
@@ -29,7 +34,7 @@ const initialState = {
      "Только рекомендованные отели": false,
      "Туры принимающие участие в «Country Week»": false,
      "Туры принимающие участие в «Ночной охоте»": false,
-    "Только эксклюзивные отели": false,
+    "Только эксклюзивные отели": false,*/
 };
 
 Object.assign(defaultState,initialState);

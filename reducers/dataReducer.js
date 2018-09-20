@@ -179,7 +179,7 @@ export default function data(state = initialState, action) {
 
                     Object.assign(state,{step8Data : {eatList :stepArray, tourTypeList: stepArray1}});
 
-                    //step11data
+                    //step12data
 
                     stepArray = [];
                     cityHotels = responseJson.content.cityHotels.cityhotels;
@@ -188,6 +188,7 @@ export default function data(state = initialState, action) {
                     let indexEurope = cityHotels.indexOf('data-europe=')+ 'data-europe="'.length;
                     let link = cityHotels.indexOf('a href=')+ 'a href="'.length;
                     index = cityHotels.indexOf('blank">' )+ 'blank">'.length;
+                    let cityId = cityHotels.indexOf('data-cityId=') + 'data-cityId="'.length;
                     startIndex = 0;
                     while (startIndex !== -1) {
                         element = cityHotels.slice(index, cityHotels.indexOf('</a>', index));
@@ -195,13 +196,15 @@ export default function data(state = initialState, action) {
                         elementRecom = cityHotels.slice(indexRecom, cityHotels.indexOf('"',indexRecom));
                         elementEurope = cityHotels.slice(indexEurope, cityHotels.indexOf('"', indexEurope));
                         elementLink = cityHotels.slice(link, cityHotels.indexOf('"', link));
+                        elementCityId =  cityHotels.slice(cityId, cityHotels.indexOf('"', cityId));
 
                         stepArray.push({
                             item: element.trim(),
                             value: elementValue.trim(),
                             recom : elementRecom.trim(),
                             europe: elementEurope.trim(),
-                            link: elementLink.trim()
+                            link: elementLink.trim(),
+                            cityId : elementCityId.trim()
                         });
 
                         startIndex = cityHotels.indexOf('<div', index);
@@ -210,8 +213,13 @@ export default function data(state = initialState, action) {
                         indexEurope = cityHotels.indexOf('data-europe=', startIndex)+ 'data-europe="'.length;
                         link = cityHotels.indexOf('a href=',startIndex)+ 'a href="'.length;
                         indexRecom = cityHotels.indexOf('<div data-recom=', startIndex )+ '<div data-recom="'.length;
+                        cityId = cityHotels.indexOf('data-cityId=', startIndex) + 'data-cityId="'.length;
                     }
 
+                    Object.assign(state,{step12Data :  stepArray});
+
+
+                    //step11data
                     stepArray1 = [];
                     cityDestination = responseJson.content.cityHotels.citydestanationtree;
                     indexValue = cityDestination.indexOf('data-idx=')+ 'data-idx="'.length;
@@ -224,12 +232,13 @@ export default function data(state = initialState, action) {
                         elementValue = cityDestination.slice(indexValue, cityDestination.indexOf('"', indexValue) );
                         elementClass = cityDestination.slice(indexClass, cityDestination.indexOf('"', indexClass) );
                         elementCityIndex = cityDestination.slice(indexCity, cityDestination.indexOf('"', indexCity));
+                        elementCityId =  cityHotels.slice(cityId, cityHotels.indexOf('"', cityId));
 
                         stepArray1.push({
                             item: element.trim(),
                             value: elementValue.trim(),
                             class: elementClass.trim(),
-                            cityIndex: elementCityIndex.trim()
+                            cityIndex: elementCityIndex.trim(),
                         });
 
                         startIndex = cityDestination.indexOf('<div', index);
@@ -239,9 +248,9 @@ export default function data(state = initialState, action) {
                         indexCity = cityDestination.indexOf("data-cityId", startIndex) + 'data-cityId="'.length;
                     }
 
+                    Object.assign(state,{step11Data : stepArray1});
 
-                    Object.assign(state,{step11Data : {cityHotels : stepArray, cityDestination: stepArray1}});
-                   
+
 
 
 
