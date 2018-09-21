@@ -9,11 +9,17 @@ export default class CheckBoxComponent extends React.Component{
     };
 
     handlePress(){
-        this.props.onValueChange(!this.props.form[this.props.text], this.props.text);
+        if(this.props.form) {
+            this.props.onValueChange(!this.props.form[this.props.text], this.props.text);
+        }else {
+            this.props.onValueChange(!this.props.checked, this.props.text);
+        }
+
     }
 
     componentWillMount(){
-        this.props.addToState(this.props.text);
+
+      //  this.props.addToState(this.props.text);
     }
 
 
