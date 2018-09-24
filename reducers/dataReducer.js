@@ -163,21 +163,17 @@ export default function data(state = initialState, action) {
                     }
 
                     stepArray1 = [];
-                    //    regexp = new RegExp("<(?:[^>\"']|\"[^\"]*\"|'[^']*')+?\\sid\\s*=\\s*(?:\"ct\"|'ct')(?:[^>\"']|\"[^\"]*\"|'[^']*')*>", 'gmi');
-                    let tourType = responseJson.content.tourType.tourTypeList;
-                    index = tourType.indexOf('\">' , tourType.indexOf('data-value'))+2;
-                    indexValue = tourType.indexOf('data-value=')+ 'data-value="'.length;
-                    startIndex = 0;
-                    while (startIndex !== -1) {
-                        element = tourType.slice(index, tourType.indexOf('</span>', index));
-                        elementValue = tourType.slice(indexValue, tourType.indexOf('"', indexValue) );
-                        stepArray1.push({item: element.trim(), value: elementValue});
-                        startIndex = tourType.indexOf('data-value', index);
-                        index = tourType.indexOf('\">' , startIndex)+2;
-                        indexValue = tourType.indexOf('data-value=', indexValue)+ 'data-value="'.length;
-                    }
 
-                    Object.assign(state,{step8Data : {eatList :stepArray, tourTypeList: stepArray1}});
+                    stepArray1.push(
+                        {item: '2*', value: '2*'},
+                        {item: '3*', value: '3*'},
+                        {item: '4*', value: '4*'},
+                        {item: '5*', value: '5*'},
+                        {item: 'APT', value: 'APT'},
+                        {item: 'VILLA', value: 'VILLA'}
+                        );
+
+                    Object.assign(state,{step8Data : {eatList :stepArray, hotel: stepArray1}});
 
                     //step12data
 

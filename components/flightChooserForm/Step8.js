@@ -20,9 +20,9 @@ class Step8 extends React.Component {
         super(props);
         const {data} = this.props;
         const stepData = data.step8Data.eatList;
-        const stepDataType = data.step8Data.tourTypeList;
+        const stepDataType = data.step8Data.hotel;
         let food = {};
-        let tourType = {};
+        let hotel = {};
         stepData.map((item) =>
         {
             item.checked = false;
@@ -31,11 +31,11 @@ class Step8 extends React.Component {
         stepDataType.map((item) =>
         {
             item.checked = false;
-            tourType[item.item] = item;
+            hotel[item.item] = item;
         });
         this.state = {
             food :food,
-            tourType: tourType
+            hotel: hotel
         };
     }
 
@@ -67,7 +67,7 @@ class Step8 extends React.Component {
     render() {
         const {data} = this.props;
         const stepData = data.step8Data.eatList;
-        const stepDataType = data.step8Data.tourTypeList;
+        const stepDataType = data.step8Data.hotel;
         return (
             <View style={formStyles.stepBox}>
                     <ScrollView>
@@ -90,14 +90,14 @@ class Step8 extends React.Component {
                             )}
 
                             <Text style = {[formStyles.checkBoxText, {margin: 10}]}>
-                                Тип тура
+                                Категория отеля
                             </Text>
                             {stepDataType.map((item, index)=>
                                     <CheckBoxComponent
                                         key={index}
-                                        checked = {this.state.tourType[item.item].checked}
+                                        checked = {this.state.hotel[item.item].checked}
                                         text = {item.item}
-                                        onValueChange={(checked, key)=> this.onValueChange.bind(this)('tourType', key, checked,  item.value)}
+                                        onValueChange={(checked, key)=> this.onValueChange.bind(this)('hotel', key, checked,  item.value)}
                                     />
                              )}
                 <TouchableOpacity
