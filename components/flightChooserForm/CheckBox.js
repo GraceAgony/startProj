@@ -9,23 +9,18 @@ export default class CheckBoxComponent extends React.Component{
     };
 
     handlePress(){
-        if(this.props.form) {
-            this.props.onValueChange(!this.props.form[this.props.text], this.props.text);
-        }else {
             this.props.onValueChange(!this.props.checked, this.props.text);
-        }
-
     }
 
         render() {
             return(
 
                <ListItem>
-                    <CheckBox checked= {this.props.checked}
-                        onPress = {this.handlePress.bind(this)}
-                    />
+                        <CheckBox checked= {this.props.checked}
+                            onPress = {this.handlePress.bind(this)}
+                        />
                     <Body>
-                    <Text style = {formStyles.checkBoxText}>{this.props.text}</Text>
+                        <Text style = {formStyles.checkBoxText}>{this.props.text}</Text>
                     </Body>
 
                </ListItem>

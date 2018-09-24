@@ -44,10 +44,12 @@ class Step8 extends React.Component {
         this.setState(
             {[group] : Object.assign(
                     this.state[group],
-                    {[key]: { "checked": value,
+                    {[key]:
+                            { "checked": value,
                                "item": key,
-                                "value": itemValue}}
-                    )});
+                               "value": itemValue
+                            }
+                    })});
     };
 
     navigate = () => {
