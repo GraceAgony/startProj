@@ -18,7 +18,6 @@ class Step8 extends React.Component {
 
     constructor(props){
         super(props);
-        const {form} = this.props;
         const {data} = this.props;
         const stepData = data.step8Data.eatList;
         const stepDataType = data.step8Data.tourTypeList;
@@ -54,7 +53,7 @@ class Step8 extends React.Component {
         console.log(form);*/
     }
 
-    onValueChange(group, key, value) {
+    onValueChange(group, key, value, itemValue) {
 
        /* const {form} = this.props;
        console.log(form);
@@ -67,19 +66,34 @@ class Step8 extends React.Component {
                 }
             )});*/
       //  this.forceUpdate();
-        this.setState(
+       /* this.setState(
             {[group] : Object.assign(
                 this.state[group],
                     Object.assign(
                         this.state[group][key],
                         {checked: value}
-                        ))})};
+                        ))})*/
+
+        this.setState(
+            {[group] : Object.assign(
+                    this.state[group],
+                    {[key]: { "checked": value,
+                               "item": key,
+                                "value": itemValue}}
+                    )});
+    };
 
     navigate = () => {
         const navigateToStep9 = NavigationActions.navigate({
             routeName: "Step9",
             params: { name: "Step9"}
         });
+
+        const {form} = this.props;
+        const { formAction } = this.props;
+        const {setForm} = formAction;
+        setForm({['step8'] : this.state});
+
         this.props.navigation.dispatch(navigateToStep9);
     };
 
@@ -101,7 +115,8 @@ class Step8 extends React.Component {
                                                         key={index}
                                                         checked = {this.state.food[item.item].checked}
                                                         text = {item.item}
-                                                       onValueChange={(checked, key)=> this.onValueChange.bind(this)('food', key, checked)}
+                                                       onValueChange={
+                                                           (checked, key)=> this.onValueChange.bind(this)('food', key, checked, item.value)}
                                     />
 
 
@@ -116,12 +131,12 @@ class Step8 extends React.Component {
                                         key={index}
                                         checked = {this.state.tourType[item.item].checked}
                                         text = {item.item}
-                                        onValueChange={(checked, key)=> this.onValueChange.bind(this)('tourType', key, checked)}
+                                        onValueChange={(checked, key)=> this.onValueChange.bind(this)('tourType', key, checked,  item.value)}
                                     />
                              )}
                 <TouchableOpacity
                     style={formStyles.stepTitle}
-                    onPress={this.navigate}
+                    onPress={this.navigate.bind(this)}
                 >
                     <Text   style={formStyles.stepTitleText}>
                         Шаг 9
