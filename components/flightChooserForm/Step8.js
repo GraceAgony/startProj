@@ -37,42 +37,9 @@ class Step8 extends React.Component {
             food :food,
             tourType: tourType
         };
-
-   /*    form.step8['food'] = {};
-        stepData.map((item) =>
-        {
-            form.step8['food'][item.item] = false;
-        });
-
-        form.step8['tourType'] = {};
-        stepDataType.map((item) =>
-        {
-            form.step8['tourType'][item.item] = false;
-        });
-
-        console.log(form);*/
     }
 
     onValueChange(group, key, value, itemValue) {
-
-       /* const {form} = this.props;
-       console.log(form);
-        const { formAction } = this.props;
-        const {setForm} = formAction;
-        setForm({['step8'] : Object.assign(form.step8,
-                {
-                    [group] : Object.assign(form.step8[group], {[key]: value})
-
-                }
-            )});*/
-      //  this.forceUpdate();
-       /* this.setState(
-            {[group] : Object.assign(
-                this.state[group],
-                    Object.assign(
-                        this.state[group][key],
-                        {checked: value}
-                        ))})*/
 
         this.setState(
             {[group] : Object.assign(
@@ -88,8 +55,6 @@ class Step8 extends React.Component {
             routeName: "Step9",
             params: { name: "Step9"}
         });
-
-        const {form} = this.props;
         const { formAction } = this.props;
         const {setForm} = formAction;
         setForm({['step8'] : this.state});
@@ -98,7 +63,6 @@ class Step8 extends React.Component {
     };
 
     render() {
-        const {form} = this.props;
         const {data} = this.props;
         const stepData = data.step8Data.eatList;
         const stepDataType = data.step8Data.tourTypeList;

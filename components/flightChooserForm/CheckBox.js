@@ -17,18 +17,11 @@ export default class CheckBoxComponent extends React.Component{
 
     }
 
-    componentWillMount(){
-
-      //  this.props.addToState(this.props.text);
-    }
-
-
         render() {
             return(
 
                <ListItem>
                     <CheckBox checked= {this.props.checked}
-                        //{ this.props.form[this.props.text] }
                         onPress = {this.handlePress.bind(this)}
                     />
                     <Body>

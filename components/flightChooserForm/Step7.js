@@ -36,7 +36,6 @@ import * as childrenActions from "../../actions/ChildrenActions";
              }
          });
 
-         this.forceUpdate();
      };
 
      navigate = () => {
