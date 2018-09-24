@@ -37,7 +37,24 @@ class Step11 extends React.Component {
         this.state = {data : step11Data, filters: step11Filter};
     }
 
-    onValueChange(group, key, value) {
+    onValueChange(group, key, value, itemClass) {
+        if(itemClass === 'checkbox main treefind'){
+            let idx = this.state[group][key].value;
+            for(let item in this.state[group])
+            {
+                if( item.cityIndex === idx){
+                    this.setState(
+                        {[group] : Object.assign(
+                                this.state[group],
+                                {[item.item]:
+                                        Object.assign(this.state[group][item.item],
+                                            {
+                                                "checked": value,
+                                            })
+                                })});
+                }
+            }
+        }
         this.setState(
             {[group] : Object.assign(
                     this.state[group],
@@ -85,7 +102,7 @@ class Step11 extends React.Component {
                     <CheckBoxComponent
                         key={index}
                         text = {item.item}
-                        onValueChange={(checked, key)=> this.onValueChange.bind(this)('data', key, checked)}
+                        onValueChange={(checked, key)=> this.onValueChange.bind(this)('data', key, checked, item.class)}
                         checked = {this.state.data[item.item].checked}
                         style = {(item.class === 'checkbox sub') ? {marginLeft : 20}: {}}
                     />
