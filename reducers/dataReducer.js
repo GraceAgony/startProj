@@ -227,15 +227,21 @@ export default function data(state = initialState, action) {
                         element = cityDestination.slice(index, cityDestination.indexOf('</div>', index));
                         elementValue = cityDestination.slice(indexValue, cityDestination.indexOf('"', indexValue) );
                         elementClass = cityDestination.slice(indexClass, cityDestination.indexOf('"', indexClass) );
-                        elementCityIndex = cityDestination.slice(indexCity, cityDestination.indexOf('"', indexCity));
                         elementCityId =  cityHotels.slice(cityId, cityHotels.indexOf('"', cityId));
+                        elementCityIndex = undefined;
+                        if(elementClass.indexOf('sub') !== -1) {
+                            elementCityIndex = cityDestination.slice(indexCity, cityDestination.indexOf('"', indexCity));
+                        }
 
-                        stepArray1.push({
-                            item: element.trim(),
-                            value: elementValue.trim(),
-                            class: elementClass.trim(),
-                            cityIndex: elementCityIndex.trim(),
-                        });
+
+                        if(elementClass.indexOf('hidden') === -1) {
+                            stepArray1.push({
+                                item: element.trim(),
+                                value: elementValue.trim(),
+                                class: elementClass.trim(),
+                                cityIndex: elementCityIndex ? elementCityIndex.trim(): undefined,
+                            })
+                        }
 
                         startIndex = cityDestination.indexOf('<div', index);
                         index = cityDestination.indexOf('</i>', startIndex )+ '</i>'.length;
@@ -244,12 +250,14 @@ export default function data(state = initialState, action) {
                         indexCity = cityDestination.indexOf("data-cityId", startIndex) + 'data-cityId="'.length;
                     }
 
-                    Object.assign(state,{step11Data : stepArray1});
+                   let filters = [];
+                    filters.push({item: 'Отображать выбранные'},
+                        {item: "Туры принимающие участие в «Ночной охоте»"},
+                        {item: "Туры принимающие участие в «Country Week»"},
+                        {item: "Must Have"}
+                        );
 
-
-
-
-
+                    Object.assign(state, {step11Data : { data: stepArray1, filters: filters} });
                 });
 
 

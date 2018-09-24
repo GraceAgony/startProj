@@ -18,6 +18,7 @@ export default class CheckBoxComponent extends React.Component{
                <ListItem>
                         <CheckBox checked= {this.props.checked}
                             onPress = {this.handlePress.bind(this)}
+                                  style = {this.props.style ? this.props.style : {}}
                         />
                     <Body>
                         <Text style = {formStyles.checkBoxText}>{this.props.text}</Text>

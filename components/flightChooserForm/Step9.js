@@ -51,7 +51,6 @@ import * as childrenActions from "../../actions/ChildrenActions";
          const {form} = this.props;
          const {data} = this.props;
          const currencyList = data.step9Data.currency;
-         console.log(form);
         return (
             <View style={formStyles.stepBox}>
                 <Item style={{paddingBottom: 10}}>

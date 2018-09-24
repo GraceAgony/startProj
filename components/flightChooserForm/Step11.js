@@ -17,13 +17,36 @@ class Step11 extends React.Component {
         headerTitleStyle: formStyles.stepNavigationTitle
     };
 
-    onValueChange(key, value) {
-        const {form} = this.props;
-        const { formAction } = this.props;
-        const {setForm} = formAction;
-        setForm({step11 : [{[key] : value}]});
-        console.log(form);
-        this.forceUpdate();
+    constructor(props){
+        super(props);
+        const {data} = this.props;
+        const stepData = data.step11Data.data;
+        const stepDataFilter = data.step11Data.filters;
+        step11Data = {};
+        step11Filter = {};
+        stepData.map((item) =>
+        {
+            item.checked = false;
+            step11Data[item.item] = item;
+        });
+        stepDataFilter.map((item) =>
+        {
+            item.checked = false;
+            step11Filter[item.item] = item;
+        });
+        this.state = {data : step11Data, filters: step11Filter};
+    }
+
+    onValueChange(group, key, value) {
+        this.setState(
+            {[group] : Object.assign(
+                    this.state[group],
+                    {[key]:
+                            Object.assign(this.state[group][key],
+                                {
+                                    "checked": value,
+                                })
+                    })});
     };
 
     navigate = () => {
@@ -36,68 +59,35 @@ class Step11 extends React.Component {
 
 
     render() {
-        const {form} = this.props;
         const {data} = this.props;
-        const stepData = data.step11Data;
-       // console.log(stepData);
+        const stepData = data.step11Data.data;
+        const stepDataFilter = data.step11Data.filters;
+       // console.log(this.state);
 
         return (
             <Container>
                 <Content>
             <View style={formStyles.stepBox}>
-                <Item>
-                    <Grid>
 
                             <Text style = {formStyles.stepLabelText} >Города и курорты</Text>
+                            <Input style={formStyles.pickerItemsText} placeholder="Поиск" />
 
-                        <Row>
-                            <Col>
-                                <CheckBoxComponent text="Отображать выбранные"
-                                                   onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
-                                                   addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
-                                                   form = {form}
-                                />
-                            </Col>
-                        </Row>
-                        <Row>
-                         <Input style={formStyles.pickerItemsText} placeholder="Поиск" />
-                        </Row>
-                        <Row>
-                            <Col>
-                                <CheckBoxComponent text= "Туры принимающие участие в «Ночной охоте»"
-                                                   onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
-                                                   addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
-                                                   form = {form}
-                                />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <CheckBoxComponent text="Туры принимающие участие в «Country Week»"
-                                                   onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
-                                                   addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
-                                                   form = {form}
-                                />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <CheckBoxComponent text="Must Have"
-                                                   onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
-                                                   addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
-                                                   form = {form}
-                                />
-                            </Col>
-                        </Row>
-                    </Grid>
-                </Item>
+                {stepDataFilter.map((item, index)=>
+                    <CheckBoxComponent
+                        key={index}
+                        text = {item.item}
+                        onValueChange={(checked, key)=> this.onValueChange.bind(this)('filters', key, checked)}
+                        checked = {this.state.filters[item.item].checked}
+                    />
+                )}
+
                 {stepData.map((item, index)=>
                     <CheckBoxComponent
                         key={index}
                         text = {item.item}
-                        onValueChange={(checked, key)=> this.onValueChange.bind(this)(key, checked)}
-                        addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
-                        form = {form}
+                        onValueChange={(checked, key)=> this.onValueChange.bind(this)('data', key, checked)}
+                        checked = {this.state.data[item.item].checked}
+                        style = {(item.class === 'checkbox sub') ? {marginLeft : 20}: {}}
                     />
                 )}
 
