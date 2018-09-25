@@ -27,7 +27,7 @@ class Step11 extends React.Component {
         stepData.map((item) =>
         {
             item.checked = false;
-            step11Data[item.item] = item;
+            step11Data[item.value] = item;
         });
         stepDataFilter.map((item) =>
         {
@@ -42,12 +42,12 @@ class Step11 extends React.Component {
             let idx = this.state[group][key].value;
             for(let item in this.state[group])
             {
-                if( item.cityIndex === idx){
+                if( this.state[group][item].cityIndex === idx){
                     this.setState(
                         {[group] : Object.assign(
                                 this.state[group],
-                                {[item.item]:
-                                        Object.assign(this.state[group][item.item],
+                                {item:
+                                        Object.assign(this.state[group][item],
                                             {
                                                 "checked": value,
                                             })
@@ -102,8 +102,8 @@ class Step11 extends React.Component {
                     <CheckBoxComponent
                         key={index}
                         text = {item.item}
-                        onValueChange={(checked, key)=> this.onValueChange.bind(this)('data', key, checked, item.class)}
-                        checked = {this.state.data[item.item].checked}
+                        onValueChange={(checked, key)=> this.onValueChange.bind(this)('data', item.value, checked, item.class)}
+                        checked = {this.state.data[item.value].checked}
                         style = {(item.class === 'checkbox sub') ? {marginLeft : 20}: {}}
                     />
                 )}
