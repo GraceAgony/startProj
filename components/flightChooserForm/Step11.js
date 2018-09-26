@@ -26,8 +26,7 @@ class Step11 extends React.Component {
         step11Filter = {};
         stepData.map((item) =>
         {
-            item.checked = false;
-            if(item.class){}
+            //item.checked = false;
             step11Data[item.value] = item;
         });
         stepDataFilter.map((item) =>

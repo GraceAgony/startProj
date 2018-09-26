@@ -240,6 +240,7 @@ export default function data(state = initialState, action) {
                                 value: elementValue.trim(),
                                 class: elementClass.trim(),
                                 cityIndex: elementCityIndex ? elementCityIndex.trim(): undefined,
+                                checked: false,
                             })
                         }
 
@@ -250,26 +251,26 @@ export default function data(state = initialState, action) {
                         indexCity = cityDestination.indexOf("data-cityId", startIndex) + 'data-cityId="'.length;
                     }
 
-                    let resultArray = [];
+                    let resultObj = {};
                     let idx;
 
 
                     for(let mainItem in stepArray1){
                         if(stepArray1[mainItem].class === "checkbox main treefind"){
                             idx = stepArray1[mainItem].value;
-                            stepArray1[mainItem].children = [];
+                            stepArray1[mainItem].children = {};
                             for(let subItem in stepArray1){
                                 if(stepArray1[subItem].class === "checkbox sub"){
                                     if(stepArray1[subItem].cityIndex === idx){
-                                        stepArray1[mainItem].children.push( stepArray1[subItem]);
+                                        stepArray1[mainItem].children[stepArray1[subItem].value] = stepArray1[subItem];
                                     }
                                 }
                             }
-                            resultArray.push(stepArray1[mainItem]);
+                            resultObj[stepArray1[mainItem].value] = stepArray1[mainItem];
                         }
                     }
+                    
 
-                    console.log(resultArray);
 
                    let filters = [];
                     filters.push({item: 'Отображать выбранные'},
@@ -278,7 +279,7 @@ export default function data(state = initialState, action) {
                         {item: "Must Have"}
                         );
 
-                    Object.assign(state, {step11Data : { data: stepArray1, filters: filters} });
+                    Object.assign(state, {step11Data : { data: resultArray, filters: filters} });
                 });
 
 
