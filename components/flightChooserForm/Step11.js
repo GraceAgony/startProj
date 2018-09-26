@@ -22,21 +22,17 @@ class Step11 extends React.Component {
         const {data} = this.props;
         const stepData = data.step11Data.data;
         const stepDataFilter = data.step11Data.filters;
-        step11Data = {};
+
         step11Filter = {};
-        stepData.map((item) =>
-        {
-            //item.checked = false;
-            step11Data[item.value] = item;
-        });
+
         stepDataFilter.map((item) =>
         {
             item.checked = false;
             step11Filter[item.item] = item;
         });
-        this.state = {data : step11Data, filters: step11Filter};
+        this.state = {data : stepData, filters: step11Filter};
 
-        this.arrayholder = step11Data;
+        this.arrayholder = stepData;
     }
 
     searchFilterFunction(text){
@@ -50,9 +46,9 @@ class Step11 extends React.Component {
 
     }
 
-    onValueChange(group, key, value, itemClass) {
+  /*  onValueChange(group, key, value, itemClass) {
         if(itemClass === 'checkbox main treefind'){
-            let idx = this.state[group][key].value;
+           // let idx = this.state[group][key].value;
             for(let item in this.state[group])
             {
                 if( this.state[group][item].cityIndex === idx){
@@ -78,7 +74,7 @@ class Step11 extends React.Component {
                                 })
                     })});
     };
-
+*/
     navigate = () => {
         const navigateToStep12 = NavigationActions.navigate({
             routeName: "Step12",
@@ -91,7 +87,30 @@ class Step11 extends React.Component {
     render() {
         const {data} = this.props;
         const stepDataFilter = data.step11Data.filters;
-       // console.log(this.state);
+
+        const cities = Object.keys(this.state.data).map((item, index) => {
+            return (
+                <View>
+                    <CheckBoxComponent
+                        key={index}
+                        text = {this.state.data[item].item}
+                        // onValueChange={(checked, key)=>
+                        //   this.onValueChange.bind(this)('data', this.state.data[item].value, checked, this.state.data[item].class)}
+                        checked = {this.state.data[item].checked}
+                    />
+                    { Object.keys(this.state.data[item].children).map((child, index) => {
+                        let subItem  = this.state.data[item].children[child];
+                        console.log(subItem);
+                        return ( <CheckBoxComponent
+                            key={index}
+                            text={subItem.item}
+                            //onValueChange={(checked, key)=>
+                            //   this.onValueChange.bind(this)('data', this.state.data[item].value, checked, this.state.data[item].class)}
+                            checked={subItem.checked}
+                            style={{marginLeft: 20}}
+                        />)
+                    } )}
+                </View>); });
 
         return (
             <Container>
@@ -104,7 +123,7 @@ class Step11 extends React.Component {
                     <CheckBoxComponent
                         key={index}
                         text = {item.item}
-                        onValueChange={(checked, key)=> this.onValueChange.bind(this)('filters', key, checked)}
+                        //onValueChange={(checked, key)=> this.onValueChange.bind(this)('filters', key, checked)}
                         checked = {this.state.filters[item.item].checked}
                     />
                 )}
@@ -112,32 +131,10 @@ class Step11 extends React.Component {
                 <Input
                     style={formStyles.pickerItemsText}
                     placeholder="Поиск"
-                    onValueChange = {(text) => this.searchFilterFunction(text).bind(this)}
+                    //onValueChange = {(text) => this.searchFilterFunction(text).bind(this)}
                 />
 
-
-{/*
-                {Object.keys(this.state.data).forEach((item) =>
-                    <CheckBoxComponent
-                        key={this.state.data[item].value}
-                        text = {this.state.data[item].item}
-                        onValueChange={(checked, key)=>
-                            this.onValueChange.bind(this)('data', this.state.data[item].value, checked, this.state.data[item].class)}
-                        checked = {this.state.data[item].value.checked}
-                        style = {(this.state.data[item].class === 'checkbox sub') ? {marginLeft : 20}: {}}
-                    />
-                )}*/}
-
-                {Object.keys(this.state.data).map((item) => {
-                    return <CheckBoxComponent
-                        key={this.state.data[item].value}
-                        text = {this.state.data[item].item}
-                        onValueChange={(checked, key)=>
-                            this.onValueChange.bind(this)('data', this.state.data[item].value, checked, this.state.data[item].class)}
-                        checked = {this.state.data[item].checked}
-                        style = {(this.state.data[item].class === 'checkbox sub') ? {marginLeft : 20}: {}}
-                    />
-                })}
+                {cities}
 
                 <TouchableOpacity
                     style={formStyles.stepTitle}

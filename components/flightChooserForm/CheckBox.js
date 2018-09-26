@@ -6,6 +6,7 @@ export default class CheckBoxComponent extends React.Component{
 
     constructor(props) {
         super(props);
+        console.log(this.props.text);
     };
 
     handlePress(){

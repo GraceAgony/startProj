@@ -269,7 +269,6 @@ export default function data(state = initialState, action) {
                             resultObj[stepArray1[mainItem].value] = stepArray1[mainItem];
                         }
                     }
-                    
 
 
                    let filters = [];
@@ -279,7 +278,7 @@ export default function data(state = initialState, action) {
                         {item: "Must Have"}
                         );
 
-                    Object.assign(state, {step11Data : { data: resultArray, filters: filters} });
+                    Object.assign(state, {step11Data : { data: resultObj, filters: filters} });
                 });
 
 
