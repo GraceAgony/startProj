@@ -1,7 +1,6 @@
 import React from "react";
 import { View, TouchableOpacity } from 'react-native';
-import { Col, Row, Grid } from "react-native-easy-grid";
-import { Container,  Content,  Item, Button, Text, Input } from 'native-base';
+import { Container,  Content,  Text, Input } from 'native-base';
 import { formStyles } from "./style";
 import CheckBoxComponent  from "./CheckBox";
 import * as formAction from "../../actions/FormActions";
@@ -32,24 +31,31 @@ class Step11 extends React.Component {
         });
         this.state = {data : stepData, filters: step11Filter};
 
-        this.arrayholder = stepData;
+        this.holder = stepData;
     }
 
     searchFilterFunction(text){
-        const newData = this.arrayholder.filter(item => {
-            const itemData = `${item.item.title.toUpperCase()}`;
-            const textData = text.toUpperCase();
-            return itemData.indexOf(textData) > -1;
-        });
+        let textData = text.toUpperCase();
+        newData = {};
+        for(let mainItem in this.holder){
+            for(let subItem in this.holder[mainItem].children){
+               // console.log(this.holder[mainItem].children[subItem]);
+                if(this.holder[mainItem].children[subItem].item.toUpperCase().indexOf(textData) > -1){
+                    let value = this.holder[mainItem].children[subItem].value;
+                    newData[value] = {};
+                    newData[value] = this.holder[mainItem].children[subItem];
+                }
+            }
+        }
 
         this.setState({ data: newData });
 
     }
 
     onValueChange(group, key, value, itemClass, parentValue) {
+        console.log('value changing');
         if(group === 'data'){
         if(itemClass === 'checkbox main treefind'){
-           // let idx = this.state[group][key].value;
             for(let item in this.state[group][key].children)
             {
                 this.setState(
@@ -147,7 +153,7 @@ class Step11 extends React.Component {
                 <Input
                     style={formStyles.pickerItemsText}
                     placeholder="Поиск"
-                    onValueChange = {(text) => this.searchFilterFunction(text).bind(this)}
+                    onChangeText = {(text) => this.searchFilterFunction(text).bind(this)}
                 />
 
                 {cities}
