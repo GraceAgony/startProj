@@ -113,7 +113,7 @@ class Step11 extends React.Component {
 
         const cities = Object.keys(this.state.data).map((item, index) => {
             return (
-                <View>
+                <View key={index}>
                     <CheckBoxComponent
                         key={index}
                         text = {this.state.data[item].item}
