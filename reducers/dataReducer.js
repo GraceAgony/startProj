@@ -250,6 +250,27 @@ export default function data(state = initialState, action) {
                         indexCity = cityDestination.indexOf("data-cityId", startIndex) + 'data-cityId="'.length;
                     }
 
+                    let resultArray = [];
+                    let idx;
+
+
+                    for(let mainItem in stepArray1){
+                        if(stepArray1[mainItem].class === "checkbox main treefind"){
+                            idx = stepArray1[mainItem].value;
+                            stepArray1[mainItem].children = [];
+                            for(let subItem in stepArray1){
+                                if(stepArray1[subItem].class === "checkbox sub"){
+                                    if(stepArray1[subItem].cityIndex === idx){
+                                        stepArray1[mainItem].children.push( stepArray1[subItem]);
+                                    }
+                                }
+                            }
+                            resultArray.push(stepArray1[mainItem]);
+                        }
+                    }
+
+                    console.log(resultArray);
+
                    let filters = [];
                     filters.push({item: 'Отображать выбранные'},
                         {item: "Туры принимающие участие в «Ночной охоте»"},
