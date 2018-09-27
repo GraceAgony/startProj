@@ -77,31 +77,64 @@ class Step11 extends React.Component {
                                 })});
                 }
         }else {
+            if(Object.keys(this.state[group][parentValue]['children']).length === 1){
+                this.setState(
+                    {
+                        [group]: Object.assign(
+                            this.state[group],
+                            {
+                                [parentValue]:
+                                    Object.assign(this.state[group][parentValue],
+                                        {
+                                            'checked': value,
+                                            'children': Object.assign(this.state[group][parentValue]['children'],
+                                                {
+                                                    [key]: Object.assign(this.state[group][parentValue]['children'][key],
+                                                        {'checked': value})
+                                                })
+                                        })
+                            })
+                    }
+                )
+            }else {
+                this.setState(
+                    {
+                        [group]: Object.assign(
+                            this.state[group],
+                            {
+                                [parentValue]:
+                                    Object.assign(this.state[group][parentValue],
+                                        {
+                                            'children': Object.assign(this.state[group][parentValue]['children'],
+                                                {
+                                                    [key]: Object.assign(this.state[group][parentValue]['children'][key],
+                                                        {'checked': value})
+                                                })
+                                        })
+                            })
+                    }
+                )
+            }
+        }}else {
+            /*if(key === 'Отображать выбранные'){
+                let newData = {};
+                for(let mainItem in this.state[data]){
+                    for
+                }
+            }*/
             this.setState(
-                {[group] : Object.assign(
+                {
+                    [group]: Object.assign(
                         this.state[group],
-                        {[parentValue]:
-                                Object.assign(this.state[group][parentValue],
+                        {
+                            [key]:
+                                Object.assign(this.state[group][key],
                                     {
-                                        'children':  Object.assign(this.state[group][parentValue]['children'],
-                                            {
-                                                [key] : Object.assign(this.state[group][parentValue]['children'][key],
-                                                    {'checked': value})
-                                            })
+                                        "checked": value,
                                     })
-                        })}
-            )
-        }}
-        this.setState(
-            {[group] : Object.assign(
-                    this.state[group],
-                    {[key]:
-                            Object.assign(this.state[group][key],
-                                {
-                                    "checked": value,
-                                })
-                    })});
-    };
+                        })
+                });
+        } };
     navigate = () => {
         const navigateToStep12 = NavigationActions.navigate({
             routeName: "Step12",
