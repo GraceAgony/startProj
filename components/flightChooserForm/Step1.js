@@ -47,7 +47,13 @@ import { AppLoading } from "expo";
          });
          this.props.navigation.dispatch(navigateToTourPage);
      };
-
+     navigate3 = () => {
+         const navigateToStep11 = NavigationActions.navigate({
+             routeName: "Step11",
+             params: { name: "Step11"}
+         });
+         this.props.navigation.dispatch(navigateToStep11);
+     };
 
 
      onValueChange(key, value) {
@@ -130,7 +136,16 @@ import { AppLoading } from "expo";
                         Tour Page
                     </Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                    style={formStyles.stepTitle}
+                    onPress={this.navigate3}
+                >
+                    <Text style={formStyles.stepTitleText}>
+                        Шаг 11
+                    </Text>
+                </TouchableOpacity>
             </View>
+
         );
     }
 }

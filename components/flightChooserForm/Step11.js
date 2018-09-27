@@ -8,6 +8,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavigationActions } from "react-navigation";
 import * as childrenActions from "../../actions/ChildrenActions";
+import { KeyboardAvoidingView } from 'react-native';
+
 
 class Step11 extends React.Component {
 
@@ -22,7 +24,7 @@ class Step11 extends React.Component {
         const stepData = data.step11Data.data;
         const stepDataFilter = data.step11Data.filters;
 
-        step11Filter = {};
+        let step11Filter = {};
 
         stepDataFilter.map((item) =>
         {
@@ -36,24 +38,26 @@ class Step11 extends React.Component {
 
     searchFilterFunction(text){
         let textData = text.toUpperCase();
-        newData = {};
-        for(let mainItem in this.holder){
-            for(let subItem in this.holder[mainItem].children){
-               // console.log(this.holder[mainItem].children[subItem]);
-                if(this.holder[mainItem].children[subItem].item.toUpperCase().indexOf(textData) > -1){
-                    let value = this.holder[mainItem].children[subItem].value;
-                    newData[value] = {};
-                    newData[value] = this.holder[mainItem].children[subItem];
+        let newData = {};
+        if(textData.length > 0) {
+            for (let mainItem in this.holder) {
+                for (let subItem in this.holder[mainItem].children) {
+                    // console.log(this.holder[mainItem].children[subItem]);
+                    if (this.holder[mainItem].children[subItem].item.toUpperCase().indexOf(textData) > -1) {
+                        let value = this.holder[mainItem].children[subItem].value;
+                        newData[value] = {};
+                        newData[value] = this.holder[mainItem].children[subItem];
+                    }
                 }
             }
+
+        }else {
+            newData = this.holder;
         }
-
         this.setState({ data: newData });
-
     }
 
     onValueChange(group, key, value, itemClass, parentValue) {
-        console.log('value changing');
         if(group === 'data'){
         if(itemClass === 'checkbox main treefind'){
             for(let item in this.state[group][key].children)
@@ -110,37 +114,56 @@ class Step11 extends React.Component {
     render() {
         const {data} = this.props;
         const stepDataFilter = data.step11Data.filters;
-
-        const cities = Object.keys(this.state.data).map((item, index) => {
-            return (
-                <View key={index}>
-                    <CheckBoxComponent
-                        key={index}
-                        text = {this.state.data[item].item}
-                         onValueChange={(checked, key)=>
-                           this.onValueChange.bind(this)('data', this.state.data[item].value, checked, this.state.data[item].class)}
-                        checked = {this.state.data[item].checked}
-                    />
-                    { Object.keys(this.state.data[item].children).map((child, index) => {
-                        let subItem  = this.state.data[item].children[child];
-                        return ( <CheckBoxComponent
-                            key={index}
-                            text={subItem.item}
-                            onValueChange={(checked, key)=>
-                               this.onValueChange.bind(this)('data', subItem.value, checked, subItem.class, subItem.cityIndex)}
-                            checked={subItem.checked}
-                            style={{marginLeft: 20}}
-                        />)
-                    } )}
-                </View>); });
-
+        let cities;
+        if(Object.keys(this.state.data).length > 0) {
+            if (this.state.data[Object.keys(this.state.data)[0]].class === "checkbox main treefind") {
+                cities = Object.keys(this.state.data).map((item, index) => {
+                    return (
+                        <View key={index}>
+                            <CheckBoxComponent
+                                key={index}
+                                text={this.state.data[item].item}
+                                onValueChange={(checked, key) =>
+                                    this.onValueChange.bind(this)('data', this.state.data[item].value, checked, this.state.data[item].class)}
+                                checked={this.state.data[item].checked}
+                            />
+                            {Object.keys(this.state.data[item].children).map((child, index) => {
+                                let subItem = this.state.data[item].children[child];
+                                return (<CheckBoxComponent
+                                    key={index}
+                                    text={subItem.item}
+                                    onValueChange={(checked, key) =>
+                                        this.onValueChange.bind(this)('data', subItem.value, checked, subItem.class, subItem.cityIndex)}
+                                    checked={subItem.checked}
+                                    style={{marginLeft: 20}}
+                                />)
+                            })}
+                        </View>);
+                });
+            } else {
+                cities = Object.keys(this.state.data).map((item, index) => {
+                    return (
+                        <View key={index}>
+                            <CheckBoxComponent
+                                key={index}
+                                text={this.state.data[item].item}
+                                onValueChange={(checked, key) =>
+                                    this.onValueChange.bind(this)('data', this.state.data[item].value, checked, this.state.data[item].class)}
+                                checked={this.state.data[item].checked}
+                            />
+                        </View>);
+                });
+            }
+        }else {
+            cities = <View></View>
+        }
         return (
             <Container>
                 <Content>
-            <View style={formStyles.stepBox}>
-
+            <KeyboardAvoidingView
+                behavior="padding"
+                style={formStyles.stepBox}>
                  <Text style = {formStyles.stepLabelText} >Города и курорты</Text>
-
                 {stepDataFilter.map((item, index)=>
                     <CheckBoxComponent
                         key={index}
@@ -151,9 +174,9 @@ class Step11 extends React.Component {
                 )}
 
                 <Input
-                    style={formStyles.pickerItemsText}
+                    style={[formStyles.pickerItemsText, {marginBottom: 10}]}
                     placeholder="Поиск"
-                    onChangeText = {(text) => this.searchFilterFunction(text).bind(this)}
+                    onChangeText = {(text) => this.searchFilterFunction.bind(this)(text)}
                 />
 
                 {cities}
@@ -162,11 +185,11 @@ class Step11 extends React.Component {
                     style={formStyles.stepTitle}
                     onPress={this.navigate}
                 >
-                    <Text   style={formStyles.stepTitleText}>
+                    <Text style={formStyles.stepTitleText}>
                        Шаг 12
                     </Text>
                 </TouchableOpacity>
-            </View>
+            </KeyboardAvoidingView>
                 </Content>
             </Container>
         )};
