@@ -76,6 +76,18 @@ class Step11 extends React.Component {
                                             })
                                 })});
                 }
+            this.setState(
+                {
+                    [group]: Object.assign(
+                        this.state[group],
+                        {
+                            [key]:
+                                Object.assign(this.state[group][key],
+                                    {
+                                        "checked": value,
+                                    })
+                        })
+                });
         }else {
             if(Object.keys(this.state[group][parentValue]['children']).length === 1){
                 this.setState(
@@ -116,12 +128,47 @@ class Step11 extends React.Component {
                 )
             }
         }}else {
-            /*if(key === 'Отображать выбранные'){
+            if(key === 'Отображать выбранные'){
+                if(value === true){
                 let newData = {};
-                for(let mainItem in this.state[data]){
-                    for
+                for(let mainItem in this.state['data']){
+                    if(this.state['data'][mainItem]['checked'] === 'true'){
+                        newData[mainItem] = this.state['data'][mainItem];
+                    }else{
+                    for(let subItem in this.state['data'][mainItem]['children']){
+                        if(this.state['data'][mainItem]['children'][subItem]['checked'] === 'true'){
+                            newData[this.state['data'][mainItem]['children'][subItem].value] =
+                                this.state['data'][mainItem]['children'][subItem];
+                        }
+                    }
                 }
-            }*/
+                }
+
+                this.setState(
+                    {
+                        'data': newData,
+                        [group]: Object.assign(
+                           this.state[group],
+                            {
+                                [key]:
+                                    Object.assign(this.state[group][key],
+                                        {
+                                            "checked": value,
+                                        })
+                            })
+                    });
+            }else {
+                    let newData = {};
+                    Object.assign(newData, this.holder['data'], this.state['data']);
+                    for(let key in newData){
+                        Object.assign(newData[key], this.holder['data'], this.state['data']);
+                    }
+                    this.setState(
+                        {
+                           'data':newData
+                        }
+                    )
+                }
             this.setState(
                 {
                     [group]: Object.assign(
@@ -134,7 +181,7 @@ class Step11 extends React.Component {
                                     })
                         })
                 });
-        } };
+        } }};
     navigate = () => {
         const navigateToStep12 = NavigationActions.navigate({
             routeName: "Step12",
