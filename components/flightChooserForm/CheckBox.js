@@ -13,6 +13,7 @@ export default class CheckBoxComponent extends React.Component{
     }
 
         render() {
+       // console.log(this.props.text);
             return(
 
                <ListItem>

@@ -132,11 +132,11 @@ class Step11 extends React.Component {
                 if(value === true){
                 let newData = {};
                 for(let mainItem in this.state['data']){
-                    if(this.state['data'][mainItem]['checked'] === 'true'){
+                    if(this.state['data'][mainItem]['checked'] === true){
                         newData[mainItem] = this.state['data'][mainItem];
                     }else{
                     for(let subItem in this.state['data'][mainItem]['children']){
-                        if(this.state['data'][mainItem]['children'][subItem]['checked'] === 'true'){
+                        if(this.state['data'][mainItem]['children'][subItem]['checked'] === true){
                             newData[this.state['data'][mainItem]['children'][subItem].value] =
                                 this.state['data'][mainItem]['children'][subItem];
                         }
@@ -159,15 +159,21 @@ class Step11 extends React.Component {
                     });
             }else {
                     let newData = {};
-                    Object.assign(newData, this.holder['data'], this.state['data']);
-                    for(let key in newData){
-                        Object.assign(newData[key], this.holder['data'], this.state['data']);
+                    Object.assign(newData, this.holder);
+                    for(let item in this.state.data){
+                        if(this.state.data[item].class === "checkbox main treefind"){
+                            Object.assign(newData, this.state.data[item]);
+                        }else{
+                            console.log(newData[this.state.data[item].cityIndex]);
+                            Object.assign(newData[this.state.data[item].cityIndex].children,
+                                {[this.state.data[item].value]: this.state.data[item]});
+                        }
                     }
                     this.setState(
                         {
                            'data':newData
                         }
-                    )
+                    );
                 }
             this.setState(
                 {
@@ -209,7 +215,8 @@ class Step11 extends React.Component {
                             />
                             {Object.keys(this.state.data[item].children).map((child, index) => {
                                 let subItem = this.state.data[item].children[child];
-                                return (<CheckBoxComponent
+                                return (
+                                    <CheckBoxComponent
                                     key={index}
                                     text={subItem.item}
                                     onValueChange={(checked, key) =>
