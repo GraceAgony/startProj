@@ -20,6 +20,24 @@ class Step12 extends React.Component {
         headerTitleStyle: formStyles.stepNavigationTitle
     };
 
+    constructor(props){
+        super(props);
+        const {data} = this.props;
+        const stepData = data.step12Data.data;
+        const stepDataFilter = data.step12Data.filters;
+
+        let step12Filter = {};
+
+        stepDataFilter.map((item) =>
+        {
+            item.checked = false;
+            step12Filter[item.item] = item;
+        });
+        this.state = {data : stepData, filters: step12Filter};
+
+        this.holder = stepData;
+    }
+
 
     handleSubmit(){
         console.log('submit');
@@ -45,13 +63,85 @@ class Step12 extends React.Component {
         this.props.navigation(navigateToSearchResult);
     };
 */
+    searchFilterFunction(text){
+        let textData = text.toUpperCase();
+        let newData = {};
+        if(textData.length > 0) {
+            for (let item in this.holder) {
+                    if (this.holder[item].toUpperCase().indexOf(textData) > -1) {
+                        newData[item] = this.holder[item];
+            }}
 
+        }else {
+            newData = this.holder;
+        }
+        this.setState({ data: newData });
+    }
 
-    onValueChange(key, value) {
-        const { formAction } = this.props;
-        const {setForm} = formAction;
-        setForm({[key] : value});
-        this.forceUpdate();
+    onValueChange(group, key, value) {
+        let newData ={};
+        if(group === 'data'){
+            this.setState(
+                {
+                    'data': newData,
+                    [group]: Object.assign(
+                        this.state[group],
+                        {
+                            [key]:
+                                Object.assign(this.state[group][key],
+                                    {
+                                        "checked": value,
+                                    })
+                        })
+                });
+        }else
+            if(key === 'Отображать выбранные'){
+            if(value === true){
+                let newData = {};
+                for(let item in this.state['data']){
+                    if(this.state['data'][item]['checked'] === true){
+                        newData[item] = this.state['data'][item];
+                    }
+                }
+                this.setState(
+                    {
+                        'data': newData,
+                        [group]: Object.assign(
+                            this.state[group],
+                            {
+                                [key]:
+                                    Object.assign(this.state[group][key],
+                                        {
+                                            "checked": value,
+                                        })
+                            })
+                    });
+            }else {
+                let newData = {};
+                Object.assign(newData, this.holder);
+                for(let item in this.state.data){
+                        Object.assign(newData, this.state.data[item]);
+                }
+                this.setState(
+                    {
+                        'data':newData
+                    }
+                );
+            }
+            this.setState(
+                {
+                    [group]: Object.assign(
+                        this.state[group],
+                        {
+                            [key]:
+                                Object.assign(this.state[group][key],
+                                    {
+                                        "checked": value,
+                                    })
+                        })
+                });
+        }
+
     };
 
 
@@ -59,66 +149,35 @@ class Step12 extends React.Component {
         const {form} = this.props;
         const { formAction } = this.props;
         const {cleanFilter} = formAction;
+        const {data} = this.props;
+        const stepDataFilter = data.step12Data.filters;
         return (
             <Container >
                 <Content>
             <View style={formStyles.stepBox}>
-                <Item>
-                    <Grid>
                             <Text style = {formStyles.stepLabelText} >Отель</Text>
-                        <Row>
-                            <Col>
-                                <CheckBoxComponent text="Отображать выбранные"
-                                                   onValueChange={(cheked, key)=> this.onValueChange.bind(this)(key, cheked)}
-                                                   addToState = {(key)=> this.onValueChange.bind(this)(key, false)}
-                                                   form = {form}
-                                />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                    <Input  style={formStyles.pickerItemsText} placeholder="Поиск"/>
-                            </Col>
-                           {/* <Col size={1}>
-                                <Button transparent style={formStyles.searchButton}>
-                                   <Icon
-                                       type='font-awesome'
-                                       name='search'
-                                       size = {25}
-                                       color='#0e73a7'
-                                   />
-                                </Button>
-                            </Col>*/}
-                        </Row>
-                        <Row>
-                            <Col>
-                                <CheckBoxComponent text="Только рекомендованные отели"
-                                                   onValueChange={(cheked, key)=>  this.onValueChange.bind(this)(key, cheked)}
-                                                   addToState = {(key)=>  this.onValueChange.bind(this)(key, false)}
-                                                   form = {form}
-                                />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <CheckBoxComponent text= "Только ориентированы на европейский рынок"
-                                                   onValueChange={(cheked, key)=>  this.onValueChange.bind(this)(key, cheked)}
-                                                   addToState = {(key)=>  this.onValueChange.bind(this)(key, false)}
-                                                   form = {form}
-                                />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <CheckBoxComponent text="Только эксклюзивные отели"
-                                                   onValueChange={(cheked, key)=>  this.onValueChange.bind(this)(key, cheked)}
-                                                   addToState = {(key)=>  this.onValueChange.bind(this)(key, false)}
-                                                   form = {form}
-                                />
-                            </Col>
-                        </Row>
-                    </Grid>
-                </Item>
+                        {stepDataFilter.map((item, index)=>
+                            <CheckBoxComponent
+                                key={index}
+                                text = {item.item}
+                                onValueChange={(checked, key)=> this.onValueChange.bind(this)('filters', key, checked)}
+                                checked = {this.state.filters[item.item].checked}
+                            />
+                        )}
+
+                        <Input  style={formStyles.pickerItemsText} placeholder="Поиск"/>
+
+                { Object.keys(this.state.data).map((item, index) =>
+                        <CheckBoxComponent
+                            key={index}
+                            text={this.state.data[item].item}
+                            onValueChange={(checked, key) =>
+                                this.onValueChange.bind(this)('data',  this.state.data[item].value, checked)}
+                            checked={this.state.data[item].checked}
+                            style={{marginLeft: 20}}
+                        />)
+                    }
+
                 <Row style={formStyles.containerFlex}>
                     <Icon
                         name='cancel'
@@ -129,21 +188,21 @@ class Step12 extends React.Component {
                             this.forceUpdate();
                         }}
                     />
-                    <Text
-                          style={{
-                              color: 'blue',
-                              textDecorationLine: 'underline',
-                              textDecorationColor: 'rgb(0, 123, 229)' ,
-                              textDecorationStyle: 'dashed',
-                              textAlign: 'center'
-                          }}
-                          onPress={()=> {
-                              cleanFilter();
-                              this.forceUpdate();
-                          }}
-                    >
-                        Очистить фильтр
-                    </Text>
+                    {/*<Text*/}
+                          {/*style={{*/}
+                              {/*color: 'blue',*/}
+                              {/*textDecorationLine: 'underline',*/}
+                              {/*textDecorationColor: 'rgb(0, 123, 229)' ,*/}
+                              {/*textDecorationStyle: 'dashed',*/}
+                              {/*textAlign: 'center'*/}
+                          {/*}}*/}
+                          {/*onPress={()=> {*/}
+                              {/*cleanFilter();*/}
+                              {/*this.forceUpdate();*/}
+                          {/*}}*/}
+                    {/*>*/}
+                        {/*Очистить фильтр*/}
+                    {/*</Text>*/}
                 </Row>
 
                         <ButtonRed
@@ -177,7 +236,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps (state) {
     return{
         children: state.children,
-        form: state.form
+        form: state.form,
+        data: state.data
     }
 }
 

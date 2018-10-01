@@ -57,6 +57,14 @@ class Step11 extends React.Component {
         this.setState({ data: newData });
     }
 
+    submit(){
+        const { formAction } = this.props;
+        const {setForm} = formAction;
+        setForm({'step11Data' : this.state.data});
+        this.forceUpdate();
+        this.navigate();
+    }
+
     onValueChange(group, key, value, itemClass, parentValue) {
         if(group === 'data'){
         if(itemClass === 'checkbox main treefind'){
@@ -270,7 +278,7 @@ class Step11 extends React.Component {
 
                 <TouchableOpacity
                     style={formStyles.stepTitle}
-                    onPress={this.navigate}
+                    onPress={this.submit.bind(this)}
                 >
                     <Text style={formStyles.stepTitleText}>
                        Шаг 12

@@ -200,7 +200,8 @@ export default function data(state = initialState, action) {
                             recom : elementRecom.trim(),
                             europe: elementEurope.trim(),
                             link: elementLink.trim(),
-                            cityId : elementCityId.trim()
+                            cityId : elementCityId.trim(),
+                            checked: false,
                         });
 
                         startIndex = cityHotels.indexOf('<div', index);
@@ -212,9 +213,14 @@ export default function data(state = initialState, action) {
                         cityId = cityHotels.indexOf('data-cityId=', startIndex) + 'data-cityId="'.length;
                     }
 
-                    Object.assign(state,{step12Data :  stepArray});
+                    let filters = [];
+                    filters.push({item: 'Отображать выбранные'},
+                        {item: "Только рекомендованные отели"},
+                        {item: "Только ориентированы на европейский рынок"},
+                        {item: "Только эксклюзивные отели"}
+                    );
 
-
+                    Object.assign(state, {step12Data : { data: stepArray, filters: filters} });
                     //step11data
                     stepArray1 = [];
                     cityDestination = responseJson.content.cityHotels.citydestanationtree;
@@ -271,7 +277,7 @@ export default function data(state = initialState, action) {
                     }
 
 
-                   let filters = [];
+                    filters = [];
                     filters.push({item: 'Отображать выбранные'},
                         {item: "Туры принимающие участие в «Ночной охоте»"},
                         {item: "Туры принимающие участие в «Country Week»"},
