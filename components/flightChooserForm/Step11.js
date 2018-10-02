@@ -61,7 +61,6 @@ class Step11 extends React.Component {
         const { formAction } = this.props;
         const {setForm} = formAction;
         setForm({'step11Data' : this.state.data});
-        this.forceUpdate();
         this.navigate();
     }
 

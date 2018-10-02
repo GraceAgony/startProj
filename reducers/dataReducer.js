@@ -179,10 +179,13 @@ export default function data(state = initialState, action) {
 
                     let stepResult = {};
                     cityHotels = responseJson.content.cityHotels.cityhotels;
+                   // console.log(cityHotels);
                     indexRecom = cityHotels.indexOf('<div data-recom=' )+ '<div data-recom="'.length;
                     indexValue = cityHotels.indexOf('data-value=')+ 'data-value="'.length;
                     let indexEurope = cityHotels.indexOf('data-europe=')+ 'data-europe="'.length;
                     let link = cityHotels.indexOf('a href=')+ 'a href="'.length;
+                    /*let indexExclusive =  cityHotels.indexOf('data-exclusive');
+                    //+ 'data-exclusive="'.length;*/
                     index = cityHotels.indexOf('blank">' )+ 'blank">'.length;
                     let cityId = cityHotels.indexOf('data-cityId=') + 'data-cityId="'.length;
                     startIndex = 0;
@@ -193,16 +196,18 @@ export default function data(state = initialState, action) {
                         elementEurope = cityHotels.slice(indexEurope, cityHotels.indexOf('"', indexEurope));
                         elementLink = cityHotels.slice(link, cityHotels.indexOf('"', link));
                         elementCityId =  cityHotels.slice(cityId, cityHotels.indexOf('"', cityId));
+                        /*elementExclusive = cityHotels.slice(indexExclusive, cityHotels.indexOf('"', indexExclusive));*/
 
                         let value = elementValue.trim();
                         stepResult[value] = {
                             item: element.trim(),
-                            value: value,
+                           value: value,
                             recom : elementRecom.trim(),
                             europe: elementEurope.trim(),
                             link: elementLink.trim(),
                             cityId : elementCityId.trim(),
                             checked: false,
+                          /* exclusive : elementExclusive*/
                         };
 
                         startIndex = cityHotels.indexOf('<div', index);
@@ -211,6 +216,7 @@ export default function data(state = initialState, action) {
                         indexEurope = cityHotels.indexOf('data-europe=', startIndex)+ 'data-europe="'.length;
                         link = cityHotels.indexOf('a href=',startIndex)+ 'a href="'.length;
                         indexRecom = cityHotels.indexOf('<div data-recom=', startIndex )+ '<div data-recom="'.length;
+                      /*  indexExclusive = cityHotels.indexOf('<div data-exclusive=', startIndex )+ '<div data-exclusive="'.length;*/
                         cityId = cityHotels.indexOf('data-cityId=', startIndex) + 'data-cityId="'.length;
                     }
 
@@ -218,7 +224,7 @@ export default function data(state = initialState, action) {
                     filters.push({item: 'Отображать выбранные'},
                         {item: "Только рекомендованные отели"},
                         {item: "Только ориентированы на европейский рынок"},
-                        {item: "Только эксклюзивные отели"}
+                      /*  {item: "Только эксклюзивные отели"}*/
                     );
 
                     Object.assign(state, {step12Data : { data: stepResult, filters: filters} });

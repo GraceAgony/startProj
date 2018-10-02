@@ -12,6 +12,7 @@ import { bindActionCreators } from 'redux';
 import SearchResult from "./../SearchResult"
 import {NavigationActions} from "react-navigation";
 import ButtonRed from "./ButtonRed";
+import { KeyboardAvoidingView } from 'react-native';
 
 class Step12 extends React.Component {
 
@@ -40,9 +41,10 @@ class Step12 extends React.Component {
 
 
     handleSubmit(){
-        console.log('submit');
         let form = this.props.form;
-        console.log(form);
+        const { formAction } = this.props;
+        const {setForm} = formAction;
+        setForm({'step12Data' : this.state.data});
         fetch('https://www.tpg.ua/index.php', {
             method: 'POST',
             headers: {
@@ -68,10 +70,9 @@ class Step12 extends React.Component {
         let newData = {};
         if(textData.length > 0) {
             for (let item in this.holder) {
-                    if (this.holder[item].toUpperCase().indexOf(textData) > -1) {
+                    if (this.holder[item].item.toUpperCase().indexOf(textData) > -1) {
                         newData[item] = this.holder[item];
             }}
-
         }else {
             newData = this.holder;
         }
@@ -100,7 +101,7 @@ class Step12 extends React.Component {
                 if (value === true) {
                     let newData = {};
                     for (let item in this.state['data']) {
-                        if (this.state['data'][item]['checked'] === true) {
+                        if (this.state['data'][item]['checked']) {
                             newData[item] = this.state['data'][item];
                         }
                     }
@@ -141,19 +142,98 @@ class Step12 extends React.Component {
                     return;
                 }
             }
-            // this.setState(
-            //     {
-            //         [group]: Object.assign(
-            //             this.state[group],
-            //             {
-            //                 [key]:
-            //                     Object.assign(this.state[group][key],
-            //                         {
-            //                             "checked": value,
-            //                         })
-            //             })
-            //     });
+        if(key === 'Только ориентированы на европейский рынок') {
+            if (value === true) {
+                let newData = {};
+                for (let item in this.state['data']) {
+                    if (this.state['data'][item]['europe'] === 'true') {
+                        newData[item] = this.state['data'][item];
+                    }
+                }
 
+                this.setState(
+                    {
+                        'data': newData,
+                        [group]: Object.assign(
+                            this.state[group],
+                            {
+                                [key]:
+                                    Object.assign(this.state[group][key],
+                                        {
+                                            "checked": value,
+                                        })
+                            })
+                    });
+                return;
+            } else {
+                let newData = {};
+                Object.assign(newData, this.holder);
+                for (let item in this.state.data) {
+                    Object.assign(newData, this.state.data[item]);
+                }
+                this.setState(
+                    {
+                        'data': newData,
+                        [group]: Object.assign(
+                            this.state[group],
+                            {
+                                [key]:
+                                    Object.assign(this.state[group][key],
+                                        {
+                                            "checked": value,
+                                        })
+                            })
+                    }
+                );
+                return;
+            }
+        }
+
+        if(key === 'Только рекомендованные отели') {
+            if (value === true) {
+                let newData = {};
+                for (let item in this.state['data']) {
+                    if (this.state['data'][item]['recom'] === 'true') {
+                        newData[item] = this.state['data'][item];
+                    }
+                }
+                this.setState(
+                    {
+                        'data': newData,
+                        [group]: Object.assign(
+                            this.state[group],
+                            {
+                                [key]:
+                                    Object.assign(this.state[group][key],
+                                        {
+                                            "checked": value,
+                                        })
+                            })
+                    });
+                return;
+            } else {
+                let newData = {};
+                Object.assign(newData, this.holder);
+                for (let item in this.state.data) {
+                    Object.assign(newData, this.state.data[item]);
+                }
+                this.setState(
+                    {
+                        'data': newData,
+                        [group]: Object.assign(
+                            this.state[group],
+                            {
+                                [key]:
+                                    Object.assign(this.state[group][key],
+                                        {
+                                            "checked": value,
+                                        })
+                            })
+                    }
+                );
+                return;
+            }
+        }
     };
 
 
@@ -166,7 +246,7 @@ class Step12 extends React.Component {
         return (
             <Container >
                 <Content>
-            <View style={formStyles.stepBox}>
+             <KeyboardAvoidingView style={formStyles.stepBox}>
                             <Text style = {formStyles.stepLabelText} >Отель</Text>
                         {stepDataFilter.map((item, index)=>
                             <CheckBoxComponent
@@ -177,7 +257,11 @@ class Step12 extends React.Component {
                             />
                         )}
 
-                        <Input  style={formStyles.pickerItemsText} placeholder="Поиск"/>
+                        <Input
+                            style={formStyles.pickerItemsText}
+                            placeholder="Поиск"
+                            onChangeText = {(text) => this.searchFilterFunction.bind(this)(text)}
+                        />
 
                 { Object.keys(this.state.data).map((item, index) =>
                         <CheckBoxComponent
@@ -232,7 +316,7 @@ class Step12 extends React.Component {
                             this.forceUpdate();
                         }}
                     />*/}
-            </View>
+             </KeyboardAvoidingView>
                 </Content>
             </Container>
         )};
