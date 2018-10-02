@@ -80,7 +80,7 @@ class Step12 extends React.Component {
 
     onValueChange(group, key, value) {
         let newData ={};
-        if(group === 'data'){
+       if(group === 'data'){
             this.setState(
                 {
                     'data': newData,
@@ -94,53 +94,65 @@ class Step12 extends React.Component {
                                     })
                         })
                 });
-        }else
-            if(key === 'Отображать выбранные'){
-            if(value === true){
-                let newData = {};
-                for(let item in this.state['data']){
-                    if(this.state['data'][item]['checked'] === true){
-                        newData[item] = this.state['data'][item];
-                    }
-                }
-                this.setState(
-                    {
-                        'data': newData,
-                        [group]: Object.assign(
-                            this.state[group],
-                            {
-                                [key]:
-                                    Object.assign(this.state[group][key],
-                                        {
-                                            "checked": value,
-                                        })
-                            })
-                    });
-            }else {
-                let newData = {};
-                Object.assign(newData, this.holder);
-                for(let item in this.state.data){
-                        Object.assign(newData, this.state.data[item]);
-                }
-                this.setState(
-                    {
-                        'data':newData
-                    }
-                );
-            }
-            this.setState(
-                {
-                    [group]: Object.assign(
-                        this.state[group],
-                        {
-                            [key]:
-                                Object.assign(this.state[group][key],
-                                    {
-                                        "checked": value,
-                                    })
-                        })
-                });
+            return;
         }
+            if(key === 'Отображать выбранные') {
+                if (value === true) {
+                    let newData = {};
+                    for (let item in this.state['data']) {
+                        if (this.state['data'][item]['checked'] === true) {
+                            newData[item] = this.state['data'][item];
+                        }
+                    }
+                     this.setState(
+                          {
+                              'data': newData,
+                              [group]: Object.assign(
+                                  this.state[group],
+                                  {
+                                      [key]:
+                                          Object.assign(this.state[group][key],
+                                              {
+                                                  "checked": value,
+                                              })
+                                  })
+                          });
+                    return;
+                } else {
+                    let newData = {};
+                    Object.assign(newData, this.holder);
+                    for (let item in this.state.data) {
+                        Object.assign(newData, this.state.data[item]);
+                    }
+                    this.setState(
+                        {
+                            'data': newData,
+                            [group]: Object.assign(
+                                this.state[group],
+                                {
+                                    [key]:
+                                        Object.assign(this.state[group][key],
+                                            {
+                                                "checked": value,
+                                            })
+                                })
+                        }
+                    );
+                    return;
+                }
+            }
+            // this.setState(
+            //     {
+            //         [group]: Object.assign(
+            //             this.state[group],
+            //             {
+            //                 [key]:
+            //                     Object.assign(this.state[group][key],
+            //                         {
+            //                             "checked": value,
+            //                         })
+            //             })
+            //     });
 
     };
 

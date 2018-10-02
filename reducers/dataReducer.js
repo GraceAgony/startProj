@@ -177,7 +177,7 @@ export default function data(state = initialState, action) {
 
                     //step12data
 
-                    stepArray = [];
+                    let stepResult = {};
                     cityHotels = responseJson.content.cityHotels.cityhotels;
                     indexRecom = cityHotels.indexOf('<div data-recom=' )+ '<div data-recom="'.length;
                     indexValue = cityHotels.indexOf('data-value=')+ 'data-value="'.length;
@@ -194,15 +194,16 @@ export default function data(state = initialState, action) {
                         elementLink = cityHotels.slice(link, cityHotels.indexOf('"', link));
                         elementCityId =  cityHotels.slice(cityId, cityHotels.indexOf('"', cityId));
 
-                        stepArray.push({
+                        let value = elementValue.trim();
+                        stepResult[value] = {
                             item: element.trim(),
-                            value: elementValue.trim(),
+                            value: value,
                             recom : elementRecom.trim(),
                             europe: elementEurope.trim(),
                             link: elementLink.trim(),
                             cityId : elementCityId.trim(),
                             checked: false,
-                        });
+                        };
 
                         startIndex = cityHotels.indexOf('<div', index);
                         index = cityHotels.indexOf('blank">' , startIndex)+ 'blank">'.length;
@@ -220,7 +221,7 @@ export default function data(state = initialState, action) {
                         {item: "Только эксклюзивные отели"}
                     );
 
-                    Object.assign(state, {step12Data : { data: stepArray, filters: filters} });
+                    Object.assign(state, {step12Data : { data: stepResult, filters: filters} });
                     //step11data
                     stepArray1 = [];
                     cityDestination = responseJson.content.cityHotels.citydestanationtree;
