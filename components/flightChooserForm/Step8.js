@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavigationActions } from "react-navigation";
 import * as childrenActions from "../../actions/ChildrenActions";
+import * as dataActions from "../../actions/dataActions"
 
 class Step8 extends React.Component {
 
@@ -23,6 +24,8 @@ class Step8 extends React.Component {
         const stepDataType = data.step8Data.hotel;
         let food = {};
         let hotel = {};
+        this.hotelHolder = data.step12Data.data;
+        this.currentHotel= {};
         stepData.map((item) =>
         {
             item.checked = false;
@@ -40,6 +43,30 @@ class Step8 extends React.Component {
     }
 
     onValueChange(group, key, value, itemValue) {
+        const {data} = this.props;
+        const {setData} = this.props.dataActions;
+        if(group === 'hotel'){
+            let newData = {};
+            if(value === true) {
+                for (let item in this.hotelHolder) {
+                    if (this.hotelHolder[item].star === key) {
+                        newData[item] = this.hotelHolder[item];
+                    }
+                }
+                Object.assign(this.currentHotel, newData);
+                setData(Object.assign(data.step12Data, {data: this.currentHotel}));
+            }else{
+                for (let item in this.hotelHolder) {
+                    if (this.hotelHolder[item].star === key) {
+                        delete this.currentHotel[item];
+                    }
+                }
+                if(Object.values(this.currentHotel).length === 0){
+                    setData(Object.assign(data.step12Data, {data: this.hotelHolder}));
+                }
+            }
+        }
+
 
         this.setState(
             {[group] : Object.assign(
@@ -116,7 +143,8 @@ class Step8 extends React.Component {
 function mapDispatchToProps(dispatch) {
     return {
         childrenActions: bindActionCreators(childrenActions, dispatch),
-        formAction: bindActionCreators(formAction, dispatch)
+        formAction: bindActionCreators(formAction, dispatch),
+        dataActions: bindActionCreators(dataActions, dispatch)
     }
 }
 

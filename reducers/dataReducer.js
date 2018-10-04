@@ -184,6 +184,7 @@ export default function data(state = initialState, action) {
                     indexValue = cityHotels.indexOf('data-value=')+ 'data-value="'.length;
                     let indexEurope = cityHotels.indexOf('data-europe=')+ 'data-europe="'.length;
                     let link = cityHotels.indexOf('a href=')+ 'a href="'.length;
+                    let indexStar = cityHotels.indexOf('data-star=')+ 'data-star="'.length;
                     /*let indexExclusive =  cityHotels.indexOf('data-exclusive');
                     //+ 'data-exclusive="'.length;*/
                     index = cityHotels.indexOf('blank">' )+ 'blank">'.length;
@@ -196,6 +197,7 @@ export default function data(state = initialState, action) {
                         elementEurope = cityHotels.slice(indexEurope, cityHotels.indexOf('"', indexEurope));
                         elementLink = cityHotels.slice(link, cityHotels.indexOf('"', link));
                         elementCityId =  cityHotels.slice(cityId, cityHotels.indexOf('"', cityId));
+                        elementStar = cityHotels.slice(indexStar, cityHotels.indexOf('"', indexStar));
                         /*elementExclusive = cityHotels.slice(indexExclusive, cityHotels.indexOf('"', indexExclusive));*/
 
                         let value = elementValue.trim();
@@ -207,6 +209,7 @@ export default function data(state = initialState, action) {
                             link: elementLink.trim(),
                             cityId : elementCityId.trim(),
                             checked: false,
+                            star: elementStar.trim()
                           /* exclusive : elementExclusive*/
                         };
 
@@ -218,6 +221,7 @@ export default function data(state = initialState, action) {
                         indexRecom = cityHotels.indexOf('<div data-recom=', startIndex )+ '<div data-recom="'.length;
                       /*  indexExclusive = cityHotels.indexOf('<div data-exclusive=', startIndex )+ '<div data-exclusive="'.length;*/
                         cityId = cityHotels.indexOf('data-cityId=', startIndex) + 'data-cityId="'.length;
+                        indexStar = cityHotels.indexOf('data-star=', startIndex)+'data-star="'.length;
                     }
 
                     let filters = [];
