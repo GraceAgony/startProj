@@ -79,6 +79,7 @@ import {formStyles} from "./style";
              routeName: "Step3",
              params: { name: "Step3"}
          });
+
          this.props.navigation.dispatch(navigateToStep3);
      };
 
